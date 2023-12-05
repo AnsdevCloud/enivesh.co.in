@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "label": "Smart Exit Option",
+        "text": "Access the Smart Exit Benefit°, reclaiming your premiums. This option is available from the 26th policy year onward, excluding the last 5 policy years, applicable when the life assured is aged 60 or above. No extra premium is required for this choice."
+    },
+    {
+        "id": 2,
+        "label": "Terminal Illness Benefits",
+        "text": "In case of the policyholder being diagnosed with a terminal illness, the entire death benefit is disbursed. This inherent benefit is included in the term insurance policy without any additional charges."
+    },
+    {
+        "id": 3,
+        "label": "Boost your coverage with RIDERs",
+        "text": "- Accidental Death Benefit - In case of death due to an accident, Sum assured chosen as accidental death benefit is payable\n- Accident Total Permanent Disability Benefits\n - In case of occurrence of total permanent disability of the life assured due to an accident, sum assured chosen ATPDB is payable\n- Critical Illness Benefit\n – Upto 55 Critical Illness are covered\n- Waiver Of Premium – Life cover continues without paying any premium on disability\n- Terminal Illness Benefit - Death Benefit paid upon earlier of Diagnosis of Terminal Illness"
+    },
+    {
+        "id": 4,
+        "label": "Limited Premium Payment",
+        "text": "Choose from flexible premium payment options that allow you to pay for a limited term while ensuring continuous coverage throughout the entire policy term."
+    }
+]
