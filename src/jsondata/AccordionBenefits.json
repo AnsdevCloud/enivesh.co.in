@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "title": "Bumper Insurance Cover ",
+        "image": "/images/ulipplan/bummper.svg",
+        "discription": "Ensure lifelong protection for your family, even in your absence, with Life Cover of up to 125 times your annual premium."
+    },
+    {
+        "id": 2,
+        "title": "360 Degree Protection with RIDERS",
+        "image": "/images/ulipplan/protect.svg",
+        "discription": "You also receive additional protection through Accidental Death coverage, Accidental Disability coverage, and critical illness coverage to provide financial security for your family in the event of an unfortunate incident."
+    },
+    {
+        "id": 3,
+        "title": "Beat Inflation with market-linked investment",
+        "image": "/images/ulipplan/inlation.svg",
+        "discription": "Based on your risk tolerance, you have the flexibility to invest in a different asset classes and multiple funds."
+    },
+    {
+        "id": 4,
+        "title": "Return of charges",
+        "image": "/images/ulipplan/returncharges.svg",
+        "discription": "Return of 2-3xMortality charges, 2x Premium allocation charges, 2x Policy Administration charges"
+    },
+    {
+        "id": 5,
+        "title": "Maturity Booster ",
+        "image": "/images/ulipplan/booster.svg",
+        "discription": "Policy rewards your loyalty and helps you earn more by adding 20% additional units to your fund at the end of your policy term"
+    },
+    {
+        "id": 6,
+        "title": "Partial Withdrawal & Surrender without any charges",
+        "image": "/images/ulipplan/widrow.png",
+        "discription": "After Completion of 5 policy years will give you facility of free withdrawal without any charges."
+    },
+    {
+        "id": 7,
+        "title": "Tax Benefits*",
+        "image": "/images/ulipplan/tax.svg",
+        "discription": "Avail tax deductions up to ₹ 1.5 lakh on premiums paid under the policy as per Section 80C and returns received under the policy are exempt subject to Section 10(10D)."
+    }
+]

@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "imgUrl": "/images/homepage/studentcareer.svg",
+        "title": "Student, starting career"
+    },
+    {
+        "id": 2,
+        "imgUrl": "/images/homepage/Newlyweds.svg",
+        "title": "Newlyweds and Young Families"
+    },
+    {
+        "id": 3,
+        "imgUrl": "/images/homepage/familyetabilish.svg",
+        "title": "Established Families (with Children)"
+    },
+    {
+        "id": 4,
+        "imgUrl": "/images/homepage/singlelife.svg",
+        "title": "Single - Life Journey"
+    },
+    {
+        "id": 5,
+        "imgUrl": "/images/homepage/Retiree.svg",
+        "title": "Nearing Retirement"
+    },
+    {
+        "id": 6,
+        "imgUrl": "/images/homepage/retirement.svg",
+        "title": "Retiree"
+    }
+]

@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "titleColor": "Tailored",
+        "titleDefault": "Solutions",
+        "imgUrl": "/images/eniveshicon/tailored.svg",
+        "discription": "Our expert brokers understand that one size doesn't fit all. Benefit from personalized term policy solutions crafted to align perfectly with your unique financial goals and circumstances."
+    },
+    {
+        "id": 2,
+        "titleColor": "Flexible",
+        "titleDefault": "Terms",
+        "imgUrl": "/images/eniveshicon/flaxibleyerm.svg",
+        "discription": "Enjoy the flexibility to choose the term that suits you best. Whether short or long-term, our policies adapt to your life stage and financial plans."
+    },
+    {
+        "id": 3,
+        "titleColor": "Financial",
+        "titleDefault": "Wellness",
+        "imgUrl": "/images/eniveshicon/finawelth.svg",
+        "discription": "Beyond protection, our term policies contribute to your overall financial wellness. Leverage your policy for strategic financial planning and growth opportunities."
+    },
+    {
+        "id": 4,
+        "titleColor": "Access",
+        "titleDefault": "to Multiple Insurer",
+        "imgUrl": "/images/eniveshicon/acsmulti.svg",
+        "discription": "ENIVESH works with multiple insurance companies, giving you access to a wide range of policies. This allows for better customization to meet your unique requirements."
+    },
+    {
+        "id": 5,
+        "titleColor": "Claims",
+        "titleDefault": "Assistance",
+        "imgUrl": "/images/eniveshicon/claimassitance.svg",
+        "discription": "In the event of a claim, ENIVESH acts as your advocate. We guide you through the claims process, ensuring that you receive fair and timely compensation."
+    },
+    {
+        "id": 6,
+        "titleColor": "Long-Term",
+        "titleDefault": "Partnerships",
+        "imgUrl": "/images/eniveshicon/lgtp.svg",
+        "discription": "ENIVESH aim to build lasting relationships with our clients. This commitment to your well-being extends beyond policy issuance to ongoing support and guidance."
+    }
+]

@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "titleColor": "Permanent ",
+        "titleDefault": "Coverage Needs",
+        "imgUrl": "/images/gsaving/permanentcoverageneeds.svg",
+        "discription": "Individuals seeking lifelong coverage, especially for purposes such as providing for dependents, estate planning, or leaving a legacy, may find a whole life guaranteed plan well-suited."
+    },
+    {
+        "id": 2,
+        "titleColor": "Long-Term ",
+        "titleDefault": "Financial Goals ",
+        "imgUrl": "/images/gsaving/long-termfinancialgoals.svg",
+        "discription": "Individuals with long-term financial goals, such as funding education, building wealth, or ensuring financial security during retirement, may find a whole life guaranteed plan aligns with their extended time horizon."
+    },
+    {
+        "id": 3,
+        "titleColor": "Estate",
+        "titleDefault": "Planning",
+        "imgUrl": "/images/gsaving/estateplanning.svg",
+        "discription": "For estate planning purposes, where individuals want to ensure liquidity to cover potential estate taxes or provide an inheritance to heirs, a whole life guaranteed plan can be beneficial."
+    },
+    {
+        "id": 4,
+        "titleColor": "Supplemental ",
+        "titleDefault": "Retirement Income",
+        "imgUrl": "/images/gsaving/retirementincome.svg",
+        "discription": "Whole life plan can be a source of supplemental income during retirement. Policy loans or withdrawals can provide a tax-advantaged income stream."
+    }
+]

@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "titleColor": "Regular ",
+        "titleDefault": "Expenses",
+        "imgUrl": "/images/gsaving/billregular.svg",
+        "discription": "Individuals with consistent monthly or periodic expenses, such as rent or mortgage payments, utility bills, and groceries, may prefer recurring payments to ensure these obligations are consistently met."
+    },
+    {
+        "id": 2,
+        "titleColor": "Legacy  ",
+        "titleDefault": "Planning",
+        "imgUrl": "/images/gsaving/lagicyplanning.svg",
+        "discription": "For those interested in leaving a legacy for their heirs, recurring payouts can be structured to support beneficiaries consistently."
+    },
+    {
+        "id": 3,
+        "titleColor": "Managing ",
+        "titleDefault": "Tax Implications",
+        "imgUrl": "/images/gsaving/taxmanage.svg",
+        "discription": "Structuring income through recurring payouts can help manage tax implications more effectively compared to a lump-sum payment."
+    },
+    {
+        "id": 4,
+        "titleColor": "Retirees",
+        "titleDefault": "",
+        "imgUrl": "/images/gsaving/retirees.svg",
+        "discription": "Retirees often choose recurring payouts to supplement their retirement income, ensuring a steady stream of funds for living expenses."
+    }
+]

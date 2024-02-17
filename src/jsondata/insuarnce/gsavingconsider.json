@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "titleColor": "Financial",
+        "titleDefault": "Security",
+        "imgUrl": "/images/gsaving/financialsecurty.svg",
+        "discription": "Insurance companies are regulated and financially sound institutions. Choosing a guaranteed plan with an insurance company provides a level of financial security, knowing that your investment is backed by a reputable and stable entity."
+    },
+    {
+        "id": 2,
+        "titleColor": "Peace of",
+        "titleDefault": "Mind",
+        "imgUrl": "/images/gsaving/peaceofmind.svg",
+        "discription": "Guaranteed plans offered by insurance companies provide assured returns, ensuring that your principal amount is secure, and you will receive a predetermined payout or benefit."
+    },
+    {
+        "id": 3,
+        "titleColor": "Death",
+        "titleDefault": "Benefit",
+        "imgUrl": "/images/gsaving/deathbenefits.svg",
+        "discription": "Guaranteed plans also covers life insurance, offering financial protection for your beneficiaries in the event of your passing. These coverage can be extended upto 20 times of coverage."
+    },
+    {
+        "id": 4,
+        "titleColor": "Flexibility in ",
+        "titleDefault": "Payout Options",
+        "imgUrl": "/images/gsaving/flaxibleyerm.svg",
+        "discription": "Guaranteed plans with insurance companies often provide flexibility in payout options, allowing you to choose between lump-sum payments, periodic payouts, or a combination based on your preferences and financial needs."
+    }
+]

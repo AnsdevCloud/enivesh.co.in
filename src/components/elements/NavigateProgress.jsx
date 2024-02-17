@@ -9,6 +9,7 @@ const NavigateProgress = () => {
             <HeadingBox defaultText={"Buy"} colorText={"Step to"} />
             <ProgressContainer>
                 <ProgressBox>
+                    <div className="step-num">1</div>
                     <div className="image_side">
                         <img src="/images/eniveshicon/calculator.svg" alt="size" />
                     </div>
@@ -17,6 +18,8 @@ const NavigateProgress = () => {
                     </div>
                 </ProgressBox>
                 <ProgressBox>
+                    <div className="step-num">2</div>
+
                     <div className="image_side">
                         <img src="/images/eniveshicon/documents.svg" alt="size" />
                     </div>
@@ -25,6 +28,8 @@ const NavigateProgress = () => {
                     </div>
                 </ProgressBox>
                 <ProgressBox>
+                    <div className="step-num">3</div>
+
                     <div className="image_side">
                         <img src="/images/eniveshicon/pgd.svg" alt="size" />
                     </div>
@@ -32,7 +37,11 @@ const NavigateProgress = () => {
                         <p>Experts, guiding you through payment, documentation, medical needs.</p>
                     </div>
                 </ProgressBox>
-                <ProgressCircleBox>Policy Issued</ProgressCircleBox>
+                <ProgressCircleBox>
+                    <div className="step-num">4</div>
+
+                    Policy Issued
+                </ProgressCircleBox>
             </ProgressContainer>
 
             <div className="navigae_link">
@@ -57,7 +66,7 @@ overflow: hidden;
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: 14px;
+    font-size: 12px;
     width: 100%;
     padding: 0 20px;
     font-weight: 500;
@@ -70,11 +79,15 @@ overflow: hidden;
     a{
         transition: all .3s ease-in;
         color: #ff5c00;
-        font-size: 12px;
         &:hover{
             text-transform: uppercase;
 
         }
+    }
+    @media (max-width:425px) {
+        font-size: 10px;
+        white-space: nowrap;
+        
     }
 }
 `;
@@ -96,10 +109,18 @@ padding: 20px 10px;
     top: 50%;
     left: 10%;
     z-index: 0;
+    @media (max-width:425px) {
+        display: none;
+    }
  }
-
+@media (max-width: 768px) {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+}
 `;
 const ProgressBox = styled.div`
+position: relative;
   width: 250px;
   height: 80px;
   box-shadow: 0px 0px 9px -7px #1a1a1a;
@@ -127,7 +148,37 @@ const ProgressBox = styled.div`
         font-weight: 500;
     }
   }
+   .step-num{
+    display: none;
+   }
 
+@media (max-width:768px) {
+    width: 130px;
+    height: 150px;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .image_side{
+        width: 70px;
+    }
+  
+   .step-num{
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    padding: 5px 10px;
+    color: #fff;
+    font-weight: 600;
+    background-color: #ff5c00;
+    border-radius: 50%;
+    font-size: 10px;
+   }
+   @media (max-width:425px) {
+    .step-num{
+        display: block;
+    }
+   }
+}
 `;
 const ProgressCircleBox = styled(ProgressBox)`
   border-radius: 50%;
@@ -139,5 +190,19 @@ const ProgressCircleBox = styled(ProgressBox)`
   color: #ff5c00;
   border: 2px solid #ff5c00;
   cursor: default;
-  
+  @media (max-width:425px) {
+    .step-num{
+    position: absolute;
+    display: block;
+    top: -20px;
+    right: -5px;
+    padding: 5px 10px;
+    color: #fff;
+    font-weight: 600;
+    background-color: #ff5c00;
+    border-radius: 50%;
+    font-size: 10px;
+   }
+    
+  }
 `;

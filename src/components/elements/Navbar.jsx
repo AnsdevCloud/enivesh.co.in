@@ -1,34 +1,43 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { IoMdArrowDropdownCircle } from "react-icons/io";
 import DropDown from "../items/DropDown";
+import navData from "../../jsondata/dropdowndata.json"
 import { useState } from "react";
 const Navbar = () => {
+    const userData = localStorage.getItem("loginUser")
+    const useUser = JSON.parse(userData);
+    const [user, setUserData] = useState(useUser);
     const [active, setActive] = useState(false);
+    const [currentData, setCurrentData] = useState(false);
 
-    const handleActive = () => {
-        setTimeout(() => {
-            setActive(false)
-        }, 1000);
+
+
+    const handleActive = (e) => {
+        setActive(true)
+        setCurrentData(e);
     }
 
     return (
         <Wrapper>
-            <div className="logo">
-                <img src={"/images/eniveshicon/eniveshlogo.png"} alt="logo" />
-                {/* <img src={"/images/eniveshicon/eniveshicon.png"} alt="logo" /> */}
-            </div>
+            <Link className="logo" to={"/"}><div >
+                <img src={"/images/eniveshicon/Enivesh_Insurance_LOGO.png"} alt="logo" />
+            </div></Link>
             <div className="navlink" >
-                <NavLink onMouseEnter={() => setActive(!active)} >LIFE INSURANCE <IoMdArrowDropdownCircle /></NavLink>
-                <NavLink onMouseEnter={() => setActive(!active)} >HEALTH INSURANCE <IoMdArrowDropdownCircle /></NavLink>
-                <NavLink onMouseEnter={() => setActive(!active)} >GROUP INSURANCE <IoMdArrowDropdownCircle /></NavLink>
-                <NavLink onMouseEnter={() => setActive(!active)} >MSME INSURANCE <IoMdArrowDropdownCircle /></NavLink>
+
+                {
+                    navData && navData.map((item, index) => {
+                        return <NavLink key={index} onMouseEnter={(e) => handleActive(item)}  >{item.title}  <IoMdArrowDropdownCircle /></NavLink>
+                    })
+                }
             </div>
-            <div className="profile">
-                <img src="https://wimpoleclinic.com/wp-content/uploads/Bold-and-curly.jpg" alt="profile" />
-            </div>
+            <Link className="profile" to={"/profile"}>
+                <div >
+                    <img src={user ? user.profileUrl : "/images/eniveshicon/avatar.svg"} alt="profile" />
+                </div>
+            </Link>
             {
-                active && <DropDown active={() => setActive(false)} />
+                active && <DropDown data={currentData} active={() => setActive(false)} />
             }
         </Wrapper>
     )
@@ -37,6 +46,8 @@ const Navbar = () => {
 export default Navbar
 
 const Wrapper = styled.div`
+  position: sticky;
+  top: 0;
   width: 100%;
   height: 60px;
   background-color: #fff;
@@ -45,12 +56,17 @@ const Wrapper = styled.div`
   box-shadow: 0px 5px 9px -7px #555;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  padding-left: 300px;
   .logo{
     position: absolute;
+    width: 150px;
     left: 0px;
     top: auto;
-    @media (max-width:768px) {
+      img{
+        width: 150px;
+       }
+       @media (max-width:768px) {
        img{
         width: 150px;
        }

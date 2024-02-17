@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "imgUrl": "/images/homepage/oldetinsurance1.svg",
+        "titleColor": "Oldest Insurance ",
+        "titleDefault": "Marketing Firm",
+        "discription": "We are pioneers in these segments and one of the top 10 longest-standing active insurance marketing firms in India."
+    },
+    {
+        "id": 2,
+        "imgUrl": "/images/homepage/singlemobileapplication.svg",
+        "titleColor": "Single Mobile ",
+        "titleDefault": " Application",
+        "discription": "Gain complete control of your finances: Manage and track all your accounts in a single, convenient platform."
+    },
+    {
+        "id": 3,
+        "imgUrl": "/images/homepage/support247.svg",
+        "titleColor": "Support ",
+        "titleDefault": "24/7",
+        "discription": "Experience the peace of mind that comes with knowing you have our unwavering support during unfortunate claims."
+    }
+]

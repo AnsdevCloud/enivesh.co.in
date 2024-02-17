@@ -1,0 +1,82 @@
+[
+    {
+        "id": 1,
+        "text": "Life Insurance",
+        "title": "LIFE",
+        "list": [
+            {
+                "path": "life/term_insurance",
+                "name": "Term Insurance"
+            },
+            {
+                "path": "life/granteed_saving_plan",
+                "name": "Saving Plans - Guaranteed"
+            },
+            {
+                "path": "life/ulip_plan",
+                "name": "ULIP Plan"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "text": "Health Insurance",
+        "title": "HEALTH ",
+        "list": [
+            {
+                "path": "/",
+                "name": "Mediclaim"
+            },
+            {
+                "path": "/",
+                "name": "Critical Illness"
+            },
+            {
+                "path": "/",
+                "name": "Personal Accident Policy"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "text": "Group Insurance",
+        "title": "GROUP",
+        "list": [
+            {
+                "path": "/",
+                "name": "Group Mediclaim "
+            },
+            {
+                "path": "/",
+                "name": "Group Personal Accidental"
+            },
+            {
+                "path": "/",
+                "name": "Workmen Compensation"
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "text": "MSME Insurance",
+        "title": "MSME",
+        "list": [
+            {
+                "path": "/",
+                "name": "Contractor's All Risk Insurance"
+            },
+            {
+                "path": "/",
+                "name": "Fire (Property) Insurance"
+            },
+            {
+                "path": "/",
+                "name": "Professional Indemnity"
+            },
+            {
+                "path": "/",
+                "name": "Liability Insurance"
+            }
+        ]
+    }
+]

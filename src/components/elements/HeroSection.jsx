@@ -67,7 +67,7 @@ const HeroSection = () => {
 export default HeroSection
 const Wrapper = styled.div`
 width: 100%;
-height: 85vh;
+/* height: 85vh; */
 position: relative;
 display: flex;
 margin: 10px 0;
@@ -95,7 +95,7 @@ align-items: center;
         font-weight: 500;
         }
         @media (max-width:768px) {
-              left: 35%;
+              left: 33%;
               top: 20px;
             h1{
                 font-size: 16px;
@@ -116,17 +116,17 @@ align-items: center;
         align-items: center;
         justify-content: center;
         img{
-            margin-top: 170px;
+            margin-top: 70px;
             width: 260px;
         }
         @media (max-width:376px){
                
             img{
-                margin-top: 215px;
+                margin-top: 60px;
             }
         }
 
- @media (max-width:426px){
+        @media (max-width:426px){
                
             display: flex;
         }
@@ -279,6 +279,10 @@ align-items: center;
     @media (max-width:426px) {
         display: none;
     }
+  }
+
+  @media (min-width:768px) {
+    height: 85vh;
   }
 `;
 

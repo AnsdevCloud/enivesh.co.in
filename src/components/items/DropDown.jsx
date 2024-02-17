@@ -1,34 +1,45 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const DropDown = ({ active }) => {
+
+const DropDown = ({ active, data }) => {
+
+
     return (
-        <Wrapper onMouseLeave={active}>
-            <h1 className="title">LIFE INSURANCE</h1>
-            <div className="linkcontaner">
-                <div className="item">
-                    <h2>Term Insurance</h2>
-                    <Link to={"/term_insurance"}>React Js</Link>
-                    <Link>React Js</Link>
-                </div>
+        <>
+            <CloseWrapper onMouseEnter={active} />
+            <Wrapper onMouseLeave={active}>
+                <h1 className="title">{data.text}</h1>
+                <div className="linkcontaner">
+                    {
+                        data.list && data.list.map((item, index) => {
+                            return <div key={index} className="item">
+                                <h2>{data.title}</h2>
+                                <p> <Link to={item.path}>{item.name}</Link></p>
+                            </div>
+                        })
 
-                <div className="item">
-                    <h2>Term Insurance</h2>
-                    <Link>React Js</Link>
-                    <Link>React Js</Link>
-                </div>
+                    }
 
-                <div className="item">
-                    <h2>Term Insurance</h2>
-                    <Link>React Js</Link>
-                    <Link>React Js</Link>
+
                 </div>
-            </div>
-        </Wrapper>
+            </Wrapper>
+        </>
     )
 }
 
 export default DropDown
+const CloseWrapper = styled.div`
+position: fixed;
+top: 65px;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: transparent;
+z-index: 99;
+  
+`;
+
 const Wrapper = styled.div`
 transition: all 1s ease-in-out;
 background-color: #fff;
@@ -41,7 +52,7 @@ padding: 10px;
 box-shadow: 0px 5px 9px -7px #555;
 border-radius: 10px;
 margin: 0 auto;
-z-index: 99;
+z-index: 999;
 
 .title{
     font-size: 20px;
@@ -49,6 +60,7 @@ z-index: 99;
     padding: 5px 10px;
     font-weight: 600;
     color: #555;
+    text-transform: uppercase;
     
 }
 .linkcontaner{
@@ -62,11 +74,15 @@ z-index: 99;
         h2{
             font-weight: 600;
             color: #ff5c00;
-            font-size: 16px;
+            font-size: 12px;
+            text-align: center;
            
         }
+        p{
+            text-align: center;
+        }
          a{
-               display: block;
+                display: block;
                 font-size: 14px;
                 transition: all ease-in .4s;
                 font-weight: 500;

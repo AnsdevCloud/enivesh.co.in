@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "titleColor": "Education",
+        "titleDefault": "Funds",
+        "imgUrl": "/images/gsaving/educationfund.svg",
+        "discription": "Parents or individuals saving for education expenses may prefer a lump sum to cover tuition fees or other educational costs."
+    },
+    {
+        "id": 2,
+        "titleColor": "Starting ",
+        "titleDefault": "a Business",
+        "imgUrl": "/images/gsaving/startingbusiness.svg",
+        "discription": "Entrepreneurs looking to start or expand a business might require a lump sum for capital investment, equipment purchase, or operational expenses."
+    },
+    {
+        "id": 3,
+        "titleColor": "Estate",
+        "titleDefault": "Planning",
+        "imgUrl": "/images/gsaving/estateplanning.svg",
+        "discription": "Those involved in estate planning may prefer a lump sum to facilitate the distribution of assets among heirs or beneficiaries."
+    },
+    {
+        "id": 4,
+        "titleColor": "Retirement",
+        "titleDefault": "Income",
+        "imgUrl": "/images/gsaving/retirementincome.svg",
+        "discription": "Individuals planning for retirement may choose a lump sum to create a nest egg that can be managed and invested to generate a regular income stream during their retirement years."
+    }
+]

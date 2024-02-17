@@ -1,9 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
 const Global = createGlobalStyle`
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
-
   *{
     margin: 0;
     padding: 0;
@@ -14,5 +11,10 @@ const Global = createGlobalStyle`
   h1,h2,h3,h4,h5,h6,p,span{
     cursor: default;
   }
+  body{
+    overflow-x: hidden;
+  }
 `;
+
+
 export default Global;
