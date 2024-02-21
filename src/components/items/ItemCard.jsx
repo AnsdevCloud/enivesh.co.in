@@ -91,7 +91,7 @@ padding: 10px;
     h3{
         color: #ff5c00;
         font-weight: 600;
-        font-size: .7vmax;
+        font-size: 12px;
         span{
             font-weight: 600;
             color: #1a1a1a;
@@ -102,7 +102,7 @@ padding: 10px;
   }
     @media (max-width:426px) {
    min-width: 100%;
-    height: 180px;
+    height: 200px;
 
   }
 `;

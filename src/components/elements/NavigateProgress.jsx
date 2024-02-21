@@ -45,7 +45,7 @@ const NavigateProgress = () => {
             </ProgressContainer>
 
             <div className="navigae_link">
-                Click Here <FaArrowRight /><Link>Life Insurance Needs Calculator</Link>
+                {/* Click Here <FaArrowRight /><Link>Life Insurance Needs Calculator</Link> */}
             </div>
         </Wrapper>
     )
@@ -157,6 +157,7 @@ position: relative;
     height: 150px;
     flex-wrap: wrap;
     justify-content: center;
+    overflow: hidden;
 
     .image_side{
         width: 70px;

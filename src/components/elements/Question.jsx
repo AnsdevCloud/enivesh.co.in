@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import HeadingBox from "../items/HeadingBox";
-import { useState } from "react";
+import React, { useState } from "react";
 import { IoMdArrowDropdown } from "react-icons/io";
 
 const Question = ({ Qustions }) => {
@@ -10,18 +10,27 @@ const Question = ({ Qustions }) => {
         setOpenIndex((prevIndex) => (prevIndex === index ? null : index));
     };
 
-
+    const processDescription = (data) => {
+        data = data.replace(/\*\*(.*?)\*\*/g, '<span  style="font-weight: 600;color:#000; margin: 0px 2px">$1</span>');
+        return <p className="maindata" dangerouslySetInnerHTML={{ __html: data }} />;
+    };
+    const processDescription2 = (data) => {
+        data = data.replace(/\*\*(.*?)\*\*/g, '<span  style="font-weight: 600;color:#000; margin: 0px 2px">$1</span>');
+        return <div dangerouslySetInnerHTML={{ __html: data }} />;
+    };
     return (
         <Wrapper>
             <HeadingBox m={"5px 0"} colorText={"Frequently"} defaultText={"Asked Questions"} />
             {
                 Qustions && Qustions.map((item, index) => {
                     return <Container open={openIndex === index} key={index}>
-                        <Header id={index} open={openIndex === index} onClick={() => toggleAccordion(index)}><span>{index + 1 + ". "}</span>{item.qus}<IoMdArrowDropdown /></Header>
+                        <Header id={index} open={openIndex === index} onClick={() => toggleAccordion(index)}>
+                            <div><span className="span">{index + 1 + ". "}</span><span>{processDescription2(item.qus)}</span></div><IoMdArrowDropdown />
+                        </Header>
                         {
                             openIndex === index && <Discription>
                                 {
-                                    item.ans.length != 0 && item.ans.map((data, index) => { return <p className="maindata" key={index}>{data}</p> })
+                                    item.ans.length != 0 && item.ans.map((data, index) => { return <React.Fragment key={index}> {processDescription(data)}</React.Fragment> })
                                 }
                                 {
                                     item.list && <ul>
@@ -82,23 +91,28 @@ const Container = styled.div`
 `;
 const Header = styled.h2`
 position: relative;
-height: 40px;
+height: fit-content;
 font-size: .8rem;
 font-weight: 600;
-padding: 6px 30px;
+padding: 6px 0px;
 display: flex;
 align-items: center;
 justify-content: space-between;
 color: #444;
+gap: 5px;
 border-radius: 4px 4px 0 0;
 transition: all .3s ease-out;
 cursor: pointer;
 background-color: ${props => props.open === true ? "#ff5e0023" : "#fff"};
-span{
-    position: absolute;
+div{
+    display: inline;
+}
+.span{
+    position: relative;
     left: 0;
     color: #ff5c00;
     padding-left: 10px;
+
 }
 &:hover{
     background-color: #f8a22212;

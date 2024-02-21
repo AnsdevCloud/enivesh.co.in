@@ -28,6 +28,7 @@ margin: 10px 0;
 border-radius: 5px;
 overflow: hidden;
 box-shadow: 0px 0px 9px -7px #1a1a1a;
+border: 1px solid #1a1a1a;
 display: flex;
 align-items: center;
 justify-content: space-between;
@@ -52,6 +53,8 @@ svg{
 }
 &.active{
     color:#ff5c00 !important;
+border: 1px solid #ff5c00;
+
     
 }
 &.active >span{

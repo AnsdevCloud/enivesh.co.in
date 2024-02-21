@@ -1,16 +1,17 @@
 import React, { useState } from 'react'
 import { BiBookAdd } from 'react-icons/bi';
-import { FaArrowDown, FaArrowUp } from 'react-icons/fa';
-import { IoMdClose, IoMdHome, IoMdMenu } from 'react-icons/io';
-import { Link } from 'react-router-dom';
+import { FaArrowDown, FaArrowUp, FaHome } from 'react-icons/fa';
+import { IoMdClose, IoMdMenu } from 'react-icons/io';
+import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import navData from "../../jsondata/dropdowndata.json"
+
 
 const FooterNav = () => {
     const [dropActive, setDropActive] = useState(true);
     const [linkActive, setLinkActive] = useState(false);
     const [activeId, setActiveId] = useState();
-
+    const location = useLocation();
     const handleToggleMenu = () => {
         setDropActive(!dropActive);
         setActiveId(null);
@@ -26,7 +27,7 @@ const FooterNav = () => {
             <Wrap onClick={handleToggleMenu} $active={dropActive} />
             <Wrapper>
 
-                <Link>  <IoMdHome /></Link>
+                <Link to={"/"}>  {location.pathname === "/" ? <FaHome color='#ff5c00' /> : <FaHome />}</Link>
                 <Link>  <BiBookAdd /></Link>
                 <Link onClick={handleToggleMenu}> {dropActive === true ? <IoMdMenu /> : <IoMdClose />}</Link>
                 <DropContent $active={dropActive} $linkActive={activeId} >
@@ -36,19 +37,22 @@ const FooterNav = () => {
                         return <div key={index} className="drop-link">
                             <div className="header" onClick={(e) => handleToggleLink({ index })}><p id={index} >{item.text}</p> {activeId === index ? <FaArrowUp color='#ff5c00' /> : <FaArrowDown />}</div>
                             {activeId === index &&
+                                <>
+                                    {item?.ref?.ref && <Link onClick={handleToggleMenu} className='mainref' to={item?.ref?.ref}>{item?.ref?.title}</Link>}
+                                    <Links key={index} className="links">
 
-                                <Links key={index} className="links">
-                                    {
-                                        item.list && item.list.map((listItem, index) => {
-                                            return <Link key={index} to={listItem.path}>
-                                                <div className="link" onClick={handleToggleMenu}>
-                                                    {listItem.name}
-                                                </div>
-                                            </Link>
-                                        })
-                                    }
+                                        {
+                                            item.list && item.list.map((listItem, index) => {
+                                                return <Link key={index} to={listItem.path}>
+                                                    <div className="link" onClick={handleToggleMenu}>
+                                                        {listItem.name}
+                                                    </div>
+                                                </Link>
+                                            })
+                                        }
 
-                                </Links>
+                                    </Links>
+                                </>
                             }
 
                         </div>
@@ -157,6 +161,13 @@ const DropContent = styled.div`
             font-size: 12px;
         }
       }
+      .mainref{
+        font-size: 12px;
+        text-align: left;
+        padding: 5px 5px;
+        text-decoration: underline;
+        color: #00f;
+      }
     
         
     }
@@ -166,12 +177,12 @@ const DropContent = styled.div`
 `;
 
 const Links = styled.div`
-        padding: 2px 5px;
+        padding: 5px 5px;
         border-radius: 0 0 5px 5px;
         overflow: hidden;
         .link{
         margin: 2px 0;
-        padding: 2px;
+        padding: 10px 0;
         border-bottom: 1px solid #99999971;
         color: #ff5c00;
         font-size: 12px;

@@ -1,8 +1,8 @@
-import { Route, Routes } from "react-router-dom"
+import { Route, Routes, useLocation } from "react-router-dom"
 import TermInsurance from "./pages/TermInsurance"
 import UlipPlan from "./pages/UlipPlan"
 import GsavingPlan from "./pages/GsavingPlan"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import PopUpModel from "./components/model/PopUpModel"
 import NoDataPage from "./pages/NoDataPage"
 import UserProfile from "./pages/UserProfile"
@@ -18,8 +18,22 @@ import { hadleModelForm } from "./reduxapp/features/userdata/userSlice"
 import LumSum from "./components/elements/homeelm/LumSum"
 import Reurring from "./components/elements/homeelm/Reurring"
 import WholeBenefit from "./components/elements/homeelm/WholeBenefit"
+import MainLifePage from "./inspages/MainLifePage"
+import ContentBox from "./components/elements/lifeins/ContentBox"
+
 
 function App() {
+  const location = useLocation();
+  const [lifeData, setLifeData] = useState();
+  useEffect(() => {
+    if (location.state === null) {
+      return;
+    } else {
+      setLifeData(location.state)
+    }
+    return;
+  }, [location])
+
   const [togglemodel, setToggleModel] = useState(false);
   const modelForm = useSelector((state) => state.user.modelForm)
   const dispatch = useDispatch();
@@ -35,7 +49,9 @@ function App() {
           <Route index element={<HomePage haddleToggleModel={haddleToggleModel} />} />
 
           <Route path="life" element={<LifeInsPage />}>
-            <Route index element={<TermInsurance />} />
+            <Route path="detail" element={<MainLifePage />} >
+              <Route index element={<ContentBox data={lifeData} />} />
+            </Route>
             <Route path="term_insurance" element={<TermInsurance />} />
             <Route path="granteed_saving_plan" element={<GsavingPlan />} >
               <Route index element={<LumSum />} />

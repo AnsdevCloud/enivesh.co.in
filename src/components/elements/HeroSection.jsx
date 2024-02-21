@@ -263,7 +263,7 @@ align-items: center;
         }
         @media (max-width:768px) {
         width: 90%;
-        height: 250px;
+        height: 265px;
             
         }
     }

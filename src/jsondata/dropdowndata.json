@@ -3,6 +3,10 @@
         "id": 1,
         "text": "Life Insurance",
         "title": "LIFE",
+        "ref": {
+            "title": "What is Life Insurance",
+            "ref": "life/detail"
+        },
         "list": [
             {
                 "path": "life/term_insurance",

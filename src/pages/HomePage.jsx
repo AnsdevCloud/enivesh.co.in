@@ -10,9 +10,12 @@ import ExploreCard from "../components/items/ExploreCard";
 import ExploreData from '../jsondata/homepage/explore.json'
 import Testimonial from "../components/items/Testimonial";
 import partner from '../jsondata/homepage/partners.json';
+import { useEffect } from "react";
 
 const HomePage = ({ haddleToggleModel }) => {
-  console.log(partner);
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   const titletag = " “Securing __Futures__, Shielding __Families__.”"
   const dispatch = useDispatch();

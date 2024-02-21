@@ -167,7 +167,9 @@ overflow: hidden;
 
         /* background: transparent; */
         background-image: url("/images/gsaving/markimage.png");
-        background-size: cover;
+      background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
         border-radius: 10px;
         display: flex;
         align-items: center;

@@ -9,7 +9,8 @@ const DropDown = ({ active, data }) => {
         <>
             <CloseWrapper onMouseEnter={active} />
             <Wrapper onMouseLeave={active}>
-                <h1 className="title">{data.text}</h1>
+                <Link className="message" to={data?.ref?.ref}>{data?.ref?.title}</Link>
+                {data?.ref?.ref ? <Link to={data?.ref?.ref}><h1 className="title" >{data.text}</h1></Link> : <h1 className="title" >{data.text}</h1>}
                 <div className="linkcontaner">
                     {
                         data.list && data.list.map((item, index) => {
@@ -53,7 +54,18 @@ box-shadow: 0px 5px 9px -7px #555;
 border-radius: 10px;
 margin: 0 auto;
 z-index: 999;
+.message{
+    text-decoration: underline;
+    font-size: 10px;
+    color: #ff5c00;
+}
+a{
+    text-decoration: none;
+    &:hover{
+    text-decoration: underline;
 
+    }
+}
 .title{
     font-size: 20px;
     text-align: center;
@@ -61,6 +73,7 @@ z-index: 999;
     font-weight: 600;
     color: #555;
     text-transform: uppercase;
+    cursor: pointer;
     
 }
 .linkcontaner{

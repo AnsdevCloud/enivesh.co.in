@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components';
 import GHeroSection from '../components/elements/GHeroSection';
 import OurParter from '../components/elements/OurParter';
@@ -9,16 +9,19 @@ import CardImg from '../components/elements/CardImg';
 import gsaving from '../jsondata/insuarnce/gsavingconsider.json'
 import CardDetails from '../components/items/CardDetails';
 import Irdai from '../components/items/Irdai';
+import QusAns from '../jsondata/insuarnce/gsavingqusans.json'
 const GsavingPlan = () => {
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
     return (
         <Wrapper>
             <GHeroSection />
             <Irdai />
-
             <OurParter data={partners} />
             <CardDetails />
             <CardImg mainUrl={"/images/gsaving/manreceived.jpg"} cardWidth={"300px"} flexDirection={"row-reverse"} data={gsaving} />
-            <Question />
+            <Question Qustions={QusAns} />
 
         </Wrapper>
     )

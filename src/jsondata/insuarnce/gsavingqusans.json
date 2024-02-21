@@ -1,0 +1,62 @@
+[
+    {
+        "id": 1,
+        "qus": "What is a traditional insurance policy?",
+        "ans": [
+            "A traditional insurance policy is a type of life insurance that provides a guaranteed death benefit and often includes a **savings** component."
+        ]
+    },
+    {
+        "id": 2,
+        "qus": "How does a traditional insurance policy work?",
+        "ans": [
+            "With a traditional insurance policy, you pay regular premiums or limited premiums to the insurance company in exchange for coverage. A portion of your premiums goes towards the cost of insurance, while the remainder is invested by the insurance company."
+        ]
+    },
+    {
+        "id": 3,
+        "qus": "What are the major types of a traditional insurance policy?",
+        "ans": [
+            "**Non- Participating (Guaranteed) :** The policy provides a guaranteed payout to life assured’s beneficiaries upon life assured’s death and offers **guaranteed maturity benefits on Maturity** to policyholders.",
+            "**Participating (Non-Guaranteed) :** The policy offers non-guaranteed maturity benefits with illustrative bonus projections of 4% and 8%, with the sum assured serving as the death benefit."
+        ]
+    },
+    {
+        "id": 4,
+        "qus": "What are the returns or **IRR (Internal rate of returns)** from these traditional insurance policies?",
+        "ans": [
+            "The Internal Rate of Return (IRR) is a measure used to evaluate the potential return or profitability of an investment. It represents the annualized rate at which an investment grows or generates returns over time.",
+            "**Non- Participating (Guaranteed) :** If timely premium payments are made according to the policy contract, the **guaranteed** Internal Rate of Return **(IRR)** from these policies ranges from **5% to 7.5%**.",
+            "**Participating (Non-Guaranteed) :** If timely premium payments are made according to the policy contract, the **projected** Internal Rate of Return **(IRR)** from these policies ranges from **5% to 7.5%**."
+        ]
+    },
+    {
+        "id": 5,
+        "qus": "What is the GST rate on Traditional- (Guaranteed/Non-Guaranteed) insurance Policies?",
+        "ans": [
+            "1 st year – 4.5% GST on the annualized premium.",
+            "2 nd year and onwards – 2.25% GST on the annualized premium."
+        ]
+    },
+    {
+        "id": 6,
+        "qus": "Are traditional insurance policies suitable for everyone?",
+        "ans": [
+            "Traditional insurance policies can be a suitable option for individuals seeking **long-term financial protection and stability**. However, they may not be the best choice for everyone who is seeking **higher inflation-adjusted returns**, as these policies typically offer lower returns compared to equity investment options and may lack flexibility due to high surrender charges."
+        ]
+    },
+    {
+        "id": 7,
+        "qus": "How do I choose the right traditional insurance policy for me?",
+        "ans": [
+            "It&#39;s essential to assess your financial goals, risk tolerance, and coverage needs before selecting a traditional insurance policy."
+        ]
+    },
+    {
+        "id": 8,
+        "qus": "Can I customize my traditional insurance policy?",
+        "ans": [
+            "Some insurance companies offer customization options for traditional policies, such as adding riders for additional coverage or adjusting premium payment and payout schedules. You may also have the option to increase or decrease premium amounts."
+        ]
+    }
+]

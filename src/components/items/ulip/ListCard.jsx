@@ -20,7 +20,7 @@ export default ListCard
 const Container = styled.div`
     width: fit-content;
     max-width: 300px;
-    color: #f9f9f9da;
+    color: #000;
     padding: 10px 20px;
     p{
         font-weight: 500;

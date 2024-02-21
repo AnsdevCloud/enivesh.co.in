@@ -41,7 +41,7 @@ export default Footer
 const Container = styled.div`
 
  width: 100%;
- background-color: #4e4d4d;
+ background-color: #a9643d;
  padding: 20px 30px;
  img{
     width: 100px;
@@ -53,11 +53,13 @@ display: flex;
 /* align-items: center; */
 flex-wrap: wrap;
 gap: 20px;
-background-color: #222;
+background-color: #ffd7bc;
+
 border-radius: 10px;
 @media (min-width:768px) {
 justify-content: space-evenly;
 flex-wrap: nowrap;
+
 
         
     }
@@ -77,7 +79,7 @@ flex-wrap: nowrap;
         text-decoration: none;
         transition: all .3s ease-out;
         &:hover{
-            color: #ff5c00;
+            color: #000;
         }
 
     }
@@ -95,28 +97,28 @@ flex-wrap: nowrap;
 const LicenceBox = styled.div`
 width: 100%;
 height: fit-content;
-background-color: #222;
+background-color: #ffd7bc;
 margin: 10px 0;
 padding: 10px;
 border-radius: 6px;
 text-align: center;
 
 p{
-    color: #f9f9f978;
+    color: #000;
     font-size: .7rem;
     letter-spacing: 1px;
     margin: 5px 0;
     span{
-        color: #f9f9f9dc;
+        color: #ff5c00;
     }
     
 
 
 }
 p:first-child{
-    color: #f9f9f9d6;
+    color: #ff5c00;
     span{
-        color: #f9f9f978;
+        color: #000;
     }
 }
 
@@ -146,7 +148,7 @@ cursor: default;
   p{
     font-size: .5rem;
     width: 100%;
-    color: #999;
+    color: #000;
     font-size: 600;
     text-align: center;
     @media (min-width:768px) {
