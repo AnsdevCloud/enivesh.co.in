@@ -20,6 +20,7 @@ import Reurring from "./components/elements/homeelm/Reurring"
 import WholeBenefit from "./components/elements/homeelm/WholeBenefit"
 import MainLifePage from "./inspages/MainLifePage"
 import ContentBox from "./components/elements/lifeins/ContentBox"
+import SumAssuredPortal from "./components/admin/SumAssuredPortal"
 
 
 function App() {
@@ -67,7 +68,9 @@ function App() {
             <Route path="signup" element={<SignUpForm />} />
             <Route path="edit" element={<EditDetail />} />
           </Route>
+          <Route path="admin" element={<SumAssuredPortal />}>
 
+          </Route>
           <Route path="model" >
             <Route path="enivesh_auth_d23_cunsltnow" element={<PopUpModel />} />
           </Route>
