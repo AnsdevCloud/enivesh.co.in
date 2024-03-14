@@ -1,9 +1,9 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { IoMdArrowDropdownCircle } from "react-icons/io";
 import DropDown from "../items/DropDown";
 import navData from "../../jsondata/dropdowndata.json"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 const Navbar = () => {
     const userData = localStorage.getItem("loginUser")
     const useUser = JSON.parse(userData);
@@ -11,12 +11,17 @@ const Navbar = () => {
     const [active, setActive] = useState(false);
     const [currentData, setCurrentData] = useState(false);
 
-
+    const lact = useLocation();
 
     const handleActive = (e) => {
         setActive(true)
         setCurrentData(e);
     }
+    const navigate = useNavigate();
+    useEffect(() => {
+        setUserData(useUser)
+
+    }, [lact])
 
     return (
         <Wrapper>

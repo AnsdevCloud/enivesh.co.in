@@ -1,11 +1,11 @@
 import React from 'react'
 import styled from 'styled-components';
-const InputField = ({ Placeholder, Type, Required, LabelTitle, name, funcs }) => {
+const InputField = ({ Placeholder, Type, Required, LabelTitle, name, funcs, onChange }) => {
 
   return (
     <InputBox>
       <Label>{LabelTitle} {Required && <span>*</span>}</Label>
-      <Input placeholder={Placeholder} type={Type} required={Required} name={name} onChange={funcs} />
+      <Input placeholder={Placeholder} type={Type} required={Required} name={name} onChange={onChange} />
     </InputBox>
   )
 }

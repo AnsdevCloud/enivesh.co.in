@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import InputField from '../Components/items/ulip/InputField';
 import Button from '../components/items/ulip/Button';
 import { Link, useNavigate } from 'react-router-dom';
-import { signInWithPopup } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, signInWithPopup } from "firebase/auth";
 import { auth, provider } from '../Firebase/Firebase';
 import axios from 'axios';
 
@@ -67,9 +67,40 @@ const SignUpForm = () => {
     //     });
     //     console.log(data);
     // }
+    const [formData, setFormData] = useState();
+
+    const handleChange = (e) => {
+        const {
+            target: { value, name },
+        } = e;
+        setFormData({ ...formData, [name]: value });
+
+    }
 
 
+    const handleSignUp = async (e) => {
+        e.preventDefault();
 
+        createUserWithEmailAndPassword(auth, formData.email, formData.password)
+            .then((userCredential) => {
+                // Signed up 
+                const user = userCredential.user;
+                if (user) {
+                    localStorage.setItem("loginUser", JSON.stringify({
+
+                        email: user.email,
+
+                    }));
+
+                    navigate('/');
+                }
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+
+            });
+    }
 
     return (
         <Wrapper>
@@ -79,14 +110,14 @@ const SignUpForm = () => {
             <form>
                 <div className="list">
                     {/* <span className="label">Email :</span> */}
-                    <InputField LabelTitle={"Email"} Required={true} Placeholder={"Email"} Type={"email"} />
+                    <InputField LabelTitle={"Email"} Required={true} onChange={handleChange} name={"email"} Placeholder={"Email"} Type={"email"} />
                 </div>
                 <div className="list">
-                    <InputField LabelTitle={"Password"} Required={true} Placeholder={"Password"} Type={"password"} />
+                    <InputField LabelTitle={"Password"} Required={true} onChange={handleChange} name={"password"} Placeholder={"Password"} Type={"password"} />
 
                 </div>
                 <div className="list">
-                    <Button title={"Submit"} Width={'100%'} m={"40px 0"} lpWidth={"50%"} lpP={"5px 20px"} />
+                    <Button title={"Submit"} funcs={handleSignUp} Width={'100%'} m={"40px 0"} lpWidth={"50%"} lpP={"5px 20px"} />
                 </div>
                 <div className="list">
                     <p style={{ fontSize: "10px" }}>You've Already Account - <Link to={"/profile/login"}>Sing in</Link></p>

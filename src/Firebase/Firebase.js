@@ -2,22 +2,26 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
 import { GoogleAuthProvider, getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBtYyTy07P0_epw3GueA_ZhlE4pvrZXUgE",
-    authDomain: "enivesh-3d58e.firebaseapp.com",
-    projectId: "enivesh-3d58e",
-    storageBucket: "enivesh-3d58e.appspot.com",
-    messagingSenderId: "769360783671",
-    appId: "1:769360783671:web:57887c1864e8160a65d2b2",
-    measurementId: "G-P5GPNT2Z04"
+    apiKey: "AIzaSyBrmkQQyVZ-Q-vAkYIAG4CLWgDkNTYjMdg",
+    authDomain: "enivesh-54d95.firebaseapp.com",
+    databaseURL: "https://enivesh-54d95-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "enivesh-54d95",
+    storageBucket: "enivesh-54d95.appspot.com",
+    messagingSenderId: "309768927200",
+    appId: "1:309768927200:web:d5de33f0335d8e0f97dd85",
+    measurementId: "G-XLWJWG31M4"
 };
+
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export default app;
 // Initialize Firebase Read and Write data 
-export const dataDB = getDatabase(app);
+const dataDB = getDatabase(app);
+const db = getFirestore(app)
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
-export { auth, provider }
+export { auth, provider, db }

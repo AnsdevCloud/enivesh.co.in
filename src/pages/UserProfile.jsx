@@ -31,7 +31,9 @@ const UserProfile = () => {
             console.warn(error);
         });
     }
-
+    useEffect(() => {
+        setUserData(useUser)
+    }, [useUser])
     return (
         <Wrapper>
             {user ? <span className='backBtn' onClick={LogOut}>Sing Out</span> : <span className='backBtn'>Login then access more....</span>}

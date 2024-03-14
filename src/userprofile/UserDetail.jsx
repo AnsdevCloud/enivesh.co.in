@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import Button from '../components/items/ulip/Button';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { Box, Paper, Typography } from '@mui/material';
 
 const UserDetail = () => {
     const userData = localStorage.getItem("loginUser")
@@ -13,14 +14,22 @@ const UserDetail = () => {
     }
     useEffect(() => {
         if (user === null) {
+            setUserData(useUser)
             navigate('/profile/login')
         }
-    })
+    }, [useUser])
     return (
         <>
             {user && <Wrapper>
                 <h3 style={{ marginBottom: "10px", textAlign: "center", fontWeight: 600, color: "#7a2f04d9", fontSize: "1.4vmax" }}>Welcome {user.username}</h3>
+                {
+                    ((user.email === "amannishad1443@gmail.com") || (user.email === "babasaheb.kadam@gmail.com") || (user.email === "baba@enivesh.com") || (user.email === "office@enivesh.com") || (user.email === "service@enivesh.com")) && <Typography component={"p"} variant='caption' textAlign={"center"}>Admin User </Typography>
 
+                }
+
+                {((user.email === "amannishad1443@gmail.com") || (user.email === "babasaheb.kadam@gmail.com") || (user.email === "baba@enivesh.com") || (user.email === "office@enivesh.com") || (user.email === "service@enivesh.com")) && <Box component={Paper} elevation={1} sx={{ padding: 1, m: 1 }}>
+                    <Link to={"/admin"}>Add SumAssured </Link>
+                </Box>}
                 <div className="list">
                     <span className="label">Username :</span>
                     <h5 className="title">{user.username}</h5>
@@ -85,5 +94,10 @@ const Wrapper = styled.div`
       }
     }
 
+a{
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+}
   
 `;

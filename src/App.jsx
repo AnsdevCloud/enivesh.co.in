@@ -21,6 +21,13 @@ import WholeBenefit from "./components/elements/homeelm/WholeBenefit"
 import MainLifePage from "./inspages/MainLifePage"
 import ContentBox from "./components/elements/lifeins/ContentBox"
 import SumAssuredPortal from "./components/admin/SumAssuredPortal"
+import Category from "./components/admin/PortalElements/Category"
+import Company from "./components/admin/PortalElements/Company"
+import PremiumType from "./components/admin/PortalElements/PremiumType"
+import CoveragePremium from "./components/admin/PortalElements/CoveragePremium"
+import Features from "./components/admin/PortalElements/Features"
+import PortalSummary from "./components/admin/PortalElements/PortalSummary"
+import ChechUser from "./components/admin/ChechUser"
 
 
 function App() {
@@ -69,11 +76,22 @@ function App() {
             <Route path="edit" element={<EditDetail />} />
           </Route>
           <Route path="admin" element={<SumAssuredPortal />}>
+            <Route index element={<Category />} />
+            <Route path="1" element={<Company />} />
+            <Route path="2" element={<PremiumType />} />
+            <Route path="3" element={<CoveragePremium />} />
+            <Route path="4" element={<Features />} />
+            <Route path="5" element={<PortalSummary />} />
+
 
           </Route>
+
           <Route path="model" >
             <Route path="enivesh_auth_d23_cunsltnow" element={<PopUpModel />} />
           </Route>
+
+
+          <Route path="checkpalns" element={<ChechUser />} />
           <Route path="*" element={<NoDataPage />} />
 
         </Route>

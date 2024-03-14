@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import InputField from '../Components/items/ulip/InputField';
 import Button from '../components/items/ulip/Button';
 import { Link, useNavigate } from 'react-router-dom';
-import { signInWithPopup } from "firebase/auth";
+import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { auth, provider } from '../Firebase/Firebase';
 import axios from 'axios';
 
@@ -13,13 +13,13 @@ const LoginForm = () => {
     const [user, setUserData] = useState(useUser);
     const [checkUser, setCheckUser] = useState(null);
     const users = [];
+    const [formData, setFormData] = useState()
     const navigate = useNavigate();
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [])
 
     const SigninWithGoogle = async () => {
-        const data = "";
         signInWithPopup(auth, provider)
             .then((result) => {
                 const user = result.user;
@@ -76,7 +76,36 @@ const LoginForm = () => {
         console.log(val);
 
     }
+    const handleChange = (e) => {
+        const {
+            target: { value, name },
+        } = e;
+        setFormData({ ...formData, [name]: value });
 
+    }
+
+    const hadleSignIn = async (e) => {
+        e.preventDefault();
+        await signInWithEmailAndPassword(auth, formData?.email, formData?.password)
+            .then((userCredential) => {
+                // Signed in 
+                const user = userCredential.user;
+                // ...
+
+                if (user) {
+                    localStorage.setItem("loginUser", JSON.stringify({
+                        email: user.email,
+
+                    }));
+
+                    navigate('/');
+                }
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+            });
+    }
 
     useEffect(() => {
         window.scrollTo(0, 0)
@@ -97,14 +126,14 @@ const LoginForm = () => {
             <form>
                 <div className="list">
                     {/* <span className="label">Email :</span> */}
-                    <InputField LabelTitle={"Email"} Required={true} Placeholder={"Email"} Type={"email"} />
+                    <InputField LabelTitle={"Email"} Required={true} onChange={handleChange} name={"email"} Placeholder={"Email"} Type={"email"} />
                 </div>
                 <div className="list">
-                    <InputField LabelTitle={"Password"} Required={true} Placeholder={"Password"} Type={"password"} />
+                    <InputField LabelTitle={"Password"} Required={true} onChange={handleChange} name={"password"} Placeholder={"Password"} Type={"password"} />
 
                 </div>
                 <div className="list">
-                    <Button title={"Submit"} funcs={getData} Width={'100%'} m={"40px 0"} lpWidth={"50%"} lpP={"5px 20px"} />
+                    <Button title={"Submit"} funcs={hadleSignIn} Width={'100%'} m={"40px 0"} lpWidth={"50%"} lpP={"5px 20px"} />
                 </div>
                 <div className="list">
                     <p style={{ fontSize: "10px" }}>Create new Account - <Link to={"/profile/signup"}>Sing Up</Link></p>
