@@ -4,47 +4,16 @@ import InputField from '../Components/items/ulip/InputField';
 import Button from '../components/items/ulip/Button';
 import { Link, useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword, getAuth, signInWithPopup } from "firebase/auth";
-import { auth, provider } from '../Firebase/Firebase';
+import { auth, db, provider } from '../Firebase/Firebase';
 import axios from 'axios';
+import { addDoc, collection } from 'firebase/firestore';
 
 const SignUpForm = () => {
     const navigate = useNavigate();
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [])
-    const SigninWithGoogle = async () => {
-        const data = "";
-        signInWithPopup(auth, provider)
-            .then((result) => {
-                const user = result.user;
-                // console.log(user);
-                sendData({
-                    gender: "",
-                    name: user.displayName,
-                    email: user.email,
-                    profileUrl: user.photoURL,
-                    number: user.phoneNumber,
-                    id: user.uid,
-                })
-                localStorage.setItem("loginUser", JSON.stringify({
-                    gender: "",
-                    name: user.displayName,
-                    email: user.email,
-                    profileUrl: user.photoURL,
-                    number: user.phoneNumber,
-                    id: user.uid,
-                }));
 
-
-
-
-
-            }).catch((error) => {
-                console.warn(error.message);
-            });
-
-
-    }
     const jdata = {
         name: "Google Nishad",
         phone: 8081741443,
@@ -82,17 +51,21 @@ const SignUpForm = () => {
         e.preventDefault();
 
         createUserWithEmailAndPassword(auth, formData.email, formData.password)
-            .then((userCredential) => {
+            .then(async (userCredential) => {
                 // Signed up 
                 const user = userCredential.user;
                 if (user) {
-                    localStorage.setItem("loginUser", JSON.stringify({
-
+                    const userRef = (collection(db, "users", user.uid));
+                    const featureSnapshot = await addDoc(userRef, {
+                        name: null,
                         email: user.email,
+                        profileUrl: null,
+                        uid: user.uid,
+                        role: "User"
+                    });
+                    console.log(featureSnapshot);
 
-                    }));
-
-                    navigate('/');
+                    // navigate('/');
                 }
             })
             .catch((error) => {

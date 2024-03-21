@@ -5,7 +5,7 @@ import HeadingBox from '../../items/HeadingBox'
 
 import Tables from './Table'
 
-const PortalSummary = ({ xlxsData, postMsg, featureData, data, onPost }) => {
+const PortalSummary = ({ xlxsDataFloat, xlxsDataInd, postMsg, featureData, data, onPost }) => {
     const style = {
         position: 'absolute',
         top: '50%',
@@ -20,8 +20,6 @@ const PortalSummary = ({ xlxsData, postMsg, featureData, data, onPost }) => {
     const [open, setOpen] = React.useState(postMsg);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-
-
 
 
 
@@ -56,7 +54,7 @@ const PortalSummary = ({ xlxsData, postMsg, featureData, data, onPost }) => {
             </Stack>
 
             <Box>
-                <Tables data={data} sumAssured={xlxsData} Features={featureData} />
+                <Tables data={data} sumAssuredFloat={xlxsDataFloat} sumAssuredInd={xlxsDataInd} Features={featureData} />
             </Box>
         </Box>
     )

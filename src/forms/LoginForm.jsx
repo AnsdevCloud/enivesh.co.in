@@ -4,8 +4,9 @@ import InputField from '../Components/items/ulip/InputField';
 import Button from '../components/items/ulip/Button';
 import { Link, useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
-import { auth, provider } from '../Firebase/Firebase';
+import { auth, db, provider } from '../Firebase/Firebase';
 import axios from 'axios';
+import { addDoc, collection, doc, getDoc, setDoc } from 'firebase/firestore';
 
 const LoginForm = () => {
     const userData = localStorage.getItem("loginUser")
@@ -23,18 +24,7 @@ const LoginForm = () => {
         signInWithPopup(auth, provider)
             .then((result) => {
                 const user = result.user;
-                // if (checkUser.uid === user.uid) {
-                //     return;
-                // } else {
-                sendData({
-                    username: user.displayName,
-                    email: user.email,
-                    profileUrl: user.photoURL,
-                    uid: user.uid,
-                })
-                // }
-
-
+                handdleAddUserDoc(user)
 
             }).catch((error) => {
                 console.warn(error.message);
@@ -42,64 +32,51 @@ const LoginForm = () => {
     }
 
 
+    const handdleAddUserDoc = async (e) => {
+        const userRef = doc(db, "users", e.uid);
+        const docSnap = await getDoc(userRef)
+        if (docSnap.exists()) {
+            localStorage.setItem("loginUser", JSON.stringify(docSnap.data()));
+            navigate('/');
+        } else {
+            // docSnap.data() will be undefined in this case
+            if (e) {
+                await setDoc(userRef, {
+                    name: e.displayName ? e.displayName : null,
+                    email: e.email,
+                    profileUrl: e.photoURL ? e.photoURL : null,
+                    phone: e.phone ? e.phone : null,
+                    job: e.job ? e.job : null,
+                    city: e.city ? e.city : null,
+                    id: e.uid,
+                    role: "User"
+                });
+            }
+            console.warm("No such document!");
+        }
 
-    const sendData = async (e) => {
-        // if (condition) {
-        await axios({
-            method: 'post',
-            url: `https://enivesh-54d95-default-rtdb.asia-southeast1.firebasedatabase.app/users/-Nq7D2OyuQoALehmQjLq.json`,
-            data: [e],
-            headers: {
-                'Access-Control-Allow-Origin': '*'
-            },
-        }).then((res) => {
-            console.log(res.data);
-            localStorage.setItem("loginUser", JSON.stringify({
-                username: e.username,
-                email: e.email,
-                profileUrl: e.profileUrl,
-                number: e.phoneNumber,
-                mydbid: res.data.name,
-                uid: e.uid
-            }));
-        }, (error) => {
-            console.log(error);
-        })
-        // }
-        navigate("/")
-    }
-    const getData = async () => {
-        const val = await axios({
-            method: 'get',
-            url: 'https://enivesh-54d95-default-rtdb.asia-southeast1.firebasedatabase.app/users.json'
-        });
-        console.log(val);
 
     }
+
     const handleChange = (e) => {
         const {
             target: { value, name },
         } = e;
         setFormData({ ...formData, [name]: value });
 
+
     }
 
     const hadleSignIn = async (e) => {
         e.preventDefault();
         await signInWithEmailAndPassword(auth, formData?.email, formData?.password)
-            .then((userCredential) => {
+            .then(async (userCredential) => {
                 // Signed in 
                 const user = userCredential.user;
                 // ...
+                handdleAddUserDoc(user)
 
-                if (user) {
-                    localStorage.setItem("loginUser", JSON.stringify({
-                        email: user.email,
 
-                    }));
-
-                    navigate('/');
-                }
             })
             .catch((error) => {
                 const errorCode = error.code;

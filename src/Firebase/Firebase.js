@@ -1,18 +1,17 @@
 
 import { initializeApp } from "firebase/app";
-import { getDatabase } from "firebase/database";
 import { GoogleAuthProvider, getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBrmkQQyVZ-Q-vAkYIAG4CLWgDkNTYjMdg",
-    authDomain: "enivesh-54d95.firebaseapp.com",
-    databaseURL: "https://enivesh-54d95-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "enivesh-54d95",
-    storageBucket: "enivesh-54d95.appspot.com",
-    messagingSenderId: "309768927200",
-    appId: "1:309768927200:web:d5de33f0335d8e0f97dd85",
-    measurementId: "G-XLWJWG31M4"
+    apiKey: "AIzaSyDJDd6fs6ckN4Q6X6f9NtyYBnhMT3wtay4",
+    authDomain: "enivesh-2f62f.firebaseapp.com",
+    projectId: "enivesh-2f62f",
+    storageBucket: "enivesh-2f62f.appspot.com",
+    messagingSenderId: "725639224656",
+    appId: "1:725639224656:web:f6c6f39d5cfac73b66e055",
+    measurementId: "G-JGPPFPE6R9"
 };
 
 
@@ -20,8 +19,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export default app;
 // Initialize Firebase Read and Write data 
-const dataDB = getDatabase(app);
 const db = getFirestore(app)
 const auth = getAuth(app);
+const storage = getStorage();
 const provider = new GoogleAuthProvider();
-export { auth, provider, db }
+export { auth, provider, db, storage }

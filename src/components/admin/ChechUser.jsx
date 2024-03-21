@@ -1,4 +1,4 @@
-import { Box, Button, Container, FormControl, FormControlLabel, InputLabel, MenuItem, OutlinedInput, Paper, Radio, Select, Stack, TextField, Typography } from '@mui/material'
+import { Box, Button, Container, FormControl, FormControlLabel, InputLabel, MenuItem, OutlinedInput, Paper, Radio, RadioGroup, Select, Stack, TextField, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 
 import { useTheme } from '@mui/material/styles';
@@ -32,7 +32,7 @@ function getStyles(name, personName, theme) {
 
 const ChechUser = () => {
     const theme = useTheme();
-    const [personName, setPersonName] = React.useState();
+    const [personName, setPersonName] = React.useState("");
     const [isAge, setIsAge] = useState();
     const [plans, setPlans] = React.useState([]);
     const [isType, setIsType] = React.useState();
@@ -42,7 +42,9 @@ const ChechUser = () => {
             target: { value },
         } = event;
         setPersonName(value)
-        FeachFeatureData()
+        // FeachFeatureData()
+        console.log(personName);
+
 
     };
     const handleChangeIsAge = (event) => {
@@ -64,6 +66,7 @@ const ChechUser = () => {
         if (personName) {
             FeachFeatureData();
         }
+
     }, [personName])
 
 
@@ -76,6 +79,7 @@ const ChechUser = () => {
             ...doc.data(), id: doc.id
 
         }))
+        // console.log(data);
         data.map(async (elem) => {
             const postQ = query(collection(db, `sumassured/${elem.id}/companys`))
             const postDetils = await getDocs(postQ)
@@ -85,27 +89,34 @@ const ChechUser = () => {
 
 
 
-
             postInff.map(async (ele) => {
                 const postQ = query(collection(db, `sumassured/${elem.id}/companys/${ele.id}/coveragePremium`))
+                const postF = query(collection(db, `sumassured/${elem.id}/companys/${ele.id}/features`))
                 const postDetils = await getDocs(postQ)
                 const postInffs = postDetils.docs.map((doc) => ({
                     ...doc.data(), id: doc.id
                 }))
+                // console.log(postInffs);
+
                 setIsType(postInffs);
                 if (personName && isAge) {
                     const filteredData = postInffs.filter(item => item.minAge <= isAge && item.maxAge >= isAge && item.member?.toUpperCase() == personName?.toUpperCase());
                     setPlans(filteredData)
                 } else if (isAge) {
-                    const filteredData = postInffs.filter(item => item.minAge <= isAge && item.maxAge >= isAge || item.member?.toUpperCase() == personName?.toUpperCase());
+                    const filteredData = postInffs.filter(item => item.minAge <= isAge && item.maxAge >= isAge);
                     setPlans(filteredData)
                 } else if (personName) {
-                    const filteredData = postInffs.filter(item => item.minAge <= isAge || item.maxAge >= isAge && item.member?.toUpperCase() == personName?.toUpperCase());
+                    const filteredData = postInffs.filter(item => item.member?.toUpperCase() == personName?.toUpperCase());
                     setPlans(filteredData)
                 } else {
                     setPlans(postInffs)
                 }
 
+                const featureDetail = await getDocs(postF)
+                const featureInfo = featureDetail.docs.map((doc) => ({
+                    ...doc.data(), id: doc.id
+                }))
+                console.log(featureInfo);
             })
 
 
@@ -138,7 +149,7 @@ const ChechUser = () => {
         console.log(postInffd);
     };
 
-
+    const isMambers = ["Individual", "1a+1c", "1a+2c", "1a+3c", "1a+4c", "2a", "2a+1c", "2a+2c", "2a+3c", "2a+4c"];
     useEffect(() => {
         // FeachFeatureData()
         // getNestedCollectionData();
@@ -148,18 +159,45 @@ const ChechUser = () => {
         <Container>
             <Paper elevation={1} sx={{ p: 1, m: 1 }}>
                 <HeadingBox colorText={"Check"} defaultText={"Plans"} m={"20px 0"} />
+                <Stack p={1} flexDirection={"row-reverse"} alignItems={"center"} justifyContent={"space-between"}>  <RadioGroup
+                    row
+                    aria-labelledby="demo-row-radio-buttons-group-label"
+                    name="row-radio-buttons-group"
+
+                >
+                    {/* <FormControlLabel value="All" control={<Radio size='small' />} label="ALL" /> */}
+                    <FormControlLabel value="retail" control={<Radio size='small' />} label="RETAIL" />
+                    <FormControlLabel value="All in one" control={<Radio size='small' />} label="ALL IN ONE" />
+                    <FormControlLabel value="hni" control={<Radio size='small' />} label="HNI" />
+
+                </RadioGroup></Stack>
 
                 <Stack flexDirection={'row'} gap={1} alignItems={"center"} justifyContent={"space-between"}>
                     <TextField size='small' label="Age" onChange={handleChangeIsAge} />
-                    <TextField size='small' label={"Member"} onChange={handleChangePersan} />
+                    {/* <TextField size='small' label={"Member"} onChange={handleChangePersan} /> */}
+
+                    <FormControl size='small' fullWidth sx={{ maxWidth: 300 }}>
+                        <InputLabel id="demo-simple-select-label">Members</InputLabel>
+                        <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={personName}
+                            label="Member"
+                            onChange={(e) => setPersonName(e.target.value)}
+                        >
+                            {isMambers && isMambers.map((item, index) => {
+                                return <MenuItem key={index} value={item}>{item.toLocaleUpperCase()}</MenuItem>
+                            })}
+                            {/* <MenuItem value={20}>Twenty</MenuItem>
+                            <MenuItem value={30}>Thirty</MenuItem> */}
+                        </Select>
+                    </FormControl>
                     <Typography mr={2} variant='caption' component={'span'}>Search Result : {plans?.length}</Typography>
 
                 </Stack>
 
                 <Box>
                     <Typography mt={2} textAlign={"center"}>Plans</Typography>
-
-
                     <FilterTable data={plans} />
 
                 </Box>

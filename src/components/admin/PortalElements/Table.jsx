@@ -4,53 +4,48 @@ import { MdKeyboardArrowDown, MdKeyboardArrowUp } from 'react-icons/md'
 import HeadingBox from '../../items/HeadingBox'
 import { CurrencyRupee } from '@mui/icons-material'
 
-const Tables = ({ data, Features, sumAssured }) => {
+const Tables = ({ data, Features, sumAssuredFloat, sumAssuredInd }) => {
     const [open, setOpen] = useState()
-
-    // const data = {
-    //     Category: "Low",
-    //     Company: "SBI",
-    //     PremiumType: "1A+2C",
-    //     MinAge: 24,
-    //     MaxAge: 30,
-    //     sumAssured:
-    //         [
-    //             {
-    //                 covValue: 100000,
-    //                 preValue: 6173,
-    //             }, {
-    //                 covValue: 200000,
-    //                 preValue: 10023,
-    //             }
-    //         ]
-
-    // }
-
     return (
         <TableContainer sx={{ mt: 2, p: 2 }} elevation={0} component={Paper}>
-            <HeadingBox colorText={"Sum"} defaultText={" Assured"} m={"5px 0"} />
+            <HeadingBox colorText={"Individual"} defaultText={"Sum Assured"} titleTag={`Total Plans ${sumAssuredInd.length}`} m={"5px 0"} />
 
 
             <Table aria-label="collapsible table">
                 <TableHead>
                     <TableRow>
-                        <TableCell sx={{ fontWeight: 600 }} align="center">Members</TableCell>
+                        <TableCell align="left" sx={{ maxWidth: 30, fontWeight: 600, color: "orangered" }}>S.No.</TableCell>
+                        <TableCell sx={{ fontWeight: 600 }} align="center">{sumAssuredInd[0]?.member}</TableCell>
                         <TableCell sx={{ fontWeight: 600 }} align="center">Min Age</TableCell>
                         <TableCell sx={{ fontWeight: 600 }} align="center">Max Age</TableCell>
-                        <TableCell sx={{ fontWeight: 600 }} align="center">25 L</TableCell>
-                        <TableCell sx={{ fontWeight: 600 }} align="center">50 L</TableCell>
-                        <TableCell sx={{ fontWeight: 600 }} align="center">1 Cr</TableCell>
+                        {
+                            sumAssuredInd[0]?.coverages?.map((item, index) => {
+                                return <TableCell key={index} sx={{ fontWeight: 600 }} align="center"> &#8377; {item?.coverage}</TableCell>
+
+                            })
+                        }
+
 
                     </TableRow>
                 </TableHead>
+
                 <TableBody>
-                    {sumAssured && sumAssured?.map((item, index) => (<TableRow key={index}>
-                        <TableCell align="center">{item?.member}</TableCell>
-                        <TableCell align="center">{item?.minAge}</TableCell>
-                        <TableCell align="center">{item?.maxAge}</TableCell>
-                        <TableCell align="center">{item?.covrage25}</TableCell>
-                        <TableCell align="center">{item?.covrage50}</TableCell>
-                        <TableCell align="center">{item?.covrage1cr}</TableCell>
+                    {sumAssuredInd && sumAssuredInd?.map((item, index) => (<TableRow key={index}>
+                        {
+                            index >= 1 && <>
+                                <TableCell align="left" sx={{ maxWidth: 30, fontWeight: 600, color: "orangered" }}>{item?.sid}</TableCell>
+                                <TableCell align="center">{item?.member}</TableCell>
+                                <TableCell align="center">{item?.minAge}</TableCell>
+                                <TableCell align="center">{item?.maxAge}</TableCell>
+
+                                {
+                                    item?.coverages?.map((ite, index) => {
+                                        return <TableCell key={index} align="center">&#8377; {ite?.premium}</TableCell>
+
+                                    })
+                                }
+                            </>
+                        }
 
                     </TableRow>))}
 
@@ -58,8 +53,50 @@ const Tables = ({ data, Features, sumAssured }) => {
 
 
 
+
             </Table>
 
+
+            <HeadingBox colorText={"Floater"} defaultText={"Sum Assured"} titleTag={`Total Plans ${sumAssuredFloat.length}`} m={"5px 0"} />
+
+
+            <Table aria-label="collapsible table">
+                <TableHead>
+                    <TableRow>
+                        {sumAssuredFloat[0] && <TableCell align="left" sx={{ maxWidth: 30, fontWeight: 600 }}>S.No.</TableCell>}
+                        <TableCell sx={{ fontWeight: 600 }} align="center">{sumAssuredFloat[0]?.member}</TableCell>
+                        {sumAssuredFloat[0] && <TableCell sx={{ fontWeight: 600 }} align="center">Min Age</TableCell>}
+                        {sumAssuredFloat[0] && <TableCell sx={{ fontWeight: 600 }} align="center">Max Age</TableCell>}
+                        {
+                            sumAssuredFloat[0]?.coverages?.map((item, index) => {
+                                return <TableCell key={index} sx={{ fontWeight: 600 }} align="center"> &#8377; {item?.coverage}</TableCell>
+
+                            })
+                        }
+                    </TableRow>
+                </TableHead>
+
+                <TableBody>
+                    {sumAssuredFloat && sumAssuredFloat?.map((item, index) => (<TableRow key={index}>
+                        <TableCell align="left" sx={{ maxWidth: 30, fontWeight: 600 }}>{item?.sid}</TableCell>
+                        <TableCell align="center">{item?.member}</TableCell>
+                        <TableCell align="center">{item?.minAge}</TableCell>
+                        <TableCell align="center">{item?.maxAge}</TableCell>
+                        {
+                            item?.coverages?.map((ite, index) => {
+                                return <TableCell key={index} align="center">&#8377; {ite?.premium}</TableCell>
+
+                            })
+                        }
+
+                    </TableRow>))}
+
+                </TableBody>
+
+
+
+
+            </Table>
             {/* 
             <Table>
                 <TableBody>
@@ -106,11 +143,11 @@ const Tables = ({ data, Features, sumAssured }) => {
 
                 </TableBody>
             </Table> */}
-            <HeadingBox colorText={"Company"} defaultText={"Features"} />
+            <HeadingBox colorText={"Company"} defaultText={"Features"} titleTag={`Total Features ${Features.length}`} />
             <Table>
                 <TableHead>
                     <TableRow>
-
+                        <TableCell align="left" sx={{ maxWidth: 50, fontWeight: 600, color: "orangered" }}>S.No.</TableCell>
                         <TableCell sx={{ fontWeight: 600 }} align="left">Feature Name</TableCell>
                         <TableCell sx={{ fontWeight: 600 }} align="center">Feature Value</TableCell>
 
@@ -119,6 +156,7 @@ const Tables = ({ data, Features, sumAssured }) => {
                 <TableBody>
                     {Features?.map((item, index) => {
                         return <TableRow key={index}>
+                            <TableCell align="left" sx={{ maxWidth: 50, fontWeight: 600, color: "orangered" }}>{item?.sid}</TableCell>
                             <TableCell align="left">{item?.featureName}</TableCell>
                             <TableCell align="left">{item?.featureValue}</TableCell>
                         </TableRow>

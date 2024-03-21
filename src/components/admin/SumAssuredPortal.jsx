@@ -10,7 +10,7 @@ import { Alert, Container, Paper, Snackbar } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { query } from 'firebase/database';
 import { db } from '../../Firebase/Firebase';
-import { addDoc, collection, doc, getDocs, setDoc, updateDoc } from 'firebase/firestore';
+import { addDoc, collection, doc, getDocs, updateDoc, } from 'firebase/firestore';
 import Category from './PortalElements/Category';
 import Company from './PortalElements/Company';
 import PremiumType from './PortalElements/PremiumType';
@@ -21,25 +21,28 @@ import * as XLSX from 'xlsx';
 import ChechUser from './ChechUser';
 import FilterTable from './PortalElements/FilterTable';
 import PDFGenerator from './PdfGenarator';
+import AutoExcel from '../test/AutoExcel';
 
-const steps = ["Category", "Company ", " Premium Type", "Coverage & Premium", "Features", "Previews"];
+const steps = ["Category", "Company ", "Features", "Plans", "Features", "Previews"];
 
 
 
-const SumAssuredPortal = () => {
+const sumassuredPortal = () => {
     const navigate = useNavigate();
-    const [xlxsData, setXlxsData] = useState([]);
+    const [xlxsDataFloat, setXlxsDataFloat] = useState([]);
+    const [xlxsDataInd, setXlxsDataInd] = useState([]);
     const [postMsg, setPostMsg] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
-    const [sheetNumber, setSheetNubmer] = useState(null)
+    const [sheetNumberInd, setSheetNubmerInd] = useState(null)
+    const [sheetNumberFloat, setSheetNubmerFloat] = useState(null)
     const [sheetNumberf, setSheetNubmerf] = useState(null)
-    const [xlxsFeatures, setXlxsFeatures] = useState();
+    const [xlxsFeatures, setXlxsFeatures] = useState([]);
     const [newXlsxData, setNewXlsxData] = useState([]);
     const userData = localStorage.getItem("loginUser")
     const useUser = JSON.parse(userData);
     const [user, setUserData] = useState(useUser);
     useEffect(() => {
-        if ((user?.email === "amannishad1443@gmail.com") || (user?.email === "babasaheb.kadam@gmail.com") || (user?.email === "baba@enivesh.com") || (user?.email === "office@enivesh.com") || (user?.email === "service@enivesh.com")) {
+        if (user.role === "Admin") {
             return;
         } else {
 
@@ -57,7 +60,7 @@ const SumAssuredPortal = () => {
 
     const { vertical, horizontal, open, msg, type } = state;
     const [disabled, setDisabled] = useState(true);
-
+    const [isPlan, setIsPlans] = useState("");
     const [personName, setPersonName] = useState([]);
     const [companyName, setCompanyName] = React.useState([]);
     const [premTypeVal, setPremTypeVal] = React.useState();
@@ -70,7 +73,7 @@ const SumAssuredPortal = () => {
 
     const [cat, setCat] = useState();
     const [comp, setComp] = useState();
-    const [preType, setPreType] = useState();
+    const [planVal, setPlansVal] = useState();
     const [covePre, setCovePre] = useState();
     const [feature, setFeature] = useState({});
     const [updateFeature, setUpdateFeature] = useState();
@@ -102,8 +105,8 @@ const SumAssuredPortal = () => {
             PremiumType: preTypeVal?.name.toUpperCase(),
             MinAge: ageVal?.minAge,
             MaxAge: ageVal?.maxAge,
-            sumAssured: formData,
-            // sumAssured: xlxsData,
+            sumassured: formData,
+            // sumassured: xlxsDataFloat,
             feature: featureData,
             // feature: xlxsFeatures,
 
@@ -230,7 +233,7 @@ const SumAssuredPortal = () => {
 
                 break;
             case 4: {
-                handlePreview();
+                setActiveStep(5);
             }
                 break;
             default:
@@ -261,6 +264,7 @@ const SumAssuredPortal = () => {
 
         }))
         setCat(data);
+        // console.log(data);
 
 
     }
@@ -295,21 +299,22 @@ const SumAssuredPortal = () => {
     }
 
     const handdlePretype = async () => {
-        const q = query(collection(db, "sumassured", personName[0], "companys", companyName[0], "premiumtype"));
+        const q = query(collection(db, "sumassured", personName[0], "companys", companyName[0], "plans"));
 
         const querySnapshot = await getDocs(q);
         const data = querySnapshot.docs.map((doc) => ({
             ...doc.data(), id: doc.id
 
         }))
-        setPreType(data);
+        // console.log(data);
+        setPlansVal(data);
 
     }
 
     const handdleAddPretype = async () => {
-        let exist = preType?.find(x => x.name.toUpperCase() === newInputPremTypeVal.name.toUpperCase())
+        let exist = planVal?.find(x => x.name.toUpperCase() === newInputPremTypeVal.name.toUpperCase())
         if (!exist) {
-            const q = query(collection(db, "sumassured", personName[0], "companys", companyName[0], "premiumtype"));
+            const q = query(collection(db, "sumassured", personName[0], "companys", companyName[0], "plans"));
 
             const querySnapshot = await addDoc(q, newInputPremTypeVal);
             setNewInputPremTypeVal("")
@@ -329,7 +334,7 @@ const SumAssuredPortal = () => {
 
 
     const handdleAddAgeVal = async () => {
-        const ageRef = (collection(db, "sumassured", personName[0], "companys", companyName[0], "premiumtype", premTypeVal[0], "data"));
+        const ageRef = (collection(db, "sumassured", personName[0], "companys", companyName[0], "plans", isPlan, "data"));
         const ageValSnapshot = await addDoc(ageRef, {
             minAge: ageVal.minAge,
             maxAge: ageVal.maxAge,
@@ -348,11 +353,7 @@ const SumAssuredPortal = () => {
 
     }
 
-    const handleAddCovandPre = async () => {
-        let id = postIndex - 1;
 
-
-    }
 
 
 
@@ -401,53 +402,167 @@ const SumAssuredPortal = () => {
 
 
     ////excel Coverage and Premium 
-    const handleFileUpload = (e) => {
+    const handleFileUploadFloat = async (e) => {
+
         const file = e.target.files[0];
         const reader = new FileReader();
-        reader.onload = (event) => {
-            const result = event.target.result;
-            let dataArray = [];
-            if (file.name.endsWith('.xlsx') || file.name.endsWith('.xls')) {
-                const workbook = XLSX.read(result, { type: 'binary' });
-                const sheetName = workbook.SheetNames[sheetNumber];
-                const sheet = workbook.Sheets[sheetName];
-                const rows = XLSX.utils.sheet_to_json(sheet, { header: 1, raw: true });
-                dataArray = rows.slice(1).map((row, index) => {
-                    return {
-                        sn: index + 1,
-                        members: row[0],
-                        ageBand: row[1],
-                        covrage25: row[2],
-                        covrage50: row[3],
-                        covrage1cr: row[4],
-
-                        // Add more fields as needed
-                    };
-                });
-            } else if (file.name.endsWith('.json')) {
-                try {
-                    const jsonData = JSON.parse(result);
-                    if (Array.isArray(jsonData)) {
-                        dataArray = jsonData.map((item, index) => ({
-                            id: index + 1,
-                            ...item,
-                        }));
-                    } else {
-                        throw new Error('Invalid JSON format');
-                    }
-                } catch (error) {
-                    console.error('Error parsing JSON file:', error);
-                }
-            } else {
-                console.error('Unsupported file format');
+        reader.onload = (e) => {
+            const data = new Uint8Array(e.target.result);
+            const workbook = XLSX.read(data, { type: 'array' });
+            const sheetName = workbook.SheetNames[sheetNumberFloat];
+            const sheet = workbook.Sheets[sheetName];
+            const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+            const headers = jsonData[0];
+            const formattedData = jsonData.slice(1).map((row) => {
+                const obj = {
+                    person: row[0], // Assuming person is in the second column
+                    age: row[1], // Assuming age is in the first column
+                    coverage: headers.slice(2).map((header, index) => ({
+                        coverage: header,
+                        premium: row[index + 2]
+                    }))
+                };
+                return obj;
+            });
+            // setJsonData(formattedData);
+            const newData = FirejsonFormat(formattedData)
+            setXlxsDataFloat(newData);
+            if (newData) {
+                setDisabled(false)
             }
-            setXlxsData(dataArray);
-            setState({ ...state, open: true, msg: `File Selected Neme :  ${file.name} Sheet No. : ${sheetNumber}`, type: "success" });
+            setState({ ...state, open: true, msg: `File Selected Neme :  ${file.name} Sheet No. : ${sheetNumberFloat} No. of Item ${newData.length}`, type: "success" });
+
         };
-        reader.readAsBinaryString(file);
-        setActiveStep(4)
+        reader.readAsArrayBuffer(file);
+
 
     };
+
+
+
+
+    const handleFileUploadInd = (e) => {
+
+        const file = e.target.files[0];
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            const data = new Uint8Array(e.target.result);
+            const workbook = XLSX.read(data, { type: 'array' });
+            const sheetName = workbook.SheetNames[sheetNumberInd];
+            const sheet = workbook.Sheets[sheetName];
+            const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+            const headers = jsonData[0];
+            const formattedData = jsonData.slice(1).map((row) => {
+                const obj = {
+                    person: row[0], // Assuming person is in the second column
+                    age: row[1], // Assuming age is in the first column
+                    coverage: headers.slice(2).map((header, index) => ({
+                        coverage: header,
+                        premium: row[index + 2]
+                    }))
+                };
+                return obj;
+            });
+
+            const newData = FirejsonFormat(formattedData)
+            setXlxsDataInd(newData);
+            if (newData) {
+                setDisabled(false)
+            }
+            setState({ ...state, open: true, msg: `File Selected Neme :  ${file.name} Sheet No. : ${sheetNumberInd} No. of Item ${newData.length}`, type: "success" });
+
+        };
+        reader.readAsArrayBuffer(file);
+
+
+
+
+
+    };
+
+
+
+    const FirejsonFormat = (data) => {
+        const sdw = data.map((item, index) => {
+
+            const [minAge, maxAge] = item.age.match(/\d+/g).map(Number);
+
+            if (item) {
+                return {
+                    sid: index + 1,
+                    minAge: minAge ? minAge : 1,
+                    maxAge: maxAge ? maxAge : "above",
+                    member: item.person,
+                    coverages: item.coverage
+
+                }
+            }
+
+        })
+        // console.log(sdw);
+        return sdw;
+    }
+
+
+
+    const handlCheckData = (item) => {
+        // console.log(item);
+        if (item.minAge === undefined, item.maxAge === undefined || item.member === undefined) {
+
+            setState({ ...state, open: true, msg: `Excel File Not Supported`, type: "error" });
+
+        } else {
+            setState({ ...state, open: true, msg: `Excel File Supported`, type: "success" });
+
+            setActiveStep(3)
+
+
+        }
+
+    }
+
+    const handlCheckDataFeature = (item) => {
+        if (item.featureName === undefined || item.featureValue === undefined) {
+
+            setState({ ...state, open: true, msg: `Excel File Not Supported`, type: "error" });
+
+        } else {
+            setState({ ...state, open: true, msg: `Excel File Supported`, type: "success" });
+
+            setActiveStep(5)
+
+
+        }
+
+    }
+
+    useEffect(() => {
+        if (xlxsDataFloat && xlxsDataFloat.length > 0 || xlxsFeatures && xlxsFeatures.length > 0) {
+
+            if (xlxsDataFloat.length > 0) {
+
+                xlxsDataFloat.forEach((item) => handlCheckData(item));
+            } else {
+                if (xlxsFeatures.length > 0) {
+                    xlxsFeatures.forEach((item) => handlCheckDataFeature(item));
+
+                }
+            }
+
+
+
+
+        } else {
+            if (sheetNumberFloat) {
+                setState({ ...state, open: true, msg: `Sheet Number ${sheetNumberFloat} Not Exists`, type: "error" });
+            }
+            if (sheetNumberf) {
+                setState({ ...state, open: true, msg: `Sheet Number ${sheetNumberf} Not Exists`, type: "error" });
+            }
+
+        }
+    }, [xlxsDataFloat])
+
     ////excel Feature Data
     const handleFeatureFileUpload = (e) => {
         const file = e.target.files[0];
@@ -462,7 +577,7 @@ const SumAssuredPortal = () => {
                 const rows = XLSX.utils.sheet_to_json(sheet, { header: 1, raw: true });
                 dataArray = rows.slice(1).map((row, index) => {
                     return {
-                        sn: index + 1,
+                        sid: index + 1,
                         featureName: row[0],
                         featureValue: row[1],
 
@@ -488,46 +603,72 @@ const SumAssuredPortal = () => {
                 console.error('Unsupported file format');
             }
             setXlxsFeatures(dataArray);
-            parseIntData();
             setState({ ...state, open: true, msg: `File Selected Name :${file.name} Sheet No. : ${sheetNumberf}`, type: "success" });
-
+            setDisabled(false)
 
         };
         reader.readAsBinaryString(file);
 
 
-        setActiveStep(5)
+        setActiveStep(3)
+
+
+
+
+
+
+
+
+
 
     };
 
 
-    const onSheetVal = (e) => {
+    const onSheetValInd = (e) => {
         let value = e.target.value;
-        setSheetNubmer(value)
+        setSheetNubmerInd(value)
+    }
+    const onSheetValFloat = (e) => {
+        let value = e.target.value;
+        setSheetNubmerFloat(value)
     }
     const onSheetValf = (e) => {
         let value = e.target.value;
         setSheetNubmerf(value)
     }
 
-    const parseIntData = () => {
-        const sdw = xlxsData.map((item) => {
-            const [minAge, maxAge] = item.ageBand.match(/\d+/g).map(Number);
-            return {
-                sid: item.sn,
-                minAge: minAge ? minAge : 1,
-                maxAge: maxAge ? maxAge : "above",
-                member: item.members,
-                covrage50: parseInt(item.covrage50),
-                covrage25: parseInt(item.covrage25),
-                covrage1cr: parseInt(item.covrage1cr)
+    const parseIntData = (data) => {
+        const sdw = data.map((item, index) => {
+
+            if (index >= 1) {
+                const [minAge, maxAge] = item.ageBand.match(/\d+/g).map(Number);
+                return {
+                    sid: item.sn,
+                    minAge: minAge ? minAge : 1,
+                    maxAge: maxAge ? maxAge : "above",
+                    member: item.members,
+                    covrage50: parseInt(item.covrage50),
+                    covrage25: parseInt(item.covrage25),
+                    covrage1cr: parseInt(item.covrage1cr)
+                }
+            } else {
+                return {
+                    sid: item.sn,
+                    age: item.ageBand,
+                    member: item.members,
+                    covrage50: parseInt(item.covrage50),
+                    covrage25: parseInt(item.covrage25),
+                    covrage1cr: parseInt(item.covrage1cr)
+                }
             }
+
         })
-        setNewXlsxData(sdw)
+        console.log(data);
+        return sdw;
     }
 
-    const uploadEachItem = async (item) => {
-        const featureRef = (collection(db, "sumassured", personName[0], "companys", companyName[0], "coveragePremium"));
+    const uploadEachItemInd = async (item) => {
+        const featureRef = (collection(db, "sumassured", personName[0], "companys", companyName[0], "plans", isPlan, "individual"));
         try {
 
             const featureSnapshot = await addDoc(featureRef, item);
@@ -540,6 +681,23 @@ const SumAssuredPortal = () => {
         } catch (error) {
             console.error('Error adding document: ', error);
         }
+
+    };
+    const uploadEachItemFloat = async (item) => {
+        const featureRef = (collection(db, "sumassured", personName[0], "companys", companyName[0], "plans", isPlan, "floater"));
+        try {
+
+            const featureSnapshot = await addDoc(featureRef, item);
+            setState({ ...state, open: true, msg: `Added Successfuly Docs Id ${featureSnapshot.id}`, type: "success" });
+            setPostMsg(true);
+            if (featureSnapshot.id) {
+                setActiveStep(0);
+            }
+
+        } catch (error) {
+            console.error('Error adding document: ', error);
+        }
+
     };
     const uploadEachItemFeature = async (item) => {
         const featureRef = (collection(db, "sumassured", personName[0], "companys", companyName[0], "features"));
@@ -558,11 +716,17 @@ const SumAssuredPortal = () => {
 
     const handleExcelUpload = async () => {
         // Add each item from the local array to Firestore
-        if (newXlsxData) {
-            newXlsxData.forEach((item) => uploadEachItem(item));
+        if (xlxsDataInd) {
+            xlxsDataInd.forEach((item) => uploadEachItemInd(item));
 
         } else {
             setState({ ...state, open: true, msg: `SumAssued Excel File Not Select...!`, type: "error" });
+
+        }
+        if (xlxsDataFloat) {
+            xlxsDataFloat.forEach((item) => uploadEachItemFloat(item));
+        } else {
+            setState({ ...state, open: true, msg: `Feature Excel File Not Select...!`, type: "error" });
 
         }
         if (xlxsFeatures) {
@@ -648,13 +812,13 @@ const SumAssuredPortal = () => {
 
 
 
-
     // UseEffect funcition ----------------------------------
 
 
     useEffect(() => {
         if (booleanCom === false) {
             handdleCompany();
+
         }
         return;
 
@@ -663,6 +827,7 @@ const SumAssuredPortal = () => {
         if (comp) {
             handdlePretype();
         }
+
     }, [booleanPt])
     useEffect(() => {
         if (featureId) {
@@ -673,7 +838,7 @@ const SumAssuredPortal = () => {
         }
 
     }, [featureId])
-
+    // console.log(isPlan);
 
     return (
         <Wrapper>
@@ -689,6 +854,7 @@ const SumAssuredPortal = () => {
                     </Alert>
                 </Snackbar>
                 <Paper elevation={1}>
+                    <Button onClick={handdlePretype}>RUN</Button>
                     <Box sx={{ width: '100%', p: 1 }}>
                         <Mob>
                             <Stepper sx={{ p: 2, }} activeStep={activeStep}>
@@ -704,7 +870,7 @@ const SumAssuredPortal = () => {
                                         stepProps.completed = false;
                                     }
                                     return (
-                                        <Step key={label} {...stepProps}>
+                                        <Step key={index} {...stepProps}>
                                             <StepLabel {...labelProps}>{label}</StepLabel>
                                         </Step>
                                     );
@@ -714,10 +880,10 @@ const SumAssuredPortal = () => {
                         {/* <Button onClick={handleExcelUpload}>Preview</Button> */}
                         {activeStep === 0 && <Category data={cat} onChange={handleChangeCat} value={personName} />}
                         {activeStep === 1 && <Company onActive={() => setBooleanCom(!booleanCom)} boolean={booleanCom} onAdd={handdleAddCompany} data={comp} onChange={handleChangeComp} value={companyName} />}
-                        {activeStep === 2 && <PremiumType SheetVal={sheetNumber} onFile={handleFileUpload} onExcelUpload={handleExcelUpload} isLoading={isLoading} onSheetVal={onSheetVal} value={premTypeVal} onActive={() => setBooleanPt(!booleanPt)} boolean={booleanPt} onAdd={handdleAddPretype} addFieldVal={newInputPremTypeVal[0]} data={preType} onChange={handleChangePretype} />}
-                        {activeStep === 3 && <CoveragePremium value={ageVal} onDelete={handleRemoveInput} data={formData} onChange={handleChangeAge} onGet={handleChangeCavPre} onPost={handleAddCovandPre} onAdd={handleAddInput} />}
-                        {activeStep === 4 && <Features SheetVal={sheetNumberf} onFile={handleFeatureFileUpload} onSheetVal={onSheetValf} data={featureData} onChange={(e) => handdleFeatureChange(e)} onPost={handdleFeaturePost} value={feature} onStateUpdate={featureId} onEdit={handdleEdit} onUpdate={handleUpdate} updateItem={updateFeature} />}
-                        {activeStep === 5 && <PortalSummary postMsg={postMsg} featureData={xlxsFeatures} xlxsData={newXlsxData} onPost={handleExcelUpload} data={preview} />}
+                        {activeStep === 2 && <Features SheetVal={sheetNumberf} onFile={handleFeatureFileUpload} onSheetVal={onSheetValf} data={featureData} onChange={(e) => handdleFeatureChange(e)} onPost={handdleFeaturePost} value={feature} onStateUpdate={featureId} onEdit={handdleEdit} onUpdate={handleUpdate} updateItem={updateFeature} />}
+                        {activeStep === 3 && <PremiumType SelectedOption={planVal} IsSelectedVal={isPlan} onSelected={(e) => setIsPlans(e.target.value)} SheetValInd={sheetNumberInd} SheetValFloat={sheetNumberFloat} onFileFloat={handleFileUploadFloat} onFileInd={handleFileUploadInd} onExcelUpload={handleExcelUpload} isLoading={isLoading} onSheetValFloat={onSheetValFloat} onSheetValInd={onSheetValInd} value={premTypeVal} onActive={() => setBooleanPt(!booleanPt)} boolean={booleanPt} onAdd={handdleAddPretype} addFieldVal={newInputPremTypeVal[0]} onChange={handleChangePretype} />}
+                        {/* {activeStep === 4 && <CoveragePremium value={ageVal} onDelete={handleRemoveInput} data={formData} onChange={handleChangeAge} onGet={handleChangeCavPre} onPost={handleAddCovandPre} onAdd={handleAddInput} />} */}
+                        {activeStep === 4 && <PortalSummary postMsg={postMsg} featureData={xlxsFeatures} xlxsDataFloat={xlxsDataFloat} xlxsDataInd={xlxsDataInd} onPost={handleExcelUpload} data={preview} />}
 
 
                         <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
@@ -754,9 +920,9 @@ const SumAssuredPortal = () => {
 
                     </Box>
                 </Paper>
-                <ChechUser />
-                <PDFGenerator />
-
+                {/* <ChechUser />
+                <PDFGenerator /> */}
+                {/* <AutoExcel /> */}
 
 
             </Container>
@@ -765,7 +931,7 @@ const SumAssuredPortal = () => {
     )
 }
 
-export default SumAssuredPortal
+export default sumassuredPortal
 const Wrapper = styled.div`
 width: 100%;
 min-height: 100vh;

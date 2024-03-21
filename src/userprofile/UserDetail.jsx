@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import Button from '../components/items/ulip/Button';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Box, Paper, Typography } from '@mui/material';
 
 const UserDetail = () => {
@@ -9,6 +9,7 @@ const UserDetail = () => {
     const useUser = JSON.parse(userData);
     const [user, setUserData] = useState(useUser);
     const navigate = useNavigate();
+    const location = useLocation();
     const handleNavigate = () => {
         navigate("/profile/edit")
     }
@@ -18,21 +19,26 @@ const UserDetail = () => {
             navigate('/profile/login')
         }
     }, [useUser])
+    // useEffect(() => {
+    //     if (location.pathname === "/profile") {
+
+    //     }
+    // }, [location])
     return (
         <>
             {user && <Wrapper>
-                <h3 style={{ marginBottom: "10px", textAlign: "center", fontWeight: 600, color: "#7a2f04d9", fontSize: "1.4vmax" }}>Welcome {user.username}</h3>
-                {
-                    ((user.email === "amannishad1443@gmail.com") || (user.email === "babasaheb.kadam@gmail.com") || (user.email === "baba@enivesh.com") || (user.email === "office@enivesh.com") || (user.email === "service@enivesh.com")) && <Typography component={"p"} variant='caption' textAlign={"center"}>Admin User </Typography>
+                <h3 style={{ marginBottom: "10px", textAlign: "center", fontWeight: 600, color: "#7a2f04d9", fontSize: "1.4vmax" }}>Welcome {user.name}</h3>
 
-                }
+                <Typography component={"p"} variant='caption' textAlign={"center"}>{user?.role} </Typography>
 
-                {((user.email === "amannishad1443@gmail.com") || (user.email === "babasaheb.kadam@gmail.com") || (user.email === "baba@enivesh.com") || (user.email === "office@enivesh.com") || (user.email === "service@enivesh.com")) && <Box component={Paper} elevation={1} sx={{ padding: 1, m: 1 }}>
+
+
+                {user?.role === "Admin" && <Box component={Paper} elevation={1} sx={{ padding: 1, m: 1 }}>
                     <Link to={"/admin"}>Add SumAssured </Link>
                 </Box>}
                 <div className="list">
                     <span className="label">Username :</span>
-                    <h5 className="title">{user.username}</h5>
+                    <h5 className="title">{user.name}</h5>
                 </div>
                 <div className="list">
                     <span className="label">Email :</span>
@@ -40,7 +46,7 @@ const UserDetail = () => {
                 </div>
                 <div className="list">
                     <span className="label">Phone :</span>
-                    <h5 className="title">{user.number ? user.number : <span>Add Deatail............</span>}</h5>
+                    <h5 className="title">{user.phone ? user.phone : <span>Add Deatail............</span>}</h5>
                 </div>
                 <div className="list">
                     <span className="label">City :</span>
@@ -48,7 +54,7 @@ const UserDetail = () => {
                 </div>
                 <div className="list">
                     <span className="label">Work :</span>
-                    <h5 className="title">{user.work ? user.work : <span>Add Deatail............</span>}</h5>
+                    <h5 className="title">{user.job ? user.job : <span>Add Deatail............</span>}</h5>
                 </div>
                 <Button title={"Edit Detail"} p={"5px 10px "} funcs={handleNavigate} size={".7rem"} Color={"#000"} bgColor={"#ff5e00d9"} />
             </Wrapper>

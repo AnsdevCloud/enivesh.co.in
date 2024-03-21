@@ -32,8 +32,13 @@ const UserProfile = () => {
         });
     }
     useEffect(() => {
-        setUserData(useUser)
-    }, [useUser])
+        if (user) {
+            setUserData(useUser)
+
+        }
+        // console.log(user);
+
+    }, [location.pathname])
     return (
         <Wrapper>
             {user ? <span className='backBtn' onClick={LogOut}>Sing Out</span> : <span className='backBtn'>Login then access more....</span>}
@@ -41,7 +46,7 @@ const UserProfile = () => {
                 <div className="imgbox">
                     <img src={user ? user.profileUrl : "/images/eniveshicon/avatar.svg"} alt="logo" />
                 </div>
-                <h3>{user ? user.username : "*******"}</h3>
+                <h3>{user ? user.name : "*******"}</h3>
             </div>
             <Container>
                 <Outlet />

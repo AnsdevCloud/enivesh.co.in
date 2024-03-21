@@ -1,16 +1,14 @@
 import * as React from 'react';
+// import { firebase } from 'firebase/app';
+// import 'firebase/firestore';
 import { useTheme } from '@mui/material/styles';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import { Box } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import HeadingBox from '../../items/HeadingBox';
-import { query } from 'firebase/database';
-import { collection, getDocs } from 'firebase/firestore';
-import { db } from '../../../Firebase/Firebase';
-import { useLocation } from 'react-router-dom';
 
 
 const ITEM_HEIGHT = 48;
@@ -50,9 +48,23 @@ function getStyles(name, personName, theme) {
     };
 }
 
+// const dbd = firebase.firestore();
 
 export default function Category({ data, onChange, value }) {
+    // const feachDataGroupCol = () => {
+    //     // Perform the collection group query
+    //     const query = dbd.collectionGroup('allcoverage').where('minAge', '<=', 45);
 
+    //     query.get()
+    //         .then((querySnapshot) => {
+    //             querySnapshot.forEach((doc) => {
+    //                 console.log(doc.id, ' => ', doc.data());
+    //             });
+    //         })
+    //         .catch((error) => {
+    //             console.error('Error getting documents: ', error);
+    //         });
+    // }
     const theme = useTheme();
 
     return (
@@ -75,13 +87,14 @@ export default function Category({ data, onChange, value }) {
                             <MenuItem
                                 key={item.id}
                                 value={item.id}
-                                style={getStyles(item.category, value, theme)}
+                                style={getStyles(item.name, value, theme)}
                             >
-                                {item.category.toUpperCase()}
+                                {item.name.toUpperCase()}
                             </MenuItem>
                         ))}
                     </Select>
                 </FormControl>
+
             </Box>
         </>
     );
