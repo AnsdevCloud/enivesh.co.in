@@ -3,11 +3,10 @@ import styled from 'styled-components';
 import InputField from '../Components/items/ulip/InputField';
 import Button from '../components/items/ulip/Button';
 import { Link, useNavigate } from 'react-router-dom';
-import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
-import { auth, db, provider } from '../Firebase/Firebase';
-import axios from 'axios';
-import { addDoc, collection, doc, getDoc, setDoc } from 'firebase/firestore';
+import fb from '../Firebase/FireConfig';
+import { GoogleAuthProvider } from 'firebase/auth'
 
+var provider = new GoogleAuthProvider();
 const LoginForm = () => {
     const userData = localStorage.getItem("loginUser")
     const useUser = JSON.parse(userData);
@@ -21,40 +20,70 @@ const LoginForm = () => {
     }, [])
 
     const SigninWithGoogle = async () => {
-        signInWithPopup(auth, provider)
+        fb.auth()
+            .signInWithPopup(provider)
             .then((result) => {
-                const user = result.user;
+                /** @type {firebase.auth.OAuthCredential} */
+                var credential = result.credential;
+
+                var token = credential.accessToken;
+
+                var user = result.user;
                 handdleAddUserDoc(user)
 
+
             }).catch((error) => {
-                console.warn(error.message);
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                // The email of the user's account used.
+                var email = error.email;
+                // The firebase.auth.AuthCredential type that was used.
+                var credential = error.credential;
+                // ...
             });
     }
 
 
     const handdleAddUserDoc = async (e) => {
-        const userRef = doc(db, "users", e.uid);
-        const docSnap = await getDoc(userRef)
-        if (docSnap.exists()) {
-            localStorage.setItem("loginUser", JSON.stringify(docSnap.data()));
-            navigate('/');
-        } else {
-            // docSnap.data() will be undefined in this case
-            if (e) {
-                await setDoc(userRef, {
-                    name: e.displayName ? e.displayName : null,
-                    email: e.email,
-                    profileUrl: e.photoURL ? e.photoURL : null,
-                    phone: e.phone ? e.phone : null,
-                    job: e.job ? e.job : null,
-                    city: e.city ? e.city : null,
-                    id: e.uid,
-                    role: "User"
-                });
-            }
-            console.warm("No such document!");
-        }
+        const db = fb.firestore()
+        var docRef = db.collection("users").doc(e.uid);
+        if (e) {
+            docRef.get().then((doc) => {
+                if (doc.exists) {
+                    localStorage.setItem("loginUser", JSON.stringify(doc.data()));
+                    navigate('/');
+                } else {
+                    if (e) {
+                        docRef.set({
+                            name: e.displayName ? e.displayName : null,
+                            email: e.email,
+                            profileUrl: e.photoURL ? e.photoURL : null,
+                            phone: e.phone ? e.phone : null,
+                            job: e.job ? e.job : null,
+                            city: e.city ? e.city : null,
+                            id: e.uid,
+                            role: "User"
+                        });
 
+                    }
+                    localStorage.setItem("loginUser", JSON.stringify({
+                        name: e.displayName ? e.displayName : null,
+                        email: e.email,
+                        profileUrl: e.photoURL ? e.photoURL : null,
+                        phone: e.phone ? e.phone : null,
+                        job: e.job ? e.job : null,
+                        city: e.city ? e.city : null,
+                        id: e.uid,
+                        role: "User"
+                    }));
+                    navigate('/');
+
+                }
+            }).catch((error) => {
+                console.warn("Error getting document:", error);
+            });
+        }
 
     }
 
@@ -69,18 +98,15 @@ const LoginForm = () => {
 
     const hadleSignIn = async (e) => {
         e.preventDefault();
-        await signInWithEmailAndPassword(auth, formData?.email, formData?.password)
-            .then(async (userCredential) => {
-                // Signed in 
-                const user = userCredential.user;
-                // ...
+        fb.auth().signInWithEmailAndPassword(formData?.email, formData?.password)
+            .then((userCredential) => {
+                // Signed in
+                var user = userCredential.user;
                 handdleAddUserDoc(user)
-
-
             })
             .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
+                var errorCode = error.code;
+                var errorMessage = error.message;
             });
     }
 

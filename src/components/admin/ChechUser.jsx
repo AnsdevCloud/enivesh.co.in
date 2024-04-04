@@ -1,10 +1,8 @@
-import { Box, Button, Container, FormControl, FormControlLabel, InputLabel, MenuItem, OutlinedInput, Paper, Radio, RadioGroup, Select, Stack, TextField, Typography } from '@mui/material'
+import { Alert, Box, Button, Container, FormControl, FormControlLabel, InputLabel, MenuItem, OutlinedInput, Paper, Radio, RadioGroup, Select, Stack, Table, TableBody, TableCell, TableHead, TableRow, TextField, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 
 import { useTheme } from '@mui/material/styles';
-import { collection, collectionGroup, getDoc, getDocs, where } from 'firebase/firestore';
-import { db } from '../../Firebase/Firebase';
-import { query } from 'firebase/database';
+
 import ExslFileUpload from './ExslFileUplod';
 import DocsFileUpload from './DocsFileUpload';
 import FilterTable from './PortalElements/FilterTable';
@@ -36,7 +34,14 @@ const ChechUser = () => {
     const [isAge, setIsAge] = useState();
     const [plans, setPlans] = React.useState([]);
     const [isType, setIsType] = React.useState();
+    const [catatrgory, setCatatrgory] = useState();
+    const [categoryVal, setCategoryVal] = useState();
 
+    const [alertData, setAlertData] = useState({
+        active: false,
+        type: "error",
+        msg: "Alert Data Not Set ...!"
+    });
     const handleChangePersan = (event) => {
         const {
             target: { value },
@@ -70,94 +75,33 @@ const ChechUser = () => {
     }, [personName])
 
 
-
-    const FeachFeatureData = async () => {
-        const q = query(collection(db, "sumassured"));
-
-        const querySnapshot = await getDocs(q);
-        const data = querySnapshot.docs.map((doc) => ({
-            ...doc.data(), id: doc.id
-
-        }))
-        // console.log(data);
-        data.map(async (elem) => {
-            const postQ = query(collection(db, `sumassured/${elem.id}/companys`))
-            const postDetils = await getDocs(postQ)
-            const postInff = postDetils.docs.map((doc) => ({
-                ...doc.data(), id: doc.id
-            }))
-
-
-
-            postInff.map(async (ele) => {
-                const postQ = query(collection(db, `sumassured/${elem.id}/companys/${ele.id}/coveragePremium`))
-                const postF = query(collection(db, `sumassured/${elem.id}/companys/${ele.id}/features`))
-                const postDetils = await getDocs(postQ)
-                const postInffs = postDetils.docs.map((doc) => ({
-                    ...doc.data(), id: doc.id
-                }))
-                // console.log(postInffs);
-
-                setIsType(postInffs);
-                if (personName && isAge) {
-                    const filteredData = postInffs.filter(item => item.minAge <= isAge && item.maxAge >= isAge && item.member?.toUpperCase() == personName?.toUpperCase());
-                    setPlans(filteredData)
-                } else if (isAge) {
-                    const filteredData = postInffs.filter(item => item.minAge <= isAge && item.maxAge >= isAge);
-                    setPlans(filteredData)
-                } else if (personName) {
-                    const filteredData = postInffs.filter(item => item.member?.toUpperCase() == personName?.toUpperCase());
-                    setPlans(filteredData)
-                } else {
-                    setPlans(postInffs)
-                }
-
-                const featureDetail = await getDocs(postF)
-                const featureInfo = featureDetail.docs.map((doc) => ({
-                    ...doc.data(), id: doc.id
-                }))
-                console.log(featureInfo);
-            })
-
-
-
-        })
+    const [IsFeature, setFeaturesData] = useState();
 
 
 
 
-    }
-
-    const handdlePretype = async () => {
-        const q = query(collectionGroup(db, "SumAssued"), where('minAge', '<=', 20));
-        const querySnapshot = await getDocs(q);
-
-        let data = querySnapshot.forEach((doc) => {
-            console.log(doc.id, ' => ', doc.data());
-        });
-        console.log(data);
-    }
 
 
-    const getNestedCollectionData = async () => {
-        const q = query(collectionGroup(db, 'features'), where('name', '==', "Plan Name"));
-        const querySnapshot = await getDoc(q);
 
-        const postInffd = querySnapshot.docs.map((doc) => ({
-            ...doc.data(), id: doc.id
-        }))
-        console.log(postInffd);
-    };
+
+
 
     const isMambers = ["Individual", "1a+1c", "1a+2c", "1a+3c", "1a+4c", "2a", "2a+1c", "2a+2c", "2a+3c", "2a+4c"];
     useEffect(() => {
         // FeachFeatureData()
         // getNestedCollectionData();
         // handdlePretype();
-    }, [])
+        // FilterByCategory()
+        // handleEas();
+
+    }, [categoryVal])
+
+    // console.log(categoryVal);
     return (
         <Container>
+
             <Paper elevation={1} sx={{ p: 1, m: 1 }}>
+                {alertData?.active && <Alert severity={alertData?.type}>{alertData?.msg}</Alert>}
                 <HeadingBox colorText={"Check"} defaultText={"Plans"} m={"20px 0"} />
                 <Stack p={1} flexDirection={"row-reverse"} alignItems={"center"} justifyContent={"space-between"}>  <RadioGroup
                     row
@@ -165,15 +109,17 @@ const ChechUser = () => {
                     name="row-radio-buttons-group"
 
                 >
-                    {/* <FormControlLabel value="All" control={<Radio size='small' />} label="ALL" /> */}
-                    <FormControlLabel value="retail" control={<Radio size='small' />} label="RETAIL" />
-                    <FormControlLabel value="All in one" control={<Radio size='small' />} label="ALL IN ONE" />
-                    <FormControlLabel value="hni" control={<Radio size='small' />} label="HNI" />
+                    {
+                        catatrgory?.map((item) => {
+                            return <FormControlLabel key={item.id} value={item.id} onChange={(e) => setCategoryVal(e.target.value)} control={<Radio size='small' />} label={item.name} />
+
+                        })
+                    }
 
                 </RadioGroup></Stack>
 
                 <Stack flexDirection={'row'} gap={1} alignItems={"center"} justifyContent={"space-between"}>
-                    <TextField size='small' label="Age" onChange={handleChangeIsAge} />
+                    <TextField size='small' label="Age" type='number' onChange={handleChangeIsAge} />
                     {/* <TextField size='small' label={"Member"} onChange={handleChangePersan} /> */}
 
                     <FormControl size='small' fullWidth sx={{ maxWidth: 300 }}>
@@ -192,13 +138,37 @@ const ChechUser = () => {
                             <MenuItem value={30}>Thirty</MenuItem> */}
                         </Select>
                     </FormControl>
-                    <Typography mr={2} variant='caption' component={'span'}>Search Result : {plans?.length}</Typography>
+                    <Typography mr={2} variant='caption' component={'span'} color={`green`}>Search Result : {plans?.length}</Typography>
 
                 </Stack>
 
                 <Box>
-                    <Typography mt={2} textAlign={"center"}>Plans</Typography>
+                    <Typography mt={2} textAlign={"center"} variant='subtitle1 ' fontWeight={500} component={"h4"}>Plans</Typography>
                     <FilterTable data={plans} />
+
+                </Box>
+                <Box>
+                    <Typography mt={2} textAlign={"center"} variant='subtitle1 ' fontWeight={500} component={"h4"}>Features</Typography>
+                    <Table>
+                        <TableHead>
+                            <TableRow>
+                                <TableCell sx={{ fontWeight: 600, color: "orangered", maxWidth: 100 }}>S.No.</TableCell>
+                                <TableCell sx={{ fontWeight: 600, color: "orangered" }}>Feature Name</TableCell>
+                                <TableCell sx={{ fontWeight: 600, color: "orangered" }}>Feature Details</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {
+                                IsFeature?.map((itam, index) => {
+                                    return <TableRow key={index}>
+                                        <TableCell sx={{ fontWeight: 600, color: "orangered", maxWidth: 50 }} >{itam?.sid}</TableCell>
+                                        <TableCell >{itam?.featureName}</TableCell>
+                                        <TableCell >{itam?.featureValue}</TableCell>
+                                    </TableRow>
+                                })
+                            }
+                        </TableBody>
+                    </Table>
 
                 </Box>
             </Paper>

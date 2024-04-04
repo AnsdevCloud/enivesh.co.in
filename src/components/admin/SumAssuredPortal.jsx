@@ -6,11 +6,8 @@ import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import styled from 'styled-components';
-import { Alert, Container, Paper, Snackbar } from '@mui/material';
+import { Alert, Container, Paper, Snackbar, Stack } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { query } from 'firebase/database';
-import { db } from '../../Firebase/Firebase';
-import { addDoc, collection, doc, getDocs, updateDoc, } from 'firebase/firestore';
 import Category from './PortalElements/Category';
 import Company from './PortalElements/Company';
 import PremiumType from './PortalElements/PremiumType';
@@ -22,6 +19,7 @@ import ChechUser from './ChechUser';
 import FilterTable from './PortalElements/FilterTable';
 import PDFGenerator from './PdfGenarator';
 import AutoExcel from '../test/AutoExcel';
+import { child, get, getDatabase, ref } from 'firebase/database';
 
 const steps = ["Category", "Company ", "Features", "Plans", "Features", "Previews"];
 
@@ -42,7 +40,7 @@ const sumassuredPortal = () => {
     const useUser = JSON.parse(userData);
     const [user, setUserData] = useState(useUser);
     useEffect(() => {
-        if (user.role === "Admin") {
+        if (user?.role === "Admin") {
             return;
         } else {
 
@@ -72,6 +70,7 @@ const sumassuredPortal = () => {
     // const [maxAgeVal, setMaxAgeVal] = React.useState();
 
     const [cat, setCat] = useState();
+    const [categories, setCategories] = useState();
     const [comp, setComp] = useState();
     const [planVal, setPlansVal] = useState();
     const [covePre, setCovePre] = useState();
@@ -95,25 +94,11 @@ const sumassuredPortal = () => {
 
 
     const handlePreview = () => {
-        let catVal = cat.find(x => x.id === personName[0])
+        let catVal = categories.find(x => x.name === personName[0])
         let compVal = comp.find(x => x.id === companyName[0])
         let preTypeVal = preType.find(x => x.id === premTypeVal[0])
 
-        var data = {
-            Category: catVal?.category.toUpperCase(),
-            Company: compVal?.name.toUpperCase(),
-            PremiumType: preTypeVal?.name.toUpperCase(),
-            MinAge: ageVal?.minAge,
-            MaxAge: ageVal?.maxAge,
-            sumassured: formData,
-            // sumassured: xlxsDataFloat,
-            feature: featureData,
-            // feature: xlxsFeatures,
 
-
-
-        }
-        setPreview(data)
 
     }
 
@@ -126,6 +111,8 @@ const sumassuredPortal = () => {
             // On autofill we get a stringified value.
             typeof value === 'string' ? value.split(',') : value,
         );
+        let catVal = categories?.find(x => x?.name === value)
+        setComp(catVal);
         setDisabled(false)
     };
 
@@ -257,76 +244,57 @@ const sumassuredPortal = () => {
 
 
     const handdleCategory = async () => {
-        const q = query(collection(db, "sumassured"));
-        const querySnapshot = await getDocs(q);
-        const data = querySnapshot.docs.map((doc) => ({
-            ...doc.data(), id: doc.id
+        const data = [];
+        const dbRef = ref(getDatabase());
+        get(child(dbRef, `categories`)).then((snapshot) => {
+            if (snapshot.exists()) {
+                snapshot.forEach((doc) => {
+                    data.push(doc.val());
+                })
 
-        }))
-        setCat(data);
-        // console.log(data);
+                localStorage.setItem("categories", JSON.stringify(data))
+
+            } else {
+                console.log("No data available");
+            }
+        }).catch((error) => {
+            console.error(error);
+        });
 
 
     }
 
     const handdleCompany = async () => {
-        const q = query(collection(db, "sumassured", personName[0], "companys"));
-        const querySnapshot = await getDocs(q);
-        const data = querySnapshot.docs.map((doc) => ({
-            ...doc.data(), id: doc.id
-
-        }))
-        setComp(data);
 
 
 
     }
     const handdleAddCompany = async () => {
-        const q = query(collection(db, "sumassured", personName[0], "companys"));
 
-        let exist = comp.find(x => x.name.toUpperCase() === newCompanyNameVal.name.toUpperCase())
-        if (!exist) {
-            const querySnapshot = await addDoc(q, newCompanyNameVal);
-            setState({ ...state, open: true, msg: "Added...!", type: "success" });
-            setBooleanCom(false)
-        } else {
-            setBooleanCom(false)
-            setState({ ...state, open: true, msg: "Already exist", type: "error" });
-
-        }
 
 
     }
 
     const handdlePretype = async () => {
-        const q = query(collection(db, "sumassured", personName[0], "companys", companyName[0], "plans"));
-
-        const querySnapshot = await getDocs(q);
-        const data = querySnapshot.docs.map((doc) => ({
-            ...doc.data(), id: doc.id
-
-        }))
-        // console.log(data);
-        setPlansVal(data);
 
     }
 
     const handdleAddPretype = async () => {
-        let exist = planVal?.find(x => x.name.toUpperCase() === newInputPremTypeVal.name.toUpperCase())
-        if (!exist) {
-            const q = query(collection(db, "sumassured", personName[0], "companys", companyName[0], "plans"));
+        // let exist = planVal?.find(x => x.name.toUpperCase() === newInputPremTypeVal.name.toUpperCase())
+        // if (!exist) {
+        //     const q = query(collection(db, "sumassured", personName[0], "companys", companyName[0], "plans"));
 
-            const querySnapshot = await addDoc(q, newInputPremTypeVal);
-            setNewInputPremTypeVal("")
-            setState({ ...state, open: true, msg: "Added...!", type: "success" });
-            setBooleanPt(!booleanPt)
+        //     const querySnapshot = await addDoc(q, newInputPremTypeVal);
+        //     setNewInputPremTypeVal("")
+        //     setState({ ...state, open: true, msg: "Added...!", type: "success" });
+        //     setBooleanPt(!booleanPt)
 
-        } else {
-            setNewInputPremTypeVal("")
-            setBooleanPt(!booleanPt)
-            setState({ ...state, open: true, msg: "Already exist", type: "error" });
+        // } else {
+        //     setNewInputPremTypeVal("")
+        //     setBooleanPt(!booleanPt)
+        //     setState({ ...state, open: true, msg: "Already exist", type: "error" });
 
-        }
+        // }
 
 
 
@@ -334,20 +302,13 @@ const sumassuredPortal = () => {
 
 
     const handdleAddAgeVal = async () => {
-        const ageRef = (collection(db, "sumassured", personName[0], "companys", companyName[0], "plans", isPlan, "data"));
-        const ageValSnapshot = await addDoc(ageRef, {
-            minAge: ageVal.minAge,
-            maxAge: ageVal.maxAge,
-            sumassured: await formData
-        });
 
-        let vdi = (ageValSnapshot.id);
-        if (vdi) {
-            setState({ ...state, open: true, msg: "Coverage & Premium Added Successfuly..!", type: "success" });
+        // if () {
+        //     setState({ ...state, open: true, msg: "Coverage & Premium Added Successfuly..!", type: "success" });
 
-        } else {
-            setState({ ...state, open: true, msg: "Server Not Responced..!", type: "error" });
-        }
+        // } else {
+        //     setState({ ...state, open: true, msg: "Server Not Responced..!", type: "error" });
+        // }
 
 
 
@@ -358,7 +319,15 @@ const sumassuredPortal = () => {
 
 
     useEffect(() => {
-        handdleCategory();
+        const catData = localStorage.getItem("categories");
+        const catlocal = JSON.parse(catData)
+        if (!catlocal) {
+            handdleCategory();
+        } else {
+            setCategories(catlocal)
+        }
+
+
     }, [])
 
 
@@ -400,8 +369,6 @@ const sumassuredPortal = () => {
 
     //upload excel file -----------------------------
 
-
-    ////excel Coverage and Premium 
     const handleFileUploadFloat = async (e) => {
 
         const file = e.target.files[0];
@@ -413,76 +380,32 @@ const sumassuredPortal = () => {
             const sheet = workbook.Sheets[sheetName];
             const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
             const headers = jsonData[0];
-            const formattedData = jsonData.slice(1).map((row) => {
+            const formattedData = jsonData.slice(1).map((row, index) => {
                 const obj = {
-                    person: row[0], // Assuming person is in the second column
-                    age: row[1], // Assuming age is in the first column
-                    coverage: headers.slice(2).map((header, index) => ({
+                    sid: index + 1,
+                    company: row[0],
+                    planName: row[1],
+                    person: row[2], // Assuming person is in the second column
+                    age: row[3], // Assuming age is in the first column
+                    coverage: headers.slice(4).map((header, index) => ({
                         coverage: header,
-                        premium: row[index + 2]
+                        premium: row[index + 4]
                     }))
                 };
                 return obj;
             });
-            // setJsonData(formattedData);
-            const newData = FirejsonFormat(formattedData)
-            setXlxsDataFloat(newData);
-            if (newData) {
-                setDisabled(false)
-            }
-            setState({ ...state, open: true, msg: `File Selected Neme :  ${file.name} Sheet No. : ${sheetNumberFloat} No. of Item ${newData.length}`, type: "success" });
+            const newFormat = FirejsonFormat(formattedData)
+            console.log(newFormat);
+            setState({ ...state, open: true, msg: `File Selected Neme :  ${file.name} Sheet No. : ${sheetNumberFloat} No. of Item ${formattedData?.length}`, type: "success" });
 
         };
         reader.readAsArrayBuffer(file);
 
 
     };
-
-
-
-
-    const handleFileUploadInd = (e) => {
-
-        const file = e.target.files[0];
-        const reader = new FileReader();
-        reader.onload = (e) => {
-            const data = new Uint8Array(e.target.result);
-            const workbook = XLSX.read(data, { type: 'array' });
-            const sheetName = workbook.SheetNames[sheetNumberInd];
-            const sheet = workbook.Sheets[sheetName];
-            const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
-            const headers = jsonData[0];
-            const formattedData = jsonData.slice(1).map((row) => {
-                const obj = {
-                    person: row[0], // Assuming person is in the second column
-                    age: row[1], // Assuming age is in the first column
-                    coverage: headers.slice(2).map((header, index) => ({
-                        coverage: header,
-                        premium: row[index + 2]
-                    }))
-                };
-                return obj;
-            });
-
-            const newData = FirejsonFormat(formattedData)
-            setXlxsDataInd(newData);
-            if (newData) {
-                setDisabled(false)
-            }
-            setState({ ...state, open: true, msg: `File Selected Neme :  ${file.name} Sheet No. : ${sheetNumberInd} No. of Item ${newData.length}`, type: "success" });
-
-        };
-        reader.readAsArrayBuffer(file);
-
-
-
-
-
-    };
-
-
 
     const FirejsonFormat = (data) => {
+
         const sdw = data.map((item, index) => {
 
             const [minAge, maxAge] = item.age.match(/\d+/g).map(Number);
@@ -490,6 +413,8 @@ const sumassuredPortal = () => {
             if (item) {
                 return {
                     sid: index + 1,
+                    companyNam: item.company,
+                    planNam: item.planName,
                     minAge: minAge ? minAge : 1,
                     maxAge: maxAge ? maxAge : "above",
                     member: item.person,
@@ -499,25 +424,25 @@ const sumassuredPortal = () => {
             }
 
         })
-        // console.log(sdw);
         return sdw;
+
     }
 
 
 
     const handlCheckData = (item) => {
         // console.log(item);
-        if (item.minAge === undefined, item.maxAge === undefined || item.member === undefined) {
+        // if (item.minAge === undefined, item.maxAge === undefined || item.member === undefined) {
 
-            setState({ ...state, open: true, msg: `Excel File Not Supported`, type: "error" });
+        //     setState({ ...state, open: true, msg: `Excel File Not Supported`, type: "error" });
 
-        } else {
-            setState({ ...state, open: true, msg: `Excel File Supported`, type: "success" });
+        // } else {
+        //     setState({ ...state, open: true, msg: `Excel File Supported`, type: "success" });
 
-            setActiveStep(3)
+        //     setActiveStep(3)
 
 
-        }
+        // }
 
     }
 
@@ -564,53 +489,35 @@ const sumassuredPortal = () => {
     }, [xlxsDataFloat])
 
     ////excel Feature Data
-    const handleFeatureFileUpload = (e) => {
+    const handleFeatureFileUpload = async (e) => {
+
         const file = e.target.files[0];
         const reader = new FileReader();
-        reader.onload = (event) => {
-            const result = event.target.result;
-            let dataArray = [];
-            if (file.name.endsWith('.xlsx') || file.name.endsWith('.xls')) {
-                const workbook = XLSX.read(result, { type: 'binary' });
-                const sheetName = workbook.SheetNames[sheetNumberf];
-                const sheet = workbook.Sheets[sheetName];
-                const rows = XLSX.utils.sheet_to_json(sheet, { header: 1, raw: true });
-                dataArray = rows.slice(1).map((row, index) => {
-                    return {
-                        sid: index + 1,
-                        featureName: row[0],
-                        featureValue: row[1],
+        reader.onload = (e) => {
+            const data = new Uint8Array(e.target.result);
+            const workbook = XLSX.read(data, { type: 'array' });
+            const sheetName = workbook.SheetNames[sheetNumberf];
+            const sheet = workbook.Sheets[sheetName];
+            const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+            // const headers = jsonData[0];
+            const formattedData = jsonData.slice(1).map((row, index) => {
+                const obj = {
+                    sid: index + 1,
+                    companyNam: row[0],
+                    planNam: row[1],
+                    feautueNam: row[2], // Assuming person is in the second column
+                    FeatureDetails: row[3], // Assuming age is in the first column
 
-
-                        // Add more fields as needed
-                    };
-                });
-            } else if (file.name.endsWith('.json')) {
-                try {
-                    const jsonData = JSON.parse(result);
-                    if (Array.isArray(jsonData)) {
-                        dataArray = jsonData.map((item, index) => ({
-                            id: index + 1,
-                            ...item,
-                        }));
-                    } else {
-                        throw new Error('Invalid JSON format');
-                    }
-                } catch (error) {
-                    console.error('Error parsing JSON file:', error);
-                }
-            } else {
-                console.error('Unsupported file format');
-            }
-            setXlxsFeatures(dataArray);
-            setState({ ...state, open: true, msg: `File Selected Name :${file.name} Sheet No. : ${sheetNumberf}`, type: "success" });
-            setDisabled(false)
-
+                };
+                return obj;
+            });
+            setXlxsFeatures(formattedData)
+            setState({ ...state, open: true, msg: `File Selected Neme :  ${file.name} Sheet No. : ${sheetNumberFloat} No. of Item ${formattedData?.length}`, type: "success" });
         };
-        reader.readAsBinaryString(file);
+        reader.readAsArrayBuffer(file);
 
 
-        setActiveStep(3)
+
 
 
 
@@ -667,62 +574,38 @@ const sumassuredPortal = () => {
         return sdw;
     }
 
-    const uploadEachItemInd = async (item) => {
-        const featureRef = (collection(db, "sumassured", personName[0], "companys", companyName[0], "plans", isPlan, "individual"));
-        try {
-
-            const featureSnapshot = await addDoc(featureRef, item);
-            setState({ ...state, open: true, msg: `Added Successfuly Docs Id ${featureSnapshot.id}`, type: "success" });
-            setPostMsg(true);
-            if (featureSnapshot.id) {
-                setActiveStep(0);
-            }
-
-        } catch (error) {
-            console.error('Error adding document: ', error);
-        }
-
-    };
     const uploadEachItemFloat = async (item) => {
-        const featureRef = (collection(db, "sumassured", personName[0], "companys", companyName[0], "plans", isPlan, "floater"));
-        try {
+        // const featureRef = (collection(db, "sumassured", personName[0], "companys", companyName[0], "plans", isPlan, "floater"));
+        // try {
+        //     const featureSnapshot = await addDoc(featureRef, item);
+        //     setState({ ...state, open: true, msg: `Added Successfuly Docs Id ${featureSnapshot.id}`, type: "success" });
+        //     setPostMsg(true);
+        //     if (featureSnapshot.id) {
+        //         setActiveStep(0);
+        //     }
 
-            const featureSnapshot = await addDoc(featureRef, item);
-            setState({ ...state, open: true, msg: `Added Successfuly Docs Id ${featureSnapshot.id}`, type: "success" });
-            setPostMsg(true);
-            if (featureSnapshot.id) {
-                setActiveStep(0);
-            }
-
-        } catch (error) {
-            console.error('Error adding document: ', error);
-        }
+        // } catch (error) {
+        //     console.error('Error adding document: ', error);
+        // }
 
     };
     const uploadEachItemFeature = async (item) => {
-        const featureRef = (collection(db, "sumassured", personName[0], "companys", companyName[0], "features"));
-        try {
+        // const featureRef = (collection(db, "sumassured", personName[0], "companys", companyName[0], "features"));
+        // try {
 
-            const featureSnapshot = await addDoc(featureRef, item);
-            setState({ ...state, open: true, msg: `Added Successfuly Docs Id ${featureSnapshot.id}`, type: "success" });
-            setPostMsg(true);
-            if (featureSnapshot.id) {
-                setActiveStep(0);
-            }
-        } catch (error) {
-            console.error('Error adding document: ', error);
-        }
+        //     const featureSnapshot = await addDoc(featureRef, item);
+        //     setState({ ...state, open: true, msg: `Added Successfuly Docs Id ${featureSnapshot.id}`, type: "success" });
+        //     setPostMsg(true);
+        //     if (featureSnapshot.id) {
+        //         setActiveStep(0);
+        //     }
+        // } catch (error) {
+        //     console.error('Error adding document: ', error);
+        // }
     };
 
     const handleExcelUpload = async () => {
-        // Add each item from the local array to Firestore
-        if (xlxsDataInd) {
-            xlxsDataInd.forEach((item) => uploadEachItemInd(item));
 
-        } else {
-            setState({ ...state, open: true, msg: `SumAssued Excel File Not Select...!`, type: "error" });
-
-        }
         if (xlxsDataFloat) {
             xlxsDataFloat.forEach((item) => uploadEachItemFloat(item));
         } else {
@@ -742,14 +625,7 @@ const sumassuredPortal = () => {
 
     // Features funcition ----------------------------------
     const handdleFeaturePost = async () => {
-        const featureRef = (collection(db, "sumassured", personName[0], "companys", companyName[0], "features"));
-        const featureSnapshot = await addDoc(featureRef, {
-            name: feature.featureName,
-            value: feature.featureValue
-        });
-        let id = featureSnapshot.id;
-        setFeatureId(id)
-        setFeature({})
+
 
 
     }
@@ -764,47 +640,19 @@ const sumassuredPortal = () => {
     }
 
     const FeachFeatureData = async () => {
-        const q = query(collection(db, "sumassured", personName[0], "companys", companyName[0], "features"));
 
-        const querySnapshot = await getDocs(q);
-        const data = querySnapshot.docs.map((doc) => ({
-            ...doc.data(), id: doc.id
-
-        }))
-        setFeaturesData(data)
     }
 
 
 
     const handdleEdit = async (id) => {
 
-        let ds = featureData.find(x => x.id === id)
 
-        if (ds) {
-            setDisabled(true)
-            setUpdateFeature(ds);
-            setFeature({
-                featureName: ds.name,
-                featureValue: ds.value,
-                id: ds.id
-            })
-        }
 
     }
 
     const handleUpdate = async () => {
-        const washingtonRef = doc(db, "sumassured", personName[0], "companys", companyName[0], "features", `${updateFeature.id}`);
-        await updateDoc(washingtonRef, {
-            name: feature.featureName,
-            value: feature.featureValue
-        });
-        FeachFeatureData()
-        setFeature({
-            featureName: "",
-            featureValue: ""
-        })
-        setUpdateFeature("");
-        setDisabled(false)
+
 
     }
 
@@ -838,7 +686,7 @@ const sumassuredPortal = () => {
         }
 
     }, [featureId])
-    // console.log(isPlan);
+
 
     return (
         <Wrapper>
@@ -853,76 +701,26 @@ const sumassuredPortal = () => {
                         {msg}
                     </Alert>
                 </Snackbar>
-                <Paper elevation={1}>
-                    <Button onClick={handdlePretype}>RUN</Button>
-                    <Box sx={{ width: '100%', p: 1 }}>
-                        <Mob>
-                            <Stepper sx={{ p: 2, }} activeStep={activeStep}>
-                                {steps.map((label, index) => {
-                                    const stepProps = {};
-                                    const labelProps = {};
-                                    if (isStepOptional(index)) {
-                                        labelProps.optional = (
-                                            <Typography variant="caption"></Typography>
-                                        );
-                                    }
-                                    if (isStepSkipped(index)) {
-                                        stepProps.completed = false;
-                                    }
-                                    return (
-                                        <Step key={index} {...stepProps}>
-                                            <StepLabel {...labelProps}>{label}</StepLabel>
-                                        </Step>
-                                    );
-                                })}
-                            </Stepper>
-                        </Mob>
-                        {/* <Button onClick={handleExcelUpload}>Preview</Button> */}
-                        {activeStep === 0 && <Category data={cat} onChange={handleChangeCat} value={personName} />}
-                        {activeStep === 1 && <Company onActive={() => setBooleanCom(!booleanCom)} boolean={booleanCom} onAdd={handdleAddCompany} data={comp} onChange={handleChangeComp} value={companyName} />}
-                        {activeStep === 2 && <Features SheetVal={sheetNumberf} onFile={handleFeatureFileUpload} onSheetVal={onSheetValf} data={featureData} onChange={(e) => handdleFeatureChange(e)} onPost={handdleFeaturePost} value={feature} onStateUpdate={featureId} onEdit={handdleEdit} onUpdate={handleUpdate} updateItem={updateFeature} />}
-                        {activeStep === 3 && <PremiumType SelectedOption={planVal} IsSelectedVal={isPlan} onSelected={(e) => setIsPlans(e.target.value)} SheetValInd={sheetNumberInd} SheetValFloat={sheetNumberFloat} onFileFloat={handleFileUploadFloat} onFileInd={handleFileUploadInd} onExcelUpload={handleExcelUpload} isLoading={isLoading} onSheetValFloat={onSheetValFloat} onSheetValInd={onSheetValInd} value={premTypeVal} onActive={() => setBooleanPt(!booleanPt)} boolean={booleanPt} onAdd={handdleAddPretype} addFieldVal={newInputPremTypeVal[0]} onChange={handleChangePretype} />}
-                        {/* {activeStep === 4 && <CoveragePremium value={ageVal} onDelete={handleRemoveInput} data={formData} onChange={handleChangeAge} onGet={handleChangeCavPre} onPost={handleAddCovandPre} onAdd={handleAddInput} />} */}
-                        {activeStep === 4 && <PortalSummary postMsg={postMsg} featureData={xlxsFeatures} xlxsDataFloat={xlxsDataFloat} xlxsDataInd={xlxsDataInd} onPost={handleExcelUpload} data={preview} />}
+                <Stack flexDirection={"row"} flexWrap={"wrap"}>
 
+                    <Box sx={{ width: "100%" }}>
 
-                        <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-                            {activeStep === 5 && <Button
-                                color="inherit"
-                                disabled={activeStep === 0}
-                                onClick={() => setActiveStep(4)}
-                                sx={{ mr: 1 }}
-                            >
-                                Back
-                            </Button>}
-                            {activeStep === 4 && <Button
-                                color="inherit"
-                                disabled={activeStep === 0}
-                                onClick={() => setActiveStep(2)}
-                                sx={{ mr: 1 }}
-                            >
-                                Back
-                            </Button>}
-                            {activeStep <= 2 && <Button
-                                color="inherit"
-                                disabled={activeStep === 0}
-                                onClick={handleBack}
-                                sx={{ mr: 1 }}
-                            >
-                                Back
-                            </Button>}
-                            <Box sx={{ flex: '1 1 auto' }} />
-
-                            {(activeStep) <= (steps.length - 2) ? <Button disabled={disabled} onClick={(e) => handleNext()}>
-                                Next
-                            </Button> : ""}
-                        </Box>
-
+                        {activeStep === 0 && <Category data={categories} onChange={handleChangeCat} value={personName} />}
+                        {activeStep === 0 && <Company onActive={() => setBooleanCom(!booleanCom)} boolean={booleanCom} onAdd={handdleAddCompany} data={comp} onChange={handleChangeComp} value={companyName} />}
                     </Box>
-                </Paper>
-                {/* <ChechUser />
-                <PDFGenerator /> */}
-                {/* <AutoExcel /> */}
+                    <Box sx={{ width: "100%" }}>
+
+                        {activeStep === 0 && <Features SheetVal={sheetNumberf} onFile={handleFeatureFileUpload} onSheetVal={onSheetValf} data={featureData} onChange={(e) => handdleFeatureChange(e)} onPost={handdleFeaturePost} value={feature} onStateUpdate={featureId} onEdit={handdleEdit} onUpdate={handleUpdate} updateItem={updateFeature} />}
+                        {activeStep === 0 && <PremiumType SelectedOption={planVal} IsSelectedVal={isPlan} onSelected={(e) => setIsPlans(e.target.value)} SheetValInd={sheetNumberInd} SheetValFloat={sheetNumberFloat} onFileFloat={handleFileUploadFloat} onExcelUpload={handleExcelUpload} isLoading={isLoading} onSheetValFloat={onSheetValFloat} onSheetValInd={onSheetValInd} value={premTypeVal} onActive={() => setBooleanPt(!booleanPt)} boolean={booleanPt} onAdd={handdleAddPretype} addFieldVal={newInputPremTypeVal[0]} onChange={handleChangePretype} />}
+                    </Box>
+                    <Button disabled variant='contained' sx={{ m: "0 auto", width: "50%" }} >Submit</Button>
+
+
+
+
+
+                </Stack>
+
 
 
             </Container>

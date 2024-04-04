@@ -11,6 +11,7 @@ import ExploreData from '../jsondata/homepage/explore.json'
 import Testimonial from "../components/items/Testimonial";
 import partner from '../jsondata/homepage/partners.json';
 import { useEffect } from "react";
+import fb from "../Firebase/FireConfig";
 
 const HomePage = ({ haddleToggleModel }) => {
   useEffect(() => {
@@ -27,6 +28,41 @@ const HomePage = ({ haddleToggleModel }) => {
     // Return processed description as JSX
     return <div className="tag" dangerouslySetInnerHTML={{ __html: description }} />;
   };
+
+  const getgaf = async () => {
+    const docRef = fb.firestore().collection("sumassured").doc("BQ1V9NqDyXAKL7WwmSfD")
+    docRef.get().then(async (doc) => {
+      if (doc.exists) {
+        let dsr = {
+          ...doc.data(), id: doc.id
+        }
+
+        const frd = async () => {
+          var updateTimestamp = await dsr?.planre?.update({
+            reference: docRef
+          });
+          console.log(updateTimestamp);
+        }
+        // console.log(dsr, docRef);
+        if (dsr) {
+          frd();
+          // console.log(ds);
+          dsr?.planre?.get().then((doc) => {
+            console.log(doc.data());
+          }).catch((error) => {
+            console.log("No such document!");
+
+          })
+        }
+      } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+      }
+    }).catch((error) => {
+      console.log("Error getting document:", error);
+    });
+  }
+  getgaf();
 
   return (
     <Wrapper>

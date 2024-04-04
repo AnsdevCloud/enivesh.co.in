@@ -7,37 +7,15 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 
 import TableRow from '@mui/material/TableRow';
+import CoverageConvert from '../../../function/CoverageConvert';
 
-const columns = [
-    { id: 'name', label: 'Members' },
-    { id: 'code', label: 'Age Band' },
-    {
-        id: 'population',
-        label: '25 L',
 
-        align: 'left',
-        format: (value) => value.toLocaleString('en-US'),
-    },
-    {
-        id: 'size',
-        label: '50 L',
-
-        align: 'left',
-        format: (value) => value.toLocaleString('en-US'),
-    },
-    {
-        id: 'density',
-        label: '1 Cr',
-
-        align: 'left',
-        format: (value) => value.toFixed(2),
-    },
-];
 
 
 
 
 export default function FilterTable({ data }) {
+
 
     return (
         <Paper elevation={0} sx={{ width: '100%', overflow: 'hidden', mt: 2 }}>
@@ -45,15 +23,14 @@ export default function FilterTable({ data }) {
                 <Table stickyHeader aria-label="sticky table">
                     <TableHead>
                         <TableRow>
-                            {columns.map((column) => (
-                                <TableCell
-                                    key={column.id}
-                                    align={column.align}
-                                    style={{ minWidth: column.minWidth }}
-                                >
-                                    {column.label}
-                                </TableCell>
-                            ))}
+                            <TableCell sx={{ fontWeight: 600, color: "orangered" }}>Members</TableCell>
+                            <TableCell sx={{ fontWeight: 600, color: "orangered" }}>Age Band</TableCell>
+                            {
+                                data && data[0]?.coverages?.map((item, index) => {
+                                    return <TableCell key={index} sx={{ fontWeight: 600, color: "orangered" }}>&#8377; <CoverageConvert value={item?.coverage} /> </TableCell>
+                                })
+                            }
+
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -62,9 +39,12 @@ export default function FilterTable({ data }) {
                                 <TableRow key={index}>
                                     <TableCell >{item.member}</TableCell>
                                     <TableCell >{`${item.minAge} - ${item.maxAge}`}</TableCell>
-                                    <TableCell >&#8377; {item.covrage25}</TableCell>
-                                    <TableCell >&#8377; {item.covrage50}</TableCell>
-                                    <TableCell >&#8377; {item.covrage1cr}</TableCell>
+                                    {
+                                        item?.coverages?.map((ite, index) => {
+                                            return <TableCell key={index} >&#8377; {parseFloat(ite?.premium).toFixed(2)}</TableCell>
+                                        })
+                                    }
+
 
                                 </TableRow>
                             ))

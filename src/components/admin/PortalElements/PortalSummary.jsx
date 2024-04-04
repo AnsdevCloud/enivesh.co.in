@@ -5,7 +5,7 @@ import HeadingBox from '../../items/HeadingBox'
 
 import Tables from './Table'
 
-const PortalSummary = ({ xlxsDataFloat, xlxsDataInd, postMsg, featureData, data, onPost }) => {
+const PortalSummary = ({ xlxsDataFloat, postMsg, featureData, onPost }) => {
     const style = {
         position: 'absolute',
         top: '50%',
@@ -21,7 +21,8 @@ const PortalSummary = ({ xlxsDataFloat, xlxsDataInd, postMsg, featureData, data,
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-
+    console.log(xlxsDataFloat);
+    console.log(featureData);
 
 
     return (

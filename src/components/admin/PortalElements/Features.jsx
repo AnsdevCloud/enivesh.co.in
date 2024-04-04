@@ -110,12 +110,10 @@ const Features = ({ value, onChange, onSheetVal, onFile, onPost, SheetVal, onSta
     }, [onStateUpdate])
 
     return (
-        <Box>
-            <HeadingBox m={"10px 0"} colorText={"Features"} />
-
-            <Stack justifyContent={"center"} gap={2} p={2} maxWidth={"50%"} margin={"20px auto"} component={Paper} elevation={1}>
-                <Button variant='outlined' onClick={() => setUploadExcel(!uploadExcel)} color={uploadExcel ? "secondary" : "primary"}>{uploadExcel && "Cancel"} Upload Excel</Button>
-
+        <Box component={Paper} elevation={1} sx={{ maxWidth: "60%", m: "10px auto" }}>
+            <HeadingBox m={"10px 0"} titleTag={"Step - 3"} colorText={"Upload"} defaultText={"Plan Features"} />
+            <Stack justifyContent={"center"} gap={2} p={2} margin={"0px auto"} component={Paper} elevation={1}>
+                <Button variant='contained' sx={{ maxWidth: "50%", m: "0 auto" }} size='small' onClick={() => setUploadExcel(!uploadExcel)} color={uploadExcel ? "grey" : "info"}>{uploadExcel && "Cancel"} Features Excel Upload </Button>
 
                 {
                     uploadExcel && <>
@@ -128,7 +126,6 @@ const Features = ({ value, onChange, onSheetVal, onFile, onPost, SheetVal, onSta
                                 variant="outlined"
                                 tabIndex={-1}
                                 size='small'
-
                                 startIcon={<Add />}
                                 disabled={SheetVal ? false : true}
                             >
@@ -144,7 +141,7 @@ const Features = ({ value, onChange, onSheetVal, onFile, onPost, SheetVal, onSta
 
                 }
 
-                <Button color={fieled ? "secondary" : "success"} variant='outlined' onClick={handleAdd}>Add New Feature</Button>
+                {/* <Button color={fieled ? "secondary" : "success"} variant='outlined' onClick={handleAdd}>Add New Feature</Button> */}
                 {fieled && <Box>
                     {data?.map((item) => {
                         return <Stack key={item.id} flexDirection={'row'} gap={3} p={2}>

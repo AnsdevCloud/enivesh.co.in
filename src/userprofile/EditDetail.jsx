@@ -4,8 +4,6 @@ import InputField from '../Components/items/ulip/InputField';
 import Button from '../components/items/ulip/Button';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { doc, updateDoc } from 'firebase/firestore';
-import { db, storage } from '../Firebase/Firebase';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { ImageCompressor } from 'image-compressor';
 // import { updateCurrentUser } from 'firebase/auth';
@@ -63,16 +61,16 @@ const EditDetail = () => {
             // Upload the image
             const storageRef = ref(storage, `profileimage/${file.name}`);
             // Upload the file and metadata
-            const uploadTask = await uploadBytes(storageRef, file);
-            const downloadUrl = await getDownloadURL(uploadTask?.ref)
-                .then((url) => {
-                    return url
+            // const uploadTask = await uploadBytes(storageRef, file);
+            // const downloadUrl = await getDownloadURL(uploadTask?.ref)
+            //     .then((url) => {
+            //         return url
 
 
-                })
-                .catch((error) => {
-                    console.log(error.message);
-                });
+            //     })
+            //     .catch((error) => {
+            //         console.log(error.message);
+            //     });
 
             setFromData({ ...formData, profileUrl: downloadUrl })
 
@@ -82,18 +80,18 @@ const EditDetail = () => {
     const UpdateUserDeatail = async (e) => {
         e.preventDefault();
 
-        const washingtonRef = doc(db, "users", formData.id);
+        // const washingtonRef = doc(db, "users", formData.id);
 
         if (user) {
-            await updateDoc(washingtonRef, {
-                name: formData?.name ? formData?.name : user.name ? user.name : "***",
-                profileUrl: formData?.profileUrl ? formData?.profileUrl : user.profileUrl ? user.profileUrl : "***",
-                phone: formData?.phone ? formData?.phone : user.phone ? user.phone : "***",
-                job: formData?.job ? formData?.job : user.job ? user.job : "***",
-                city: formData?.city ? formData?.city : user.city ? user.city : "***",
+            // await updateDoc(washingtonRef, {
+            //     name: formData?.name ? formData?.name : user.name ? user.name : "***",
+            //     profileUrl: formData?.profileUrl ? formData?.profileUrl : user.profileUrl ? user.profileUrl : "***",
+            //     phone: formData?.phone ? formData?.phone : user.phone ? user.phone : "***",
+            //     job: formData?.job ? formData?.job : user.job ? user.job : "***",
+            //     city: formData?.city ? formData?.city : user.city ? user.city : "***",
 
 
-            });
+            // });
         }
         localStorage.setItem("loginUser", JSON.stringify({
             name: formData?.name ? formData?.name : user.name,

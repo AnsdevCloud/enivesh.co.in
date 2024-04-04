@@ -6,7 +6,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { query } from 'firebase/database';
-import { Box, Button, Stack, TextField } from '@mui/material';
+import { Box, Button, Paper, Stack, TextField } from '@mui/material';
 import HeadingBox from '../../items/HeadingBox';
 import ChechUser from '../ChechUser';
 
@@ -38,7 +38,7 @@ function getStyles(name, personName, theme) {
 
 
 export default function Company({ data, onChange, value, onAdd, boolean, onActive }) {
-
+    console.log(data.comapanys.name);
 
     const theme = useTheme();
     const [addField, setField] = React.useState(false);
@@ -48,29 +48,30 @@ export default function Company({ data, onChange, value, onAdd, boolean, onActiv
 
 
     return (
-        <>
-            <HeadingBox m={"10px 0"} colorText={"Select"} defaultText={"Company"} />
+        <Paper elevation={1} sx={{ maxWidth: "60%", m: "10px auto", p: 2 }}>
+            <HeadingBox m={"10px 0"} titleTag={"Step - 2"} colorText={"Select"} defaultText={"Company"} />
             <Box sx={{ display: 'flex', justifyContent: 'center' }}>
 
                 <FormControl sx={{ m: 1, width: 300 }}>
-                    <InputLabel id="demo-multiple-name-label">Select Company</InputLabel>
+                    <InputLabel size='small' id="demo-multiple-name-label">Select Company</InputLabel>
                     <Select
                         labelId="demo-multiple-name-label"
                         id="demo-multiple-name"
                         value={value}
+                        size='small'
                         onChange={onChange}
                         input={<OutlinedInput label="Select Company" />}
                         MenuProps={MenuProps}
                     >
-                        {data?.map((item) => (
+                        {/* {data?.comapanys?.map((item, index) => (
                             <MenuItem
-                                key={item?.id}
-                                value={item?.id}
+                                key={index}
+                                value={item?.name}
                                 style={getStyles(item?.name, value, theme)}
                             >
                                 {item?.name.toUpperCase()}
                             </MenuItem>
-                        ))}
+                        ))} */}
                     </Select>
 
                 </FormControl>
@@ -83,6 +84,6 @@ export default function Company({ data, onChange, value, onAdd, boolean, onActiv
             </Stack>
 
 
-        </>
+        </Paper>
     );
 }

@@ -22,7 +22,7 @@ const PremiumType = ({ data, postMsg, SheetVal, SheetValInd, SheetValFloat, Sele
 
     const [addField, setField] = useState(false);
     const [uploadExcel, setUploadExcel] = useState(false);
-    const [plans, setPlans] = useState(false);
+    const [plans, setPlans] = useState(true);
     const [indUpload, setIndUpload] = useState(false);
     const [floatUpload, setFloatUpload] = useState(false);
 
@@ -34,17 +34,17 @@ const PremiumType = ({ data, postMsg, SheetVal, SheetValInd, SheetValFloat, Sele
 
     }, [boolean])
     return (
-        <>
-            <HeadingBox m={"10px 0"} colorText={"Select"} defaultText={"Premium Type"} />
+        <Box component={Paper} elevation={1} sx={{ maxWidth: "60%", m: "10px auto" }}>
+            <HeadingBox m={"10px 0"} titleTag={"Step - 4"} colorText={"Upload"} defaultText={"Plan Coverage"} />
 
-            <Stack justifyContent={"center"} gap={2} p={2} maxWidth={"60%"} margin={"20px auto"} component={Paper} elevation={1}>
-                <Button onClick={() => setPlans(!plans)} variant={plans ? "outlined" : "contained"} color={plans ? "primary" : "primary"}>Select Plans</Button>
+            <Stack justifyContent={"center"} gap={2} p={2} margin={"20px auto"} component={Paper} elevation={1}>
+                {/* <Button onClick={() => setPlans(!plans)} variant={plans ? "outlined" : "contained"} color={plans ? "primary" : "primary"}>Select Plans</Button> */}
                 {
                     plans && <>
                         <Stack flexDirection={"row"} alignItems={"center"} gap={2} justifyContent={"space-evenly"}>
-                            <FormControl size='small' fullWidth sx={{ maxWidth: 200 }}>
-                                <InputLabel id="demo-simple-select-label">Plans</InputLabel>
-                                <Select
+                            {/* <FormControl size='small' fullWidth sx={{ maxWidth: 200 }}>
+                                <InputLabel id="demo-simple-select-label">Plans</InputLabel> */}
+                            {/* <Select
                                     labelId="demo-simple-select-label"
                                     id="demo-simple-select"
                                     value={IsSelectedVal}
@@ -56,43 +56,15 @@ const PremiumType = ({ data, postMsg, SheetVal, SheetValInd, SheetValFloat, Sele
                                     })}
 
                                 </Select>
-                            </FormControl>
-                            <Button size='small' onClick={() => setField(onActive)} variant={addField ? "outlined" : "contained"} color={addField ? "success" : "success"}>{addField ? "Cancel" : "Create"}  Plans</Button>
+                            </FormControl> */}
+                            {/* <Button size='small' onClick={() => setField(onActive)} variant={addField ? "outlined" : "contained"} color={addField ? "success" : "success"}>{addField ? "Cancel" : "Create"}  Plans</Button> */}
+                            <Button size='small' sx={{ maxWidth: "50%", m: "0 auto" }} onClick={() => setFloatUpload(!floatUpload)} variant={floatUpload ? "outlined" : "contained"} color={floatUpload ? "info" : "secondary"}>{floatUpload ? "Cancel" : "Upload"}  Floater Excel</Button>
 
                         </Stack>
-                        {
-                            IsSelectedVal && <Stack flexDirection={"row"} alignItems={"center"} gap={2} justifyContent={"space-evenly"}>
-                                <Button size='small' onClick={() => setIndUpload(!indUpload)} variant={indUpload ? "outlined" : "contained"} color={indUpload ? "primary" : "primary"}>{indUpload ? "Cancel" : "Upload"}  Individual Excel</Button>
-                                <Button size='small' onClick={() => setFloatUpload(!floatUpload)} variant={floatUpload ? "outlined" : "contained"} color={floatUpload ? "secondary" : "secondary"}>{floatUpload ? "Cancel" : "Upload"}  Floater Excel</Button>
-                            </Stack>
-                        }
 
 
-                        {
-                            indUpload && <>
-                                <Stack flexDirection={"row"} alignItems={"center"} justifyContent={"space-around"} gap={2}>
-                                    <Button
-                                        fullWidth
-                                        component="label"
-                                        role={'button'}
-                                        variant="outlined"
-                                        tabIndex={-1}
-
-                                        startIcon={<Add />}
-                                        disabled={SheetValInd ? false : true}
-                                    >
-                                        Individual Excel File
-                                        <VisuallyHiddenInput type="file" onChange={onFileInd} />
-                                    </Button>
-                                    <Box>
-                                        <TextField size='small' value={SheetValInd} type='number' onChange={onSheetValInd} name='sheet' id="outlined-basic" label="Sheet No." variant="outlined" />
-                                    </Box>
-                                </Stack>
 
 
-                            </>
-
-                        }
                         {
                             floatUpload && <>
                                 <Stack flexDirection={"row"} alignItems={"center"} justifyContent={"space-around"} gap={2}>
@@ -110,7 +82,7 @@ const PremiumType = ({ data, postMsg, SheetVal, SheetValInd, SheetValFloat, Sele
                                         <VisuallyHiddenInput type="file" onChange={onFileFloat} />
                                     </Button>
                                     <Box>
-                                        <TextField value={SheetValFloat} size='small' type='number' onChange={onSheetValFloat} name='sheet' id="outlined-basic" label="Sheet No." variant="outlined" />
+                                        <TextField value={SheetValFloat ? SheetValFloat : ""} size='small' type='number' onChange={onSheetValFloat} name='sheet' id="outlined-basic" label="Sheet No." variant="outlined" />
                                     </Box>
                                 </Stack>
 
@@ -162,7 +134,7 @@ const PremiumType = ({ data, postMsg, SheetVal, SheetValInd, SheetValFloat, Sele
             </Stack>
 
 
-        </>
+        </Box>
 
     )
 }

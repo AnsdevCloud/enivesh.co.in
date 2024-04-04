@@ -1,8 +1,9 @@
-import { signOut } from 'firebase/auth';
+
 import React, { useEffect, useState } from 'react'
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { auth } from '../Firebase/Firebase';
+import fb from '../Firebase/FireConfig';
+
 
 const UserProfile = () => {
     const userData = localStorage.getItem("loginUser")
@@ -23,13 +24,14 @@ const UserProfile = () => {
     }, [])
 
     const LogOut = () => {
-        signOut(auth).then(() => {
-            localStorage.clear();
+        fb.auth().signOut().then(() => {
+            localStorage.clear("loginUser");
             navigate('/profile/login')
             setLogOut(true)
-        }).catch((error) => {
-            console.warn(error);
-        });
+        })
+            .catch((error) => {
+                console.warn(error);
+            });
     }
     useEffect(() => {
         if (user) {

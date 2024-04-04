@@ -3,10 +3,10 @@ import styled from 'styled-components';
 import InputField from '../Components/items/ulip/InputField';
 import Button from '../components/items/ulip/Button';
 import { Link, useNavigate } from 'react-router-dom';
-import { createUserWithEmailAndPassword, getAuth, signInWithPopup } from "firebase/auth";
-import { auth, db, provider } from '../Firebase/Firebase';
 import axios from 'axios';
-import { addDoc, collection } from 'firebase/firestore';
+import fb from '../Firebase/FireConfig';
+import { enqueueSnackbar } from 'notistack';
+
 
 const SignUpForm = () => {
     const navigate = useNavigate();
@@ -14,28 +14,6 @@ const SignUpForm = () => {
         window.scrollTo(0, 0)
     }, [])
 
-    const jdata = {
-        name: "Google Nishad",
-        phone: 8081741443,
-    }
-    const sendData = async (e) => {
-        await axios({
-            method: 'post',
-            url: 'https://enivesh-54d95-default-rtdb.asia-southeast1.firebasedatabase.app/users.json',
-            data: e,
-            headers: {
-                'Access-Control-Allow-Origin': '*'
-            },
-        });
-        navigate("/")
-    }
-    // const getData = async () => {
-    //     const data = await axios({
-    //         method: 'get',
-    //         url: 'https://enivesh-54d95-default-rtdb.asia-southeast1.firebasedatabase.app/users.json'
-    //     });
-    //     console.log(data);
-    // }
     const [formData, setFormData] = useState();
 
     const handleChange = (e) => {
@@ -50,30 +28,38 @@ const SignUpForm = () => {
     const handleSignUp = async (e) => {
         e.preventDefault();
 
-        createUserWithEmailAndPassword(auth, formData.email, formData.password)
+
+
+        fb.auth().createUserWithEmailAndPassword(formData.email, formData.password)
             .then(async (userCredential) => {
                 // Signed up 
                 const user = userCredential.user;
                 if (user) {
-                    const userRef = (collection(db, "users", user.uid));
-                    const featureSnapshot = await addDoc(userRef, {
+                    var docRef = fb.firestore().collection("users").doc(user.uid);
+                    docRef.set({
                         name: null,
                         email: user.email,
                         profileUrl: null,
                         uid: user.uid,
                         role: "User"
-                    });
-                    console.log(featureSnapshot);
-
-                    // navigate('/');
+                    })
+                    localStorage.setItem("loginUser", JSON.stringify({
+                        email: user.email,
+                        id: e.uid,
+                        role: "User"
+                    }));
+                    navigate('/');
                 }
             })
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
+                enqueueSnackbar("Technical Error  " + error.code, { variant: "success" })
+
 
             });
     }
+
 
     return (
         <Wrapper>

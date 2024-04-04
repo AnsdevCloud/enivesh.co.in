@@ -28,6 +28,7 @@ import CoveragePremium from "./components/admin/PortalElements/CoveragePremium"
 import Features from "./components/admin/PortalElements/Features"
 import PortalSummary from "./components/admin/PortalElements/PortalSummary"
 import ChechUser from "./components/admin/ChechUser"
+import Upload from "./components/admin/plansupload/Upload"
 
 
 function App() {
@@ -75,7 +76,7 @@ function App() {
             <Route path="signup" element={<SignUpForm />} />
             <Route path="edit" element={<EditDetail />} />
           </Route>
-          <Route path="admin" element={<SumAssuredPortal />}>
+          <Route path="admin" element={<Upload />}>
             <Route index element={<Category />} />
             <Route path="1" element={<Company />} />
             <Route path="2" element={<PremiumType />} />
