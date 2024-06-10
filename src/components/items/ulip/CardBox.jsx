@@ -9,7 +9,7 @@ const CardBox = ({ Icon, title, discription }) => {
   return (
     <Container>
       {Icon}
-      <HeadingTagLine Align={"start"} lpSize={"1rem"} Size={".8rem"} Margin={"5px 0"} title={title} />
+      <HeadingTagLine Height={"auto"} Align={"start"} lpSize={"1rem"} Size={".8rem"} Margin={"5px 0"} title={title} />
 
       <TextBox text={discription} MSize={".7rem"} />
     </Container>

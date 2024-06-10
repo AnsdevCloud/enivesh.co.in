@@ -5,7 +5,7 @@ const GI = {
         "Bike Insurance",
         "Motor Insurance",
         "Commercial Vehicle Insurance",
-        "Trsvel Insurance",
+        "Travel Insurance",
         "Car Insurance Premium Calculator"
     ]
 }
@@ -30,5 +30,14 @@ const LI = {
         "1 Cr Term Insurance"
     ]
 }
+const AB = {
+    title: "ABOUT",
+    list: [
+        "Privacy Policy",
+        "Disclaimer",
+        "Terms and Services",
 
-export { LI, GI, HI }
+    ]
+}
+
+export { LI, GI, HI, AB }

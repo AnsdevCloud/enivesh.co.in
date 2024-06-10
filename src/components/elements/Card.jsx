@@ -56,6 +56,9 @@ const Card = () => {
                         <div className="list">
                             <IoMdCheckmarkCircle /> <span>Death Benefit</span>
                         </div>
+                        <div className="list ">
+                            <IoMdCheckmarkCircle /> <span>Maturity Benefits</span>
+                        </div>
                     </div>
                     <div className="plans gold">
                         <div className="plan">

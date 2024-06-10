@@ -16,6 +16,7 @@ import { useDispatch } from 'react-redux'
 import { hadleModelForm } from '../reduxapp/features/userdata/userSlice'
 import partners from '../jsondata/insuarnce/lifeinspartner.json'
 import Irdai from '../components/items/Irdai'
+import FormBtn from '../components/items/FormBtn'
 
 const UlipPlan = () => {
     const dispatch = useDispatch();
@@ -31,7 +32,8 @@ const UlipPlan = () => {
             <Irdai />
 
             <OurParter data={partners} />
-            <Button funcs={haddleToggleModel} title={"Free Consultation"} Width={'80%'} m={'20px 10%'} lpWidth={"20%"} lpP={"10px 20px"} lpM={"20px 40%"} />
+            {/* <Button funcs={haddleToggleModel} title={"Free Consultation"} Width={'80%'} m={'20px 10%'} lpWidth={"20%"} lpP={"10px 20px"} lpM={"20px 40%"} /> */}
+            <FormBtn BtnName={"Free Consultation"} InputName1={"phone"} Label1={"Phone"} InputType1={"number"} InputName2={"pincode"} Label2={"Pincode"} InputType2={"number"} InputName3={"email"} Label3={"Email"} InputType3={"email"} />
 
             <HeadingBox colorText={"ULIP"} defaultText={"Benefits"} />
 
@@ -40,14 +42,15 @@ const UlipPlan = () => {
 
                     {
                         benefitsData && benefitsData.map((item) => {
-                            return <>
-                                <DynamicCard key={item.id} id={item.id} Wdth={'200px'} Img={item.image} title={item.title} discription={item.discription} />
-                            </>
+                            return <DynamicCard key={item.id} id={item.id} Wdth={'200px'} Img={item.image} title={item.title} discription={item.discription} />
+
 
 
                         })
                     }
-                    <Button title={"Consult now "} funcs={haddleToggleModel} Width={'80%'} m={'20px 10%'} lpWidth={"50%"} lpP={"10px 20px"} lpM={"20px 25%"} />
+                    <FormBtn BtnName={"Consult now"} InputName1={"phone"} Label1={"Phone"} InputType1={"number"} InputName2={"pincode"} Label2={"Pincode"} InputType2={"number"} InputName3={"email"} Label3={"Email"} InputType3={"email"} />
+
+                    {/* <Button title={"Consult now "} funcs={haddleToggleModel} Width={'80%'} m={'20px 10%'} lpWidth={"50%"} lpP={"10px 20px"} lpM={"20px 25%"} /> */}
                 </Benifits>
                 <img id='big' src="/images/ulipplan/benifits.png" alt="imga" />
             </FlexBox>
@@ -61,12 +64,14 @@ const UlipPlan = () => {
                 <IconBox Icon={<img src='/images/ulipplan/trackrecord.svg' alt='icon' />} title={"Proven Track record"} discription={"We have a proven track record of helping clients securing the right insurance for their needs."} />
                 <IconBox Icon={<img src='/images/ulipplan/assistance.svg' alt='icon' />} title={"Claim Assistance "} discription={"In an unfortunate event we are committed to provide 100% Claim assistance."} />
             </FlexBoxWrap>
-            <Button title={"Connect with Us "} funcs={haddleToggleModel} Width={'80%'} m={'20px 10%'} lpWidth={"30%"} lpP={"10px 20px"} lpM={"20px 35%"} />
+            {/* <Button title={"Connect with Us "} funcs={haddleToggleModel} Width={'80%'} m={'20px 10%'} lpWidth={"30%"} lpP={"10px 20px"} lpM={"20px 35%"} /> */}
+            <FormBtn BtnName={"Connect with Us"} InputName1={"phone"} Label1={"Phone"} InputType1={"number"} InputName2={"pincode"} Label2={"Pincode"} InputType2={"number"} InputName3={"email"} Label3={"Email"} InputType3={"email"} />
 
             <TextDocument />
             <ListBoxSlider />
             <MaximizeReturn />
-            <Button title={"Consult now "} funcs={haddleToggleModel} Width={'80%'} m={'20px 10%'} lpWidth={"30%"} lpP={"10px 20px"} lpM={"20px 35%"} />
+
+            <FormBtn BtnName={"Consult now "} InputName1={"phone"} Label1={"Phone"} InputType1={"number"} InputName2={"pincode"} Label2={"Pincode"} InputType2={"number"} InputName3={"email"} Label3={"Email"} InputType3={"email"} />
 
         </div>
     )

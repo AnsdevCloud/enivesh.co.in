@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "titleColor": "Health",
+        "titleDefault": "Insurance Consultation",
+        "imgUrl": "/images/healthins/consultation.svg",
+        "discription": "Schedule a consultation with one of our expert advisors to assess your health insurance needs and explore the best options available."
+    },
+    {
+        "id": 2,
+        "titleColor": "Plan",
+        "titleDefault": "Comparison",
+        "imgUrl": "/images/healthins/comparison.svg",
+        "discription": "We provide comprehensive plan comparisons, allowing you to evaluate coverage, premiums, and benefits across multiple insurers."
+    },
+    {
+        "id": 3,
+        "titleColor": "Application",
+        "titleDefault": "Assistance",
+        "imgUrl": "/images/healthins/customer_service2.svg",
+        "discription": "Our team assists you throughout the application process, ensuring that you complete all necessary paperwork accurately and efficiently."
+    },
+    {
+        "id": 4,
+        "titleColor": "Claims",
+        "titleDefault": "Support",
+        "imgUrl": "/images/healthins/customer_service3.svg",
+        "discription": "In the event of a medical emergency, we offer claims support to help you navigate the claims process smoothly and expedite reimbursement."
+    }
+]

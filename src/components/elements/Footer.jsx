@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
 import ListCard from '../items/ulip/ListCard';
-import { GI, HI, LI } from '../../jsondata/FooterListCardData'
+import { AB, GI, HI, LI } from '../../jsondata/FooterListCardData'
 import { Link } from 'react-router-dom';
 import { RiFacebookCircleFill, RiGoogleFill, RiInstagramFill } from 'react-icons/ri';
 import { BsTwitter } from 'react-icons/bs'
@@ -12,6 +12,7 @@ const Footer = ({ version }) => {
                 <ListCard data={GI} />
                 <ListCard data={HI} />
                 <ListCard data={LI} />
+                <ListCard data={AB} />
 
             </div>
             <Line />

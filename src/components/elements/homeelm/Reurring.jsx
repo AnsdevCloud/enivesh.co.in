@@ -18,7 +18,7 @@ const Reurring = () => {
             <FlexBox>
                 {
                     recurring && recurring.map((item, index) => {
-                        return <ItemCard key={index} data={item} Width={"30%"} />
+                        return <ItemCard Height={0} key={index} data={item} Width={"250"} />
                     })
                 }
             </FlexBox>

@@ -7,8 +7,8 @@ const IconBox = ({ discription, title, Icon, width }) => {
 
         <Container $width={width} >
             <div className="img">{Icon}</div>
-            <HeadingTagLine Margin={"5px 0"} title={title} Size={"1rem"} lpSize={"1.2rem"} />
-            <TextBox TextAlign={"justify"} Size={".8rem"} MSize={".65rem"} text={discription} Margin={"0 20px"} />
+            <HeadingTagLine Margin={"5px 0"} title={title} Size={"14px"} lpSize={"1rem"} />
+            <TextBox TextAlign={"start"} Size={"10px"} MSize={"10px"} text={discription} Margin={"0 20px"} />
         </Container>
 
     )

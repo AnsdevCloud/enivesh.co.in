@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 const ListCard = ({ data }) => {
     return (
@@ -6,10 +7,19 @@ const ListCard = ({ data }) => {
             <p>{data.title}</p>
             <ul>
                 {
-                    data.list.map((lidata, index) => {
+                    data.title === "ABOUT" ? <>
+                        {
+                            data.list.map((lidata, index) => {
+                                return <Link key={index} to={"/privacy"}>
+                                    <li >{lidata}</li>
+                                </Link>
+                            })
+                        }
+                    </> : data.list.map((lidata, index) => {
                         return <li key={index}>{lidata}</li>
                     })
                 }
+
             </ul>
 
         </Container>

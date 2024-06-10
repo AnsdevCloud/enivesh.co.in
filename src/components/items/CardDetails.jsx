@@ -5,22 +5,22 @@ import CardButton from '../elements/CardButton';
 import { Outlet, useLocation } from 'react-router-dom';
 
 const CardDetails = () => {
-    const location = useLocation();
-    return (
-        <Wrapper>
-            <HeadingBox titleTag={"Your Money, your Wish.!"} colorText={"Fixed "} defaultText={"Benefits"} m={"5px 0"} />
-            <Discription>With guaranteed plans, you have the option to receive guaranteed returns either as a one-time lump sum or as recurring annual pay-outs.</Discription>
-            <FlexBox>
-                <CardButton active={location.pathname === "/life/granteed_saving_plan" ? "active" : ""} title={"Lump sum Benefits"} href={"/life/granteed_saving_plan"} />
-                <CardButton active={location.pathname === "/life/granteed_saving_plan/reurring-30-pay-out" ? "active" : ""} title={"Reurring Payout Upto 30 Years"} href={"reurring-30-pay-out"} />
-                <CardButton active={location.pathname === "/life/granteed_saving_plan/whole-benefit-99-year" ? "active" : ""} title={"Whole Life Benefits Upto 99 Years"} href={"whole-benefit-99-year"} />
-            </FlexBox>
-            <Content>
-                <Outlet />
+  const location = useLocation();
+  return (
+    <Wrapper>
+      <HeadingBox titleTag={"Your Money, your Wish.!"} colorText={"Fixed "} defaultText={"Benefits"} m={"5px 0"} />
+      <Discription>With guaranteed plans, you have the option to receive guaranteed returns either as a one-time lump sum or as recurring annual pay-outs.</Discription>
+      <FlexBox>
+        <CardButton active={location.pathname === "/life/granteed_saving_plan" ? "active" : ""} title={"Lumpsum Benefits"} href={"/life/granteed_saving_plan"} />
+        <CardButton active={location.pathname === "/life/granteed_saving_plan/reurring-30-pay-out" ? "active" : ""} title={"Recurring Payout Upto 30 Years"} href={"reurring-30-pay-out"} />
+        <CardButton active={location.pathname === "/life/granteed_saving_plan/whole-benefit-99-year" ? "active" : ""} title={"Whole Life Benefits Upto 99 Years"} href={"whole-benefit-99-year"} />
+      </FlexBox>
+      <Content>
+        <Outlet />
 
-            </Content>
-        </Wrapper>
-    )
+      </Content>
+    </Wrapper>
+  )
 }
 
 export default CardDetails

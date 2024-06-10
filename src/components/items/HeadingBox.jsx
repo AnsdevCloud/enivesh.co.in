@@ -38,7 +38,7 @@ h1{
 }
 @media (max-width:425px) {
     h1{
-        font-size: 1.3vmax;
+        font-size: 2vmax;
         
     }
     

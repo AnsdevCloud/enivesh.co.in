@@ -162,35 +162,29 @@ overflow: hidden;
         height: 300px;
         overflow-y: auto;
         margin: 0 auto;
-       
-        /* border: 1px solid rgba(255, 163, 15, 0.50); */
-
-        /* background: transparent; */
         background-image: url("/images/gsaving/markimage.png");
-      background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+         background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
         border-radius: 10px;
         display: flex;
         align-items: center;
         justify-content: space-between;
         flex-wrap: wrap;
         gap: 20px;
-
-      
-    
-      
-     
-        @media (max-width:768px) {
+        @media (max-width:1025px) {
         width: 90%;
-        height: 250px;
-            
+        height: 250px;    
         }
+       
     }
 
     @media (max-width: 769px) {
         width: 100%;
     }
+    
+   
+    
 }
 
   .right_side{

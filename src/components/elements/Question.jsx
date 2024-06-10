@@ -3,7 +3,7 @@ import HeadingBox from "../items/HeadingBox";
 import React, { useState } from "react";
 import { IoMdArrowDropdown } from "react-icons/io";
 
-const Question = ({ Qustions }) => {
+const Question = ({ Qustions, ColorText, DefaultText }) => {
     const [openIndex, setOpenIndex] = useState(null);
 
     const toggleAccordion = (index) => {
@@ -18,11 +18,12 @@ const Question = ({ Qustions }) => {
         data = data.replace(/\*\*(.*?)\*\*/g, '<span  style="font-weight: 600;color:#000; margin: 0px 2px">$1</span>');
         return <div dangerouslySetInnerHTML={{ __html: data }} />;
     };
+
     return (
         <Wrapper>
-            <HeadingBox m={"5px 0"} colorText={"Frequently"} defaultText={"Asked Questions"} />
+            <HeadingBox m={"5px 0"} colorText={ColorText ? ColorText : "Frequently"} defaultText={DefaultText ? DefaultText : "Asked Questions"} />
             {
-                Qustions && Qustions.map((item, index) => {
+                Qustions && Qustions?.map((item, index) => {
                     return <Container open={openIndex === index} key={index}>
                         <Header id={index} open={openIndex === index} onClick={() => toggleAccordion(index)}>
                             <div><span className="span">{index + 1 + ". "}</span><span>{processDescription2(item.qus)}</span></div><IoMdArrowDropdown />

@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1,
+        "qus": "What are the checkboxes in health insurance plan ?",
+        "ans": [
+            "1. **Coverages:** Ensure it covers all possible medical expenses",
+            "2. **Network Hospitals:** Check if your preferred Hospitals are included.",
+            "3. **Costs:** Evaluate premiums, deductibles, and out-of-pocket expenses.",
+            "4. **Reward Benefits:** Consider wellness programs and preventive care.",
+            "5. **nsurer Reputation:** Choose a reliable insurer with good claim ratio and customer service.",
+            "6. **Policy Details:** Review coverage limits and exclusions. For example, robotic surgery may not be covered by some insurers, while others may offer coverage with sub-limits. ",
+            "7. **Flexibility:** Opt for a plan that adapts to your changing needs."
+        ]
+    },
+    {
+        "id": 2,
+        "qus": "What conditions will put barrier for full claim settlement ?",
+        "ans": [
+            "1. **Co-payment:** Requires you to pay a portion of the medical expenses out-of-pocket, which will reduce the amount the insurer reimburses.",
+            "2. **Sub-limits:** Limit restriction on certain treatments, which means the insurer will only cover costs up to that limit, and balance will be paid by the policyholder",
+            "3. **Deductible:** Mandates that you pay a specified amount of medical expenses before the insurance coverage kicks in, potentially leading to higher out-of-pocket costs before the insurer begins to reimburse claims."
+        ]
+    },
+    {
+        "id": 3,
+        "qus": "What are Waiting periods in the policy ?",
+        "ans": [
+            "There are typically three types of waiting periods:",
+            "1. **Initial Waiting Period:** This is the period immediately after purchasing the policy during which certain benefits may not be available. It's usually a short duration, such as 30 days, and varies depending on the insurer and the type of coverage.",
+            "2. **Pre-existing Condition Waiting Period:** This waiting period applies to pre-existing medical conditions declared at the time of policy purchase. Insurers may impose a waiting period (often ranging from 1 to 4 years) before covering expenses related to these conditions.",
+            "3. **Specific illness Waiting Period:** Alongside, initial waiting period Health Insurance policies have 24 Months waiting periods for specific illness, treatments, procedures, or conditions. For example, cataract day care procedure coverage will have a waiting period of 2 years.",
+            "During waiting periods, policyholders are not eligible to claim benefits related to the waiting period condition. It's crucial to understand these waiting periods when purchasing health insurance to avoid any surprises or misunderstandings regarding coverage eligibility."
+        ]
+    },
+    {
+        "id": 4,
+        "qus": "What is the Wellness programme in Health insurance ?",
+        "ans": [
+            "Health insurance wellness programs are activities designed to help you improve your health. Usually, insurers reward consistent participation in these activities with attractive rewards. Wellness programs typically include yoga classes, gym membership, sports club membership, complimentary health check up."
+        ]
+    },
+    {
+        "id": 5,
+        "qus": "What is the tax benefit in Health Insurance ?",
+        "ans": [
+            "Health insurance provides tax benefits on the premium paid. Your health insurance premium is eligible for tax deduction under Section 80D of the Indian Income Tax Act. This means that the amount you pay as a premium for your health insurance coverage can be subtracted from your taxable income, subject to certain limits",
+            "Now, let's delve into these health insurance tax benefits in detail."
+        ]
+    }
+]

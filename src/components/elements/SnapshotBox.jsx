@@ -8,6 +8,7 @@ import { BiListUl } from 'react-icons/bi';
 import { MdOutlineMiscellaneousServices, MdOutlineWorkspacePremium } from 'react-icons/md';
 import Button from '../items/ulip/Button';
 import HeadingTagLine from '../items/ulip/HeadingTagLine';
+import FormBtn from '../items/FormBtn';
 // import Button from '../items/ulip/Button';
 // import Button from '../Items/Button';
 
@@ -45,7 +46,8 @@ const SnapshotBox = ({ modelfuncs }) => {
 
                 </FlexContainer>
             </Box>
-            <Button Width={'80%'} funcs={modelfuncs} m={'20px 10%'} title={"Connect with Us "} lpWidth={"40%"} lpP={"10px 20px"} lpM={"20px 40%"} />
+            {/* <Button Width={'80%'} funcs={modelfuncs} m={'20px 10%'} title={"Connect with Us "} lpWidth={"40%"} lpP={"10px 20px"} lpM={"20px 40%"} /> */}
+            <FormBtn BtnName={"Connect with Us"} InputName1={"phone"} Label1={"Phone"} InputType1={"number"} InputName2={"pincode"} Label2={"Pincode"} InputType2={"number"} InputName3={"email"} Label3={"Email"} InputType3={"email"} />
 
 
 

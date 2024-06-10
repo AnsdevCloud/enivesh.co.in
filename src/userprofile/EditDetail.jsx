@@ -4,8 +4,9 @@ import InputField from '../Components/items/ulip/InputField';
 import Button from '../components/items/ulip/Button';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+const storage = fb.storage();
 import { ImageCompressor } from 'image-compressor';
+import fb from '../Firebase/FireConfig';
 // import { updateCurrentUser } from 'firebase/auth';
 // import ImageCompressor from 'image-compressor';
 
@@ -16,7 +17,14 @@ const EditDetail = () => {
     const [user, setUserData] = useState(useUser);
     const navegate = useNavigate();
     const [formData, setFromData] = useState(user);
+    const [selectedFile, setSelectedFile] = useState(null);
+    const [uploadProgress, setUploadProgress] = useState(0);
+    const [downloadURL, setDownloadURL] = useState(null);
+    const [isUploading, setIsUploading] = useState(false);
 
+    const handleFileChange = (event) => {
+
+    };
 
     const handleChaenge = (e) => {
         const {
@@ -47,35 +55,58 @@ const EditDetail = () => {
         }
     };
 
+    // const handleImageUpload = async (event) => {
+    //     setSelectedFile(event.target.files[0]);
+
+
+
+    //         // Upload the image
+    //         // const storageRef = ref(storage, `profileimage/${file.name}`);
+    //         // Upload the file and metadata
+    //         // const uploadTask = await uploadBytes(storageRef, file);
+    //         // const downloadUrl = await getDownloadURL(uploadTask?.ref)
+    //         //     .then((url) => {
+    //         //         return url
+
+
+    //         //     })
+    //         //     .catch((error) => {
+    //         //         console.log(error.message);
+    //         //     });
+
+    //         // setFromData({ ...formData, profileUrl: downloadUrl })
+
+
+    // }
     const handleImageUpload = async (event) => {
-        const file = event.target.files[0];
+        const file = event.target.files[0]
+        if (!file) return;
 
-        if (file) {
-            const fileSize = file.size / 2048; // Size in KB
+        setIsUploading(true);
+        setUploadProgress(0);
 
-            if (fileSize > 900) {
-                alert('Please upload an image smaller than 900KB');
-                return;
+        const storageRef = storage.ref().child(`profileimage/${file.name}`);
+        const uploadTask = storageRef.put(file); // Web namespaced API usage
+
+        uploadTask.on(
+            'state_changed',
+            (snapshot) => {
+                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                setUploadProgress(progress);
+            },
+            (error) => {
+                console.error(error);
+                setIsUploading(false);
+            },
+            async () => {
+                const downloadURL = await storageRef.getDownloadURL(); // Web namespaced API usage
+                setDownloadURL(downloadURL);
+                setFromData({ ...formData, profileUrl: downloadURL })
+
+                setIsUploading(false);
             }
-
-            // Upload the image
-            const storageRef = ref(storage, `profileimage/${file.name}`);
-            // Upload the file and metadata
-            // const uploadTask = await uploadBytes(storageRef, file);
-            // const downloadUrl = await getDownloadURL(uploadTask?.ref)
-            //     .then((url) => {
-            //         return url
-
-
-            //     })
-            //     .catch((error) => {
-            //         console.log(error.message);
-            //     });
-
-            setFromData({ ...formData, profileUrl: downloadUrl })
-
-        }
-    }
+        );
+    };
 
     const UpdateUserDeatail = async (e) => {
         e.preventDefault();

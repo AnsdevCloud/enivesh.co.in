@@ -1,0 +1,85 @@
+[
+    {
+        "id": 1,
+        "title": "Introduction",
+        "discription": [
+            "Enivesh Insurance Marketing PVT LTD ('we' or 'us') is committed to protecting the privacy and security of your personal information. This privacy policy outlines how we collect, use, disclose, and protect the personal information we collect from visitors to our website."
+        ]
+    },
+    {
+        "id": 2,
+        "title": "Information We Collect",
+        "discription": [
+            "We may collect personal information from you when you visit our website, fill out forms, request insurance quotes, or communicate with us through our online chat services. The types of personal information we collect may include:"
+        ],
+        "list": [
+            "Name, address, email address, phone number",
+            "Date of birth, gender, marital status, Lifestyle information",
+            "Employment information, including occupation and income",
+            "Insurance policy details and coverage preferences",
+            "Financial Assets & Liabilities"
+        ]
+    },
+    {
+        "id": 3,
+        "title": "How We Use Your Information",
+        "discription": [
+            "We use the personal information we collect for the following purposes:"
+        ],
+        "list": [
+            "To provide insurance quotes, products, and services requested by you",
+            "To process insurance applications and manage your insurance policy",
+            "To communicate with you about your insurance coverage, claims, and other related matters",
+            "To personalize your experience and improve our website, products, and services",
+            "To cross-sell any other financial products",
+            "To comply with legal and regulatory requirements"
+        ]
+    },
+    {
+        "id": 4,
+        "title": "Disclosure of Your Information",
+        "discription": [
+            "We may share your personal information with third parties for the following purposes:"
+        ],
+        "list": [
+            "Insurance underwriters and providers to obtain quotes and manage your insurance policy",
+            "Service providers and vendors who assist us in providing our products and services",
+            "Legal and regulatory authorities as required by law or to protect our rights and property"
+        ]
+    },
+    {
+        "id": 5,
+        "title": "Cookies and Tracking Technologies",
+        "discription": [
+            "We use cookies and similar tracking technologies to enhance your experience on our website and analyze usage patterns. You can adjust your browser settings to refuse cookies or alert you when cookies are being sent."
+        ]
+    },
+    {
+        "id": 6,
+        "title": "Security of Your Information",
+        "discription": [
+            "We take reasonable measures to protect your personal information from unauthorized access, use, or disclosure. We use industry-standard security protocols and encryption technologies to safeguard your information."
+        ]
+    },
+    {
+        "id": 7,
+        "title": "Your Choices and Rights",
+        "discription": [
+            "You have the right to access, update, and correct your personal information. You may also request to have your information deleted or restrict how we use it. To exercise these rights or opt-out of receiving marketing communications, please contact us using the information provided below."
+        ]
+    },
+    {
+        "id": 8,
+        "title": "Changes to This Policy",
+        "discription": [
+            "We may update this privacy policy from time to time. Any changes will be posted on our website, and the revised policy will apply to all personal information we have collected after the effective date of the updated policy."
+        ]
+    },
+    {
+        "id": 9,
+        "title": "Contact Us",
+        "discription": [
+            "If you have any questions or concerns about this privacy policy or our handling of your personal information, please contact us at:"
+        ]
+    }
+]

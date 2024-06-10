@@ -2,7 +2,6 @@ import { Alert, Box, Button, Container, Fab, FormControl, Grid, IconButton, Inpu
 import React, { useEffect, useState } from 'react'
 import HeadingBox from '../../items/HeadingBox'
 import { v4 } from 'uuid';
-import axios from 'axios';
 import CategoiesData from './json/category.json'
 import { Add, AddAPhoto, CloudUpload, PictureAsPdf, Remove, UploadFile, UploadSharp } from '@mui/icons-material';
 import fb from '../../../Firebase/FireConfig';
@@ -11,7 +10,6 @@ import styled from '@emotion/styled';
 // Get a reference to the database service
 import * as XLSX from 'xlsx';
 import TransitionsModal from '../../models/TransitionModel';
-import { Navigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 const database = fb.database();
 const db = fb.firestore();
@@ -125,14 +123,13 @@ const Upload = () => {
                     message: "",
                     state: false
                 })
-            }, 3000);
+            }, 5000);
         }
     };
 
     const [caverageToggle, setCoverageToggle] = useState(false);
     const [featureToggle, setFeatureToggle] = useState(false);
     const [docsToggle, setDocsToggle] = useState(false);
-
 
 
     //select feature data from excel file

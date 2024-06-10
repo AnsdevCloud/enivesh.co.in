@@ -23,8 +23,8 @@ const ItemCard = ({ data, Height, Width }) => {
 
 export default ItemCard
 const Wrapper = styled.div`
-width: ${props => props.$width ? props.$width : "210px"};
-height: ${props => props.$height ? props.$height : "210px"};
+width: ${props => props.$width ? props.$width + "px" : "210px"};
+height: ${props => props.$height ? props.$height + "px" : "210px"};
 box-shadow: 0px 0px 9px -7px #1a1a1a;
 background-color: #fff;
 display: flex;
@@ -32,7 +32,7 @@ border-radius: 10px;
 overflow: hidden;
 flex-direction: column;
 align-items: center;
-justify-content: space-between;
+justify-content: start;
 gap: 5px;
 padding: 10px;
 .icon{
@@ -60,17 +60,28 @@ padding: 10px;
     }
 }
 .discription{
-    padding: 5px ;
+    padding: 5px 0 ;
     p{
         font-size: 10px;
         font-weight: 500;
-        text-align: justify;
+        text-align: start;
     }
 }
-  
+   @media (max-width:1441px) {
+   width: ${props => props.$width ? props.$width + 50 + "px" : "300px"};
+       height: ${props => props.$height ? props.$height == 0 ? "fit-content" : props.$height + "px" : "230px"};
+
+    
+  }
  @media (max-width:1025px) {
-   width: ${props => props.$width ? props.$width : "300px"};
-    height: 230px;
+   width: ${props => props.$width ? props.$width + "px" : "300px"};
+    height: ${props => props.$height ? props.$height == 0 ? "fit-content" : props.$height + "px" : "230px"};
+    
+  }
+   @media (max-width:769px) {
+    width: ${props => props.$width ? props.$width + "px" : "300px"};
+    min-width: 50%;
+    height: ${props => props.$height ? props.$height == 0 ? "fit-content" : props.$height + "px" : "230px"};
     
   }
   @media (max-width:475px) {

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Button from "../components/items/ulip/Button";
+// import Button from "../components/items/ulip/Button";
 import HeadingBox from "../components/items/HeadingBox";
 import Irdai from "../components/items/Irdai";
 import CardBox from "../components/elements/CardBox";
@@ -12,7 +12,9 @@ import Testimonial from "../components/items/Testimonial";
 import partner from '../jsondata/homepage/partners.json';
 import { useEffect } from "react";
 import fb from "../Firebase/FireConfig";
-
+import { Box, Button, Card, CardActionArea, CardContent, Grid, Paper, Stack, Typography } from "@mui/material";
+import { FaAutoprefixer, FaCar, FaHeart, FaHome, FaLifeRing, FaMotorcycle } from "react-icons/fa";
+import { IoIosAirplane } from "react-icons/io";
 const HomePage = ({ haddleToggleModel }) => {
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -72,9 +74,65 @@ const HomePage = ({ haddleToggleModel }) => {
             <h1>INSURANCE है </h1>
             <h1 className="pot">तो PROTECTION है</h1>
             {processDescription(titletag)}
-            <p className="dis">"Family doesn’t need a superhero. Be their insurance hero. Choose family protection. Be insured."
-            </p>
-            <Button radius={"4px"} lpP={"10px 20px"} Color={"#fff"} bgColor={"#ff5c00"} funcs={() => dispatch(hadleModelForm(true))} Width={"50%"} m={"50px 0"} lpWidth={"50%"} title={"Contact Now"} />
+            <Paper elevation={0} sx={{ background: "#fbf3e8", width: "100%" }}>
+              <Stack m={1} p={1} flexDirection={"row"} gap={1}>
+                <Card elevation={0} sx={{ width: 100 }} >
+                  <CardActionArea color="primary">
+                    <CardContent  >
+                      <Stack alignItems={"center"}>
+                        <FaCar fontSize={40} color="#ff5c00" />
+                        <Typography variant="caption" textAlign={"center"} component={"p"} color="primary">Car</Typography>
+                      </Stack>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+                <Card elevation={0} sx={{ width: 100 }} >
+                  <CardActionArea color="primary">
+                    <CardContent  >
+                      <Stack alignItems={"center"}>
+                        <FaMotorcycle fontSize={40} color="#ff5c00" />
+                        <Typography variant="caption" textAlign={"center"} component={"p"} color="primary">Moter</Typography>
+                      </Stack>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+                <Card elevation={0} sx={{ width: 100 }} >
+                  <CardActionArea color="primary">
+                    <CardContent  >
+                      <Stack alignItems={"center"}>
+                        <FaHeart fontSize={40} color="#ff5c00" />
+                        <Typography variant="caption" textAlign={"center"} component={"p"} color="primary">Health</Typography>
+                      </Stack>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+                <Card elevation={0} sx={{ width: 100 }} >
+                  <CardActionArea color="primary">
+                    <CardContent  >
+                      <Stack alignItems={"center"}>
+                        <IoIosAirplane fontSize={40} color="#ff5c00" />
+                        <Typography variant="caption" textAlign={"center"} component={"p"} color="primary">Traval</Typography>
+                      </Stack>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+                <Card elevation={0} sx={{ width: 100 }} >
+                  <CardActionArea color="primary">
+                    <CardContent  >
+                      <Stack alignItems={"center"}>
+                        <FaHome fontSize={40} color="#ff5c00" />
+                        <Typography variant="caption" textAlign={"center"} component={"p"} color="primary">Home</Typography>
+                      </Stack>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+              </Stack>
+              <Stack flexDirection={"row"} alignItems={"center"} justifyContent={"space-between"}>
+                {/* <Button variant="outlined">View Plan</Button> */}
+              </Stack>
+            </Paper>
+
+            {/* <Button radius={"4px"} lpP={"10px 20px"} Color={"#fff"} bgColor={"#ff5c00"} funcs={() => dispatch(hadleModelForm(true))} Width={"50%"} m={"50px 0"} lpWidth={"50%"} title={"Contact Now"} /> */}
           </TitleHeading>
         </Content>
 
@@ -91,12 +149,17 @@ const HomePage = ({ haddleToggleModel }) => {
       <OurParter data={partner} />
       <HeadingBox colorText={"Life Insurance Solutions "} defaultText={"Tailored to Every Stage of Life"} />
       <Container>
+        <Grid container spacing={1}>
 
-        {
-          ExploreData && ExploreData.map((item, index) => {
-            return <ExploreCard key={index} data={item} />
-          })
-        }
+          {
+            ExploreData && ExploreData.map((item, index) => {
+              return <Grid key={index} item xs={12} sm={6} md={3}>
+                <ExploreCard data={item} Width={"auto"} />
+              </Grid>
+
+            })
+          }
+        </Grid>
       </Container>
       <HeadingBox colorText={"Client "} defaultText={"Testimonial"} />
       <Testimonial />
@@ -278,7 +341,7 @@ const Container = styled.div`
 display: flex;
 align-items: center;
 justify-content: space-evenly;
-padding: 10px;
+padding: 20px;
 flex-wrap: wrap;
   
 `;

@@ -28,7 +28,7 @@
         "title": "HEALTH ",
         "list": [
             {
-                "path": "/",
+                "path": "/health",
                 "name": "Mediclaim"
             },
             {

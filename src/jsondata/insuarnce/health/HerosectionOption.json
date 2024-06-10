@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "imgUrl": "images/healthins/hero_sec_wellness_benefit1.svg",
+        "name": "Wellness benefit"
+    },
+    {
+        "id": 2,
+        "imgUrl": "images/healthins/hero_sec_renwal1.svg",
+        "name": "Renewal premium discount"
+    },
+    {
+        "id": 4,
+        "imgUrl": "images/healthins/hero_sec_air_ambulance1.svg",
+        "name": "Air Ambulance"
+    },
+    {
+        "id": 5,
+        "imgUrl": "images/healthins/hero_sec_insatnt.svg",
+        "name": "Instant coverage on PED"
+    },
+    {
+        "id": 6,
+        "imgUrl": "images/healthins/hero_sec_maternity_coverage1.svg",
+        "name": "Maternity Coverage"
+    },
+    {
+        "id": 7,
+        "imgUrl": "images/healthins/hero_sec_health_check_ups1.svg",
+        "name": "Health check-ups"
+    },
+    {
+        "id": 8,
+        "imgUrl": "images/healthins/hero_sec_unlimited.svg",
+        "name": "Unlimited restoration"
+    },
+    {
+        "id": 9,
+        "imgUrl": "images/healthins/hero_sec_cashless.svg",
+        "name": "Anywhere Cashless"
+    }
+]

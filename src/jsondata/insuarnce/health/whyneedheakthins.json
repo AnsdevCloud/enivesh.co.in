@@ -1,0 +1,58 @@
+[
+    {
+        "id": 1,
+        "titleColor": " Financial ",
+        "titleDefault": "Protection",
+        "imgUrl": "/images/healthins/financialprotection.svg",
+        "discription": "Health emergencies or prolonged medical treatments can lead to significant financial strain. Health insurance provides financial protection by covering medical expenses, including hospitalization, surgery, medication, and diagnostic tests. This helps individuals and families avoid dipping into their savings or facing debt due to medical bills."
+    },
+    {
+        "id": 2,
+        "titleColor": " Rising ",
+        "titleDefault": "Healthcare Costs",
+        "imgUrl": "/images/healthins/rising_healthcare_costs.svg",
+        "discription": "Healthcare costs in India are continuously rising, especially with advancements in medical technology and increasing demand for quality healthcare services. Health insurance helps individuals access necessary medical care without worrying about the high out-of-pocket expenses."
+    },
+    {
+        "id": 3,
+        "titleColor": " Access ",
+        "titleDefault": "to Quality Healthcare ",
+        "imgUrl": "/images/healthins/helthcare.svg",
+        "discription": " With health insurance coverage, individuals can afford to seek treatment at reputed hospitals and healthcare facilities, including those offering specialized medical services. This ensures access to quality healthcare and timely medical interventions, leading to better health outcomes."
+    },
+    {
+        "id": 4,
+        "titleColor": " Preventive Care  ",
+        "titleDefault": "and Wellness Benefits ",
+        "imgUrl": "/images/healthins/preventive_care.svg",
+        "discription": "Many health insurance plans offer coverage for preventive healthcare services such as health check-ups, vaccinations, and screenings. These services help detect health issues early, leading to timely interventions and better management of chronic conditions."
+    },
+    {
+        "id": 5,
+        "titleColor": " Tax  ",
+        "titleDefault": "Benefits ",
+        "imgUrl": "/images/healthins/tax_benefits.svg",
+        "discription": "Health insurance premiums are eligible for tax deductions under Section 80D of the Income Tax Act, providing individuals with tax-saving opportunities. This incentivizes individuals to invest in health insurance while also ensuring financial security against medical emergencies."
+    },
+    {
+        "id": 7,
+        "titleColor": " Family   ",
+        "titleDefault": "Protection ",
+        "imgUrl": "/images/healthins/family_protection.svg",
+        "discription": "Health insurance plans often provide coverage for family members, including spouse, children, and dependent parents. This ensures comprehensive protection for the entire family against unforeseen medical expenses, offering peace of mind to the policyholders."
+    },
+    {
+        "id": 8,
+        "titleColor": " Cashless   ",
+        "titleDefault": "Treatment Facilities  ",
+        "imgUrl": "/images/healthins/cashless.svg",
+        "discription": "Many health insurance providers offer cashless treatment facilities at network hospitals, allowing policyholders to avail of medical services without making upfront payments. This convenience ensures seamless access to healthcare during emergencies."
+    },
+    {
+        "id": 9,
+        "titleColor": " Safeguard Against Critical Illnesses   ",
+        "titleDefault": "Against Critical Illnesses  ",
+        "imgUrl": "/images/healthins/safegaurd.svg",
+        "discription": "Critical illnesses such as cancer, heart disease, and organ failure can be financially devastating. Health insurance plans often offer coverage for critical illnesses, providing lump-sum payouts or reimbursement of medical expenses, thus offering a safety net during challenging times. \n Overall, health insurance is a prudent investment that not only offers financial protection but also ensures access to quality healthcare services, promotes preventive care, and safeguards against unforeseen medical emergencies, making it an essential component of financial planning in India."
+    }
+]

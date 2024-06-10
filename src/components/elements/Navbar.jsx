@@ -10,7 +10,7 @@ const Navbar = () => {
     const [user, setUserData] = useState(useUser);
     const [active, setActive] = useState(false);
     const [currentData, setCurrentData] = useState(false);
-
+    const [IsScroll, setIsScroll] = useState(0);
     const lact = useLocation();
 
     const handleActive = (e) => {
@@ -22,12 +22,24 @@ const Navbar = () => {
         setUserData(useUser)
 
     }, [lact])
+    const handleScrollPosition = () => {
+        const showButton = window.scrollY > 50; // Adjust threshold as needed
+        setIsScroll(showButton);
+    };
 
+
+    useEffect(() => {
+        window.addEventListener("scroll", handleScrollPosition);
+
+        return () => {
+            window.removeEventListener("scroll", handleScrollPosition);
+        };
+    }, []);
     return (
-        <Wrapper>
-            <Link className="logo" to={"/"}><div >
+        <Wrapper $scroll={IsScroll}>
+            <a className="logo" href={"/"}><div >
                 <img src={"/images/eniveshicon/Enivesh_Insurance_LOGO.png"} alt="logo" />
-            </div></Link>
+            </div></a>
             <div className="navlink" >
 
                 {
@@ -57,8 +69,8 @@ const Wrapper = styled.div`
   height: 60px;
   background-color: #fff;
   padding: 0 20px;
-  z-index: 9999;
-  box-shadow: 0px 5px 9px -7px #555;
+  z-index: ${props => props.$scroll ? 9999 : 999};
+  box-shadow: ${props => props.$scroll ? "0px 5px 9px -7px #555" : ""};;
   display: flex;
   align-items: center;
   justify-content: flex-start;

@@ -4,13 +4,14 @@ import ItemCard from "../items/ItemCard";
 import Button from "../items/ulip/Button";
 import { useDispatch } from "react-redux";
 import { hadleModelForm } from "../../reduxapp/features/userdata/userSlice";
-const CardImg = ({ flexDirection, data, cardWidth, mainUrl }) => {
+import FormBtn from "../items/FormBtn";
+const CardImg = ({ flexDirection, data, cardWidth, mainUrl, headingColor, headingDefault }) => {
     const dispatch = useDispatch();
 
 
     return (
         <Wrapper>
-            <HeadingBox colorText={"Why consider "} defaultText={"Guaranteed plans ?"} m={"5px 0"} />
+            <HeadingBox colorText={headingColor} defaultText={headingDefault} m={"5px 0"} />
             <CardContainer $flexd={flexDirection}>
                 <div className="img_side">
                     <img src={mainUrl} alt="picture" />
@@ -25,7 +26,8 @@ const CardImg = ({ flexDirection, data, cardWidth, mainUrl }) => {
 
                 </div>
             </CardContainer>
-            <Button funcs={() => dispatch(hadleModelForm(true))} title={"Free Consultation"} Width={'80%'} m={'20px 10%'} lpWidth={"20%"} lpP={"10px 20px"} lpM={"20px 40%"} />
+            {/* <Button funcs={() => dispatch(hadleModelForm(true))} title={"Free Consultation"} Width={'80%'} m={'20px 10%'} lpWidth={"20%"} lpP={"10px 20px"} lpM={"20px 40%"} /> */}
+            <FormBtn InputName1={"phone"} BtnName={"Free Consultation"} Label1={"Phone"} InputType1={"number"} InputName2={"pincode"} Label2={"Pincode"} InputType2={"number"} InputName3={"email"} Label3={"Email"} InputType3={"email"} />
 
         </Wrapper>
     )
@@ -67,7 +69,7 @@ gap: 2%;
     flex-wrap: wrap;
     gap: 20px;
 
-    justify-content: space-between;
+    justify-content: space-evenly;
     @media (max-width:426px) {
     justify-content: flex-start;
     flex-wrap: nowrap;

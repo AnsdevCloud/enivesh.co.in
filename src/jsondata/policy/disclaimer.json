@@ -1,0 +1,29 @@
+[
+    {
+        "id": 1,
+        "title": "General Disclaimer",
+        "discription": [
+            "The information contained on this website is for general information purposes only, you can connect with us for the further professional advice on insurance. You should not rely on the information on this website as a basis for making any decision without consulting to our qualified insurance professional.",
+            "While we strive to provide accurate and up-to-date information, we make no warranties or representations, express or implied, about the accuracy, completeness, or reliability of the information contained on this website.",
+            "We disclaim all liability and responsibility for any loss or damage that may arise from your reliance on the information contained on this website."
+        ]
+    },
+    {
+        "id": 2,
+        "title": "Insurance Disclaimer",
+        "discription": [
+            "We are an insurance intermediary, not an insurance company. We do not underwrite insurance policies. We represent 6 Life insurance, 6 Health Insurance, and 6 General insurance companies and will work with you to find the best coverage for your needs.",
+            "The information provided on this website is not a guarantee of coverage or availability. All coverages are subject to the terms, conditions, and exclusions of the actual policy issued by the insurance company.",
+            "We encourage you to read the policy carefully before making a purchase."
+        ]
+    },
+    {
+        "id": 3,
+        "title": "Website Disclaimer",
+        "discription": [
+            "This website may contain links to other websites. We are not responsible for the content or practices of any linked websites. We recommend that you carefully review the privacy policies and terms of use of any linked websites before using them.",
+            "We reserve the right to modify or discontinue this website at any time without prior notice.",
+            "We reserve the right to change these disclaimers at any time without prior notice."
+        ]
+    }
+]

@@ -1,0 +1,49 @@
+[
+    {
+        "id": 1,
+        "title": "Use of the Website",
+        "discription": [
+            " You may only use the Website for lawful purposes and in accordance with these Terms.",
+            " You are responsible for ensuring that all information you provide to us is accurate and complete.",
+            " You are not permitted to use the Website to:",
+            "  - Infringe the intellectual property rights of others.",
+            "  - Transmit any unlawful, harmful, threatening, abusive, defamatory, or obscene material.",
+            "  - Interfere with the operation of the Website or any other user's use of the Website.",
+            "  - Attempt to gain unauthorized access to the Website or any computer system or network connected to the Website."
+        ]
+    },
+    {
+        "id": 2,
+        "title": "Insurance Brokerage Services",
+        "discription": [
+            " We act as an insurance broker, not an insurance company. We do not underwrite insurance policies.",
+            " We will work with you to find the best coverage for your needs from a variety of insurance companies.",
+            " You are responsible for providing us with accurate and complete information about your needs and circumstances.",
+            " We may earn a commission from the insurance companies we work with.",
+            " You are responsible for paying all premiums and other charges associated with your insurance policies."
+        ]
+    },
+    {
+        "id": 3,
+        "title": "Intellectual Property",
+        "discription": [
+            "The Website and all content on the Website, including text, graphics, logos, and trademarks, are the property of ENIVESH INSURANCE Marketing or its licensors and are protected by copyright, trademark, and other intellectual property laws.",
+            "You are not permitted to use any of the content on the Website without our prior written consent."
+        ]
+    },
+    {
+        "id": 4,
+        "title": "Governing Law and Dispute Resolution",
+        "discription": [
+            "These Terms shall be governed by and construed in accordance with the laws of the State of [insert your state], without regard to its conflict of laws provisions.",
+            "You agree to submit to the exclusive jurisdiction of the courts of the State of [insert your state] for any dispute arising out of or relating to these Terms."
+        ]
+    },
+    {
+        "id": 5,
+        "title": "Changes to these Terms",
+        "discription": [
+            "We reserve the right to change these Terms at any time without notice. Your continued use of the Website following any changes to these Terms constitutes your acceptance of the new Terms."
+        ]
+    }
+]

@@ -5,6 +5,7 @@ import Tailored from '../../jsondata/homepage/tailored.json'
 import Button from '../items/ulip/Button';
 import { useDispatch } from 'react-redux';
 import { hadleModelForm } from '../../reduxapp/features/userdata/userSlice';
+import FormBtn from '../items/FormBtn';
 const CardBox = ({ haddleToggleModel }) => {
     const titletag = " Tailored Protection, __Not One-Size-Fits-All__: Get Covered Right."
     const dispatch = useDispatch();
@@ -26,7 +27,9 @@ const CardBox = ({ haddleToggleModel }) => {
                 </ImgBox>
                 <Content>
                     {processDescription(titletag)}
-                    <Button radius={"4px"} funcs={() => dispatch(hadleModelForm(true))} m={"20px 25%"} Color={"#fff"} bgColor={"#ff5c00"} lpP={"5px 0"} title={"Book an Appointment"} Width={"50%"} lpWidth={"50%"} />
+                    {/* <Button radius={"4px"} funcs={() => dispatch(hadleModelForm(true))} m={"20px 25%"} Color={"#fff"} bgColor={"#ff5c00"} lpP={"5px 0"} title={"Book an Appointment"} Width={"50%"} lpWidth={"50%"} /> */}
+                    <FormBtn BtnName={"Book an Appointment"} InputName1={"phone"} Label1={"Phone"} InputType1={"number"} InputName2={"pincode"} Label2={"Pincode"} InputType2={"number"} InputName3={"email"} Label3={"Email"} InputType3={"email"} />
+
                 </Content>
 
             </Container>

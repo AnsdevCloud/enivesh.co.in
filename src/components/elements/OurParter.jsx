@@ -11,7 +11,7 @@ const OurParter = ({ data }) => {
 
             <div className="flexbox">
                 {
-                    data && data.map((item, index) => {
+                    data && data?.map((item, index) => {
                         return <div key={index} className="imgbox">
                             <img src={item.src} alt="partner" />
                         </div>

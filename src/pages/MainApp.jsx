@@ -3,14 +3,17 @@ import Navbar from '../components/elements/Navbar'
 import { Outlet } from 'react-router-dom'
 import FooterNav from '../components/elements/FooterNav'
 import Footer from '../components/elements/Footer'
+import styled from 'styled-components'
 
 const MainApp = () => {
     return (
         <>
             <Navbar />
-            <Outlet />
+            <Wrapper>
+                <Outlet />
+            </Wrapper>
             <FooterNav />
-            <Footer version={"1.0.0.0"} />
+            <Footer version={"2.5.0"} />
 
 
         </>
@@ -18,3 +21,7 @@ const MainApp = () => {
 }
 
 export default MainApp
+const Wrapper = styled.div`
+min-height: 100vh;
+  
+`;

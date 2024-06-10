@@ -6,7 +6,7 @@ import { FaArrowRight } from "react-icons/fa";
 const NavigateProgress = () => {
     return (
         <Wrapper>
-            <HeadingBox defaultText={"Buy"} colorText={"Step to"} />
+            <HeadingBox defaultText={"Buy"} m={"5px"} colorText={"Step to"} />
             <ProgressContainer>
                 <ProgressBox>
                     <div className="step-num">1</div>

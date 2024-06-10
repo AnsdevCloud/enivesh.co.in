@@ -1,0 +1,139 @@
+[
+    {
+        "id": 1,
+        "name": "Plan Features & Benefits",
+        "items": [
+            {
+                "id": 1,
+                "titleColor": " Coverage    ",
+                "titleDefault": "type ",
+                "imgUrl": "/images/healthins/coverage.svg",
+                "discription": "Choose between fixed benefit plans (specific illnesses) and indemnity plans (actual expenses reimbursement)."
+            },
+            {
+                "id": 2,
+                "titleColor": " Sum    ",
+                "titleDefault": "insured",
+                "imgUrl": "/images/healthins/insurred.svg",
+                "discription": "Select a sufficient sum insured based on your age, health, and potential medical needs."
+            },
+            {
+                "id": 3,
+                "titleColor": " Room ",
+                "titleDefault": "rent limits ",
+                "imgUrl": "/images/healthins/room_rent.svg",
+                "discription": "Ensure room rent limits are adequate for your preferred hospital category."
+            },
+            {
+                "id": 4,
+                "titleColor": " Co-payment  ",
+                "titleDefault": "and deductibles",
+                "imgUrl": "/images/healthins/deductibles.svg",
+                "discription": " Understand your share of the expenses (co-payment) and any initial deductible amount."
+            },
+            {
+                "id": 5,
+                "titleColor": " Policy  ",
+                "titleDefault": "exclusions ",
+                "imgUrl": "/images/healthins/policy_exclusions.svg",
+                "discription": " Be aware of situations or treatments not covered under the plan."
+            },
+            {
+                "id": 6,
+                "titleColor": " Pre-existing  ",
+                "titleDefault": "conditions",
+                "imgUrl": "/images/healthins/pre_existing_conditions.svg",
+                "discription": " Disclose any pre-existing health conditions accurately to avoid claim rejection."
+            },
+            {
+                "id": 7,
+                "titleColor": " Waiting  ",
+                "titleDefault": "period",
+                "imgUrl": "/images/healthins/waitin_period.svg",
+                "discription": " Understand the waiting period for specific illnesses before coverage applies."
+            },
+            {
+                "id": 8,
+                "titleColor": " Renewability ",
+                "titleDefault": " ",
+                "imgUrl": "/images/healthins/renewability.svg",
+                "discription": "Check if the plan is guaranteed renewable and under what terms."
+            },
+            {
+                "id": 9,
+                "titleColor": " Additional  ",
+                "titleDefault": " benefits",
+                "imgUrl": "/images/healthins/additional_benefit.svg",
+                "discription": "Look for additional benefits like maternity cover, critical illness cover, or OPD cover depending on your needs."
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Insurance Company",
+        "items": [
+            {
+                "id": 1,
+                "titleColor": " Financial  ",
+                "titleDefault": "stability ",
+                "imgUrl": "/images/healthins/Financialstability.svg",
+                "discription": "Research the company's financial strength and track record. Choose a company with a strong reputation for meeting its obligations. (Solvency Ratio)"
+            },
+            {
+                "id": 2,
+                "titleColor": " Claim   ",
+                "titleDefault": "settlement ratio ",
+                "imgUrl": "/images/healthins/chaim_ratio.svg",
+                "discription": "Look for a high claim settlement ratio, indicating a good track record of settling claims efficiently."
+            },
+            {
+                "id": 3,
+                "titleColor": " Network   ",
+                "titleDefault": "hospitals ",
+                "imgUrl": "/images/healthins/network_hospital.svg",
+                "discription": "Ensure the network hospitals align with your preferred locations and healthcare providers"
+            },
+            {
+                "id": 4,
+                "titleColor": " Brand reputation   ",
+                "titleDefault": "and customer reviews ",
+                "imgUrl": "/images/healthins/brand_repotation.svg",
+                "discription": "Consider the company's reputation in the market and read online reviews to understand customer experiences."
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "name": "Claim Service",
+        "items": [
+            {
+                "id": 1,
+                "titleColor": " Claim   ",
+                "titleDefault": "Settlement Process ",
+                "imgUrl": "/images/healthins/claim_proccess.svg",
+                "discription": " Understand the claim submission process, documentation requirements, and timelines."
+            },
+            {
+                "id": 2,
+                "titleColor": " Claim   ",
+                "titleDefault": "settlement turnaround time",
+                "imgUrl": "/images/healthins/turbine.svg",
+                "discription": " Check the average time taken for claims to be settled."
+            },
+            {
+                "id": 3,
+                "titleColor": " Cashless",
+                "titleDefault": "hospitalization facilities ",
+                "imgUrl": "/images/healthins/access_to_quality_healthcare.svg",
+                "discription": "Opt for a plan with cashless hospitalization options to avoid upfront payments."
+            },
+            {
+                "id": 4,
+                "titleColor": " Grievance   ",
+                "titleDefault": "redressal mechanism",
+                "imgUrl": "/images/healthins/grievance_redressal_mechanism.svg",
+                "discription": "Understand the process for addressing any grievances related to claim settlement or other issues."
+            }
+        ]
+    }
+]

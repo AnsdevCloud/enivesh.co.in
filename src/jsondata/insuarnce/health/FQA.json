@@ -1,0 +1,166 @@
+[
+    {
+        "id": 1,
+        "name": "POLICY FRAMEWORK",
+        "items": [
+            {
+                "id": 1,
+                "qus": "Is Mediclaim policy different from Health Insurance?",
+                "ans": [
+                    "**Yes.** Health insurance and Mediclaim are both popular ways to cover your medical costs, but they're not exactly the same. Health insurance covers a series of different medical expenses, while Mediclaim only covers costs for hospitalization. Therefore, it's important to evaluate what kind of coverage you need and compare the different plans before you decide. Usually, health insurance is better because it provides the comprehensive coverages."
+                ]
+            },
+            {
+                "id": 2,
+                "qus": "What is comprehensive Health Insurance Policy?",
+                "ans": [
+                    "A comprehensive health insurance policy goes beyond merely covering medical expenses; it also includes features aimed at promoting overall well-being and preventive care for the policyholder. These features can include rewards for maintaining a healthy lifestyle, and access to exclusive wellness programs, coverage for preventive services like vaccinations and screenings. By offering such benefits, comprehensive health insurance policies aim to support policyholders in staying healthy and managing their healthcare needs effectively."
+                ]
+            },
+            {
+                "id": 3,
+                "qus": "What Policy should I go for Floater or Individual?",
+                "ans": [
+                    "Floater Policy: Covers multiple family members under one sum insured. Economical but with shared coverage. Advisable for young and middle-aged families.",
+                    "Individual Policy: Covers one person with a dedicated sum insured. Suitable for families where there is a significant age gap between members, and children in the group are over 25 years old. While choosing a plan among Individual and Floater - Consider family size, health status, budget, and future plans."
+                ]
+            },
+            {
+                "id": 4,
+                "qus": "Which is the best company in Health Insurance?",
+                "ans": [
+                    "While there isn't a single 'best' health insurance company that fits everyone's needs, several reputable insurers offer quality health insurance plans. The 'best' company for you depends on factors such as your budget, specific coverage needs, network of healthcare providers, customer service satisfaction, and reputation for claim settlement."
+                ]
+            },
+            {
+                "id": 5,
+                "qus": "Which is the best health insurance plan?",
+                "ans": [
+                    "The **'best' health insurance plan** varies based on individual needs. Factors to consider includes coverage, sublimits, waiting periods, network, costs, insurer reputation, wellness benefits and premium increase frequency.",
+                    "We can assist in finding a plan tailored to your specific requirements and preference."
+                ]
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Plan Selection- Features and Benefits",
+        "items": [
+            {
+                "id": 1,
+                "qus": "What are the checkboxes in health insurance plan ?",
+                "ans": [
+                    "1. **Coverages:** Ensure it covers all possible medical expenses",
+                    "2. **Network Hospitals:** Check if your preferred Hospitals are included.",
+                    "3. **Costs:** Evaluate premiums, deductibles, and out-of-pocket expenses.",
+                    "4. **Reward Benefits:** Consider wellness programs and preventive care.",
+                    "5. **nsurer Reputation:** Choose a reliable insurer with good claim ratio and customer service.",
+                    "6. **Policy Details:** Review coverage limits and exclusions. For example, robotic surgery may not be covered by some insurers, while others may offer coverage with sub-limits. ",
+                    "7. **Flexibility:** Opt for a plan that adapts to your changing needs."
+                ]
+            },
+            {
+                "id": 2,
+                "qus": "What conditions will put barrier for full claim settlement ?",
+                "ans": [
+                    "1. **Co-payment:** Requires you to pay a portion of the medical expenses out-of-pocket, which will reduce the amount the insurer reimburses.",
+                    "2. **Sub-limits:** Limit restriction on certain treatments, which means the insurer will only cover costs up to that limit, and balance will be paid by the policyholder",
+                    "3. **Deductible:** Mandates that you pay a specified amount of medical expenses before the insurance coverage kicks in, potentially leading to higher out-of-pocket costs before the insurer begins to reimburse claims."
+                ]
+            },
+            {
+                "id": 3,
+                "qus": "What are Waiting periods in the policy ?",
+                "ans": [
+                    "There are typically three types of waiting periods:",
+                    "1. **Initial Waiting Period:** This is the period immediately after purchasing the policy during which certain benefits may not be available. It's usually a short duration, such as 30 days, and varies depending on the insurer and the type of coverage.",
+                    "2. **Pre-existing Condition Waiting Period:** This waiting period applies to pre-existing medical conditions declared at the time of policy purchase. Insurers may impose a waiting period (often ranging from 1 to 4 years) before covering expenses related to these conditions.",
+                    "3. **Specific illness Waiting Period:** Alongside, initial waiting period Health Insurance policies have 24 Months waiting periods for specific illness, treatments, procedures, or conditions. For example, cataract day care procedure coverage will have a waiting period of 2 years.",
+                    "During waiting periods, policyholders are not eligible to claim benefits related to the waiting period condition. It's crucial to understand these waiting periods when purchasing health insurance to avoid any surprises or misunderstandings regarding coverage eligibility."
+                ]
+            },
+            {
+                "id": 4,
+                "qus": "What is the Wellness programme in Health insurance ?",
+                "ans": [
+                    "Health insurance wellness programs are activities designed to help you improve your health. Usually, insurers reward consistent participation in these activities with attractive rewards. Wellness programs typically include yoga classes, gym membership, sports club membership, complimentary health check up."
+                ]
+            },
+            {
+                "id": 5,
+                "qus": "What is the tax benefit in Health Insurance ?",
+                "ans": [
+                    "Health insurance provides tax benefits on the premium paid. Your health insurance premium is eligible for tax deduction under Section 80D of the Indian Income Tax Act. This means that the amount you pay as a premium for your health insurance coverage can be subtracted from your taxable income, subject to certain limits",
+                    "Now, let's delve into these health insurance tax benefits in detail."
+                ]
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "name": "Claims",
+        "items": [
+            {
+                "id": 1,
+                "qus": "How is Cashless claim settlement or process works  ?",
+                "ans": [
+                    "Cashless claim settlement is a convenient feature offered health insurance providers.\n Here's how it typically works:",
+                    "1. **Choose a Network Hospital:** Insured individuals can receive cashless treatment at hospitals that are part of the insurer's network.\n These hospitals have agreements with the insurer for direct billing of medical expenses.",
+                    "2. **Pre-Authorization:** Before admission or treatment, the insured or their representative needs to inform the insurance company and obtain pre-authorization.\n This involves providing details of the treatment, estimated costs, and policy information.",
+                    "3. **Verification and Approval:** The insurer verifies the request and approves the cashless claim if it meets the policy terms and conditions.\n This process usually involves reviewing the treatment plan, medical records, and coverage limits.",
+                    "4. **Treatment:** Once pre-authorization is obtained, the insured can proceed with the treatment at the network hospital without paying for the medical expenses upfront.",
+                    "5. **Direct Billing:** After the treatment is completed, the hospital sends the bill directly to the insurance company for payment. The insurer settles the approved expenses directly with the hospital.",
+                    "6. **Policyholder's Responsibility:** The insured may still be responsible for any deductible, co-payment, or non-covered expenses as per the policy terms.",
+                    "7. **Claim Settlement:** The insurer settles the claim with the hospital within the agreed timeframe, usually within a few days of receiving the bills.",
+                    "Cashless claim settlement offers convenience, as it eliminates the need for the insured to pay upfront and seek reimbursement later. It ensures that insured individuals can access necessary medical care without financial stress during emergencies or planned treatments."
+                ]
+            },
+            {
+                "id": 2,
+                "qus": " What is the Reimbursement claim and how reimbursement provided ?",
+                "ans": [
+                    "The reimbursement claim process in health insurance involves you paying for medical treatment upfront and then getting reimbursed by your insurer later. Here's a breakdown of the typical steps:",
+                    "1. **Intimation of Claim:**",
+                    "   • Inform your insurance company as soon as possible after receiving medical treatment, even if it's an emergency.",
+                    "   • This can usually be done by calling their helpline, submitting an online claim form, or visiting a branch office.",
+                    "2. **Bill Payment & Document Collection:**",
+                    "   • Pay the medical bills at the hospital and collect all necessary documents.",
+                    "3. **Claim Form Submission:**",
+                    " Fill out a claim form provided by your insurance company. This form typically includes details about the policyholder, the nature of the illness, treatment received, and hospital stay.",
+                    "4. **Document Submission:**",
+                    " **  • **Along with the claim form, submit all required documents as proof of your expenses and treatment. These documents typically include:",
+                    "       **‣ ** Original hospital bills with a detailed breakdown of charges ",
+                    "       **‣ ** Discharge summary ",
+                    "       **‣ ** Medical reports and prescriptions ",
+                    "       **‣ ** Doctor consultation receipts",
+                    "       **‣ ** Pharmacy bills (if medicines weren't included in hospital bill)",
+                    "       **‣ ** KYC documents (proof of identity and address)",
+                    "       **‣ ** Cancelled cheque or bank account details for claim reimbursement",
+                    "5. **Verification and Claim Processing:**",
+                    "   • The insurance company will verify the authenticity of your claim and documents.",
+                    "   • They might contact the hospital or doctor for clarification if needed.",
+                    "6. **Claim Settlement:**",
+                    "   • If your claim is approved, the insurance company will reimburse you for the covered expenses, as per your plan's terms and limits. The money will be deposited into your bank account.",
+                    "7. **Claim Rejection (if any):**",
+                    "   • In case of claim rejection, the insurance company will inform you about the reason for rejection. You may have the right to appeal the decision if you disagree with it."
+                ]
+            },
+            {
+                "id": 3,
+                "qus": "What is Anywhere Cashless ?",
+                "ans": [
+                    "Cashless Anywhere, everywhere.!",
+                    "The **'Cashless Everywhere'** initiative is indeed a significant step forward in simplifying the health insurance process for policyholders. Under this new rule, policyholders will be able to avail cashless treatment at any hospital, regardless of whether it is a network hospital or not.",
+                    "Effective immediately, the General Insurance Council has announced significant advancements to streamline the process and expand accessibility.Here's what you need to know:",
+                    "1. **Timely Notification for Elective Procedures:** If you're planning an elective procedure, kindly notify your insurance company at least 48 hours before admission. This ensures smooth processing and approval of your cashless treatment request, facilitating a hassle-free experience.",
+                    "2. **Urgent Action for Emergency Treatment:** In cases of emergency treatment, prompt action is crucial. Please inform your insurance company within 48 hours of admission to ensure swift processing of your cashless treatment request and uninterrupted care during critical moments.",
+                    "3. **Admissible Claims and Cashless Facility:** To qualify for cashless treatment, your claim must adhere to the terms and conditions outlined in your policy. Additionally, the cashless facility must align with the operating guidelines of your insurance company. Familiarize yourself with these requirements to ensure seamless processing of your claims.",
+                    "4. **Expanded Access to Cashless Facility:** We are pleased to announce that the cashless facility is now available at non-network hospitals. This expansion means that you have the flexibility to access cashless hospitalization at a wider range of healthcare providers, promoting greater choice and convenience in your healthcare decisions.",
+                    "5. **Qualifying Hospitals:** Hospitals with a capacity of 15 beds and registered with the respective state health authorities under the Clinical Establishment Act are now authorized to offer cashless hospitalization. This ensures that you have access to quality care at accredited healthcare facilities, further enhancing the integrity and reliability of the Cashless Everywhere initiative.",
+                    "As we embark on this new chapter of enhanced healthcare accessibility, rest assured that we are committed to supporting you every step of the way. Should you have any questions or require assistance, please reach out to us. Your health and well-being remain our top priority, and we are dedicated to ensuring that you receive the care and support you deserve.",
+                    "It's important to note that certain conditions and exclusions may apply, so policyholders should always refer to their policy documents or consult with their insurance provider for specific details."
+                ]
+            }
+        ]
+    }
+]

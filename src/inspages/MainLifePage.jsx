@@ -19,7 +19,7 @@ const MainInsPage = () => {
     // Apply bold style
     ite = ite.replace(/\*\*(.*?)\*\*/g, '<p  style="font-weight: 500; margin: 5px 0">$1</p>');
 
-    return <div dangerouslySetInnerHTML={{ __html: ite }} />;
+    return <p dangerouslySetInnerHTML={{ __html: ite }} />;
   };
 
 
@@ -31,13 +31,16 @@ const MainInsPage = () => {
           {
             lifeInffo && lifeInffo.map((item, index) => {
               return <LinkBox className={active === item.id ? "active" : ""} key={index} $active={active === item.id ? true : false}>
-                <Link to={"#" + item.id} state={item} onClick={() => setToggleSideBar(false)}>  <Header $active={active === item.id ? true : false} onClick={(e) => handleAccordion(item?.id)}>{processDescription(item?.title)}
+                <Link to={"#" + item.id} state={item} onClick={() => setToggleSideBar(false)}>
+                  <Header $active={active === item.id ? true : false} onClick={(e) => handleAccordion(item?.id)}>
+                    {processDescription(item?.title)}
 
-                  {item && item?.sublink ? <MdArrowDropDown /> : ""}
-                </Header></Link>
+                    {item && item?.sublink ? <MdArrowDropDown /> : ""}
+                  </Header>
+                </Link>
                 {(item && item.sublink) && <SubLink>
                   <LinkItem>
-                    Google
+                    <p>  Enivesh</p>
                   </LinkItem>
                 </SubLink>}
               </LinkBox>
@@ -161,6 +164,11 @@ font-weight: 500;
   text-overflow: ellipsis;
   white-space: nowrap;
 color: #555;
+p{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 
 cursor: pointer;
    display: flex;
