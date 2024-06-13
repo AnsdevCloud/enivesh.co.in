@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { FaArrowCircleLeft, FaArrowRight } from "react-icons/fa";
+import { FaArrowCircleLeft, FaArrowRight, FaHospitalAlt } from "react-icons/fa";
 import { useState } from "react";
 import ads from '../../../jsondata/insuarnce/health/HerosectionOption.json'
 import TermInsurance from "../../../jsondata/terminusraunce_herosection.json"
@@ -10,6 +10,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { setQuikInsForm, setWhatsAppMail } from "../../../reduxapp/features/userdata/userSlice";
 import { v4 } from "uuid";
 import axios from "axios";
+import AnimateWoekH from "../../items/AnimateWoekH";
+
 const HeroSectionHealth = () => {
     const GquikForm = useSelector((state) => state.user.quikInsuranceForm);
     const mailUpdate = useSelector((state) => state.user.mailupdate);
@@ -68,7 +70,7 @@ const HeroSectionHealth = () => {
                         messages: [
                             {
                                 from: '+919833888817',
-                                to: `+919820551112`,
+                                to: `+919324374807`,
                                 messageId: v4(),
                                 content: {
                                     templateName: 'sitequiksubmit_v3',
@@ -119,7 +121,7 @@ const HeroSectionHealth = () => {
                     <Card elevation={0} sx={{ m: 1 }}>
                         <CardMedia
                             sx={{ height: 350, }}
-                            image="images/healthins/thdm.jpg"
+                            image="images/healthins/maincard.svg"
                             title="green iguana"
                         />
 
@@ -180,19 +182,25 @@ const HeroSectionHealth = () => {
                         </div>
                     }
                 </div>
+                <WorkHighliter>
+                    <AnimateWoekH src={"images/healthins/mi30.png"} mainText={"30 Minute"} name={"Cashless Claim Processing"} />
+                    <AnimateWoekH src={"images/healthins/hospitalicon.jpg"} mainText={"11,000+"} name={"Network Hospitals"} />
+                    <AnimateWoekH src={"images/healthins/claimseteld.jpg"} mainText={"99%"} name={"Claim Settled"} />
+
+                </WorkHighliter>
             </div>
             <div className="right_side">
                 <Box>
-                    <Card elevation={1}>
+                    <Card elevation={0}>
                         <CardMedia
                             sx={{ height: 500 }}
-                            image="images/healthins/thdm.jpg"
+                            image="images/healthins/maincard.svg"
                             title="green iguana"
                         />
 
                         <CardContent >
-                            <Grid container spacing={1} >
-                                <Grid item xs={12} sm={6}>
+                            <Grid container spacing={1} bgcolor={"rgba(255, 163, 15, 0.10)"} border={"1px solid rgba(255, 163, 15, 0.50)"} p={1} borderRadius={1}>
+                                <Grid item xs={12} sm={6} >
                                     <TextField onChange={handleChange} value={GquikForm ? GquikForm?.phone : quikForm?.phone} name="phone" label="Phone" fullWidth size="small" type="number" />
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
@@ -224,6 +232,10 @@ margin: 10px 0;
 align-items: center;
 .left_side{
     min-width: 60%;
+    display:flex;
+    align-items: center;
+    justify-content :space-between ;
+    flex-direction: column;
     .page_title{
         font-size: 12px;
         text-align: center;
@@ -412,5 +424,21 @@ const MainTagline = styled.div`
             
         }
         
+  
+`;
+const WorkHighliter = styled.div`
+width: 100%;
+background-color: transparent;
+padding: 10px;
+display: flex;
+align-items: center;
+justify-content: space-evenly;
+flex-direction: column;
+gap: 15px;
+@media (min-width: 768px) {
+flex-direction: row;
+height: 200px;
+    
+}
   
 `;

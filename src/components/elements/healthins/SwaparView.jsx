@@ -78,7 +78,7 @@ const SwaparView = ({ TabsList, TabContainer }) => {
                     >
                         {
                             TabsList?.map((item, index) => {
-                                return <Tab label={item?.titleColor + item?.titleDefault} onClick={() => setIndexVal(index)} />
+                                return <Tab key={index} label={item?.titleColor + item?.titleDefault} onClick={() => setIndexVal(index)} />
                             })
                         }
                     </Tabs>
@@ -93,7 +93,7 @@ const SwaparView = ({ TabsList, TabContainer }) => {
                 onChangeIndex={handleChangeIndex}>
                 {
                     TabContainer?.map((item, index) => {
-                        return <TabPanel value={indexVal} index={index} dir={theme.direction}>
+                        return <TabPanel key={index} value={indexVal} index={index} dir={theme.direction}>
                             <Stack flexDirection={"row"} m={1} fontSize={10} alignItems={"center"} gap={.2}>
                                 <Typography color={"primary"} fontSize={12}>  {indexVal + 1}</Typography> / {TabContainer?.length}
                             </Stack>

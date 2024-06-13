@@ -68,7 +68,7 @@ const Step6 = ({ onBack, onNext }) => {
                     messages: [
                         {
                             from: '+919833888817',
-                            to: `+919820551112`,
+                            to: `+919324374807`,
                             messageId: v4(),
                             content: {
                                 templateName: 'sitesubmit_v2',

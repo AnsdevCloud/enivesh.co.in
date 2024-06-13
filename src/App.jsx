@@ -1,4 +1,5 @@
 import { Suspense, lazy, useEffect, useState } from "react"
+import './App.css'
 import { Route, Routes, useLocation } from "react-router-dom"
 import { pdfjs } from 'react-pdf';
 import { LinearProgress } from "@mui/material"
@@ -44,6 +45,11 @@ const OptionViewPlans = lazy(() => import("./components/elements/planelm/OptionV
 const HeathPage = lazy(() => import('./components/elements/healthins/HealthIndex'));
 const HealthMain = lazy(() => import("./components/elements/healthins/HealthMain"));
 import policda from './jsondata/policy/privacypolicy.json'
+const Bindex = lazy(() => import("./components/blogs/Bindex"));
+const Landing = lazy(() => import("./components/blogs/Landing"));
+const Editor = lazy(() => import("./components/blogs/Editor"));
+const Show = lazy(() => import("./components/blogs/Show"));
+
 
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
@@ -128,6 +134,7 @@ function App() {
 
 
           </Route>
+
           <Route path="pdf" element={<Suspense fallback={<LinearProgress />}><HTMLToPDF /></Suspense>} />
           <Route path="link_generator" element={<Suspense fallback={<LinearProgress />}><LinkGenerator /></Suspense>} />
           <Route path="dacl" element={<Suspense fallback={<LinearProgress />}><DslMain /></Suspense>}>
@@ -140,6 +147,14 @@ function App() {
           <Route path="privacy" element={<Suspense fallback={<LinearProgress />}><PrivacyPolicy /></Suspense>}>
             <Route index element={<Suspense fallback={<LinearProgress />}><ContentBox data={lifeData} /></Suspense>} />
 
+
+          </Route>
+
+          {/* // blogs routes */}
+          <Route path="blogs" element={<Suspense><Bindex /></Suspense>}>
+            <Route index element={<Suspense><Landing /></Suspense>} />
+            <Route path="create" element={<Suspense><Editor /></Suspense>} />
+            <Route path=":id" element={<Suspense><Show /></Suspense>} />
 
           </Route>
           <Route path="*" element={<Suspense fallback={<LinearProgress />}><NoDataPage /></Suspense>} />

@@ -72,7 +72,7 @@ const FormBtn = ({ BtnName, ColorHead, DefaultHead, InputName1, InputName2, Inpu
                     messages: [
                         {
                             from: '+919833888817',
-                            to: `+919820551112`,
+                            to: `+919324374807`,
                             messageId: v4(),
                             content: {
                                 templateName: 'sitequiksubmit_v3',

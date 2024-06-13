@@ -118,7 +118,7 @@ const Index = () => {
                         >
                             {
                                 complexcity?.map((item, index) => {
-                                    return <Tab label={item?.name} onClick={indexVal < complexcity?.length - 1 ? () => setIndexVal(index) : null} />
+                                    return <Tab key={index} label={item?.name} onClick={indexVal < complexcity?.length - 1 ? () => setIndexVal(index) : null} />
                                 })
                             }
                         </Tabs>
@@ -133,7 +133,7 @@ const Index = () => {
                     onChangeIndex={handleChangeIndex}>
                     {
                         complexcity?.map((item, index) => {
-                            return <TabPanel value={indexVal} index={index} dir={theme.direction}>
+                            return <TabPanel value={indexVal} index={index} dir={theme.direction} key={index}>
 
                                 <Stack flexDirection={"row"} m={1} fontSize={10} alignItems={"center"} gap={.2}>
                                     <Typography color={"primary"} fontSize={12}>  {indexVal + 1}</Typography> / {complexcity?.length}
@@ -141,8 +141,8 @@ const Index = () => {
 
                                 <Grid container spacing={5} p={1}>
                                     {
-                                        item?.items?.map((ite) => (
-                                            <Grid item xs={12} sm={6} md={3}>
+                                        item?.items?.map((ite, index) => (
+                                            <Grid key={index} item xs={12} sm={6} md={3}>
                                                 <ItemCard Width={"auto"} data={ite} />
                                             </Grid>
                                         ))
@@ -235,7 +235,7 @@ const Index = () => {
                         >
                             {
                                 FQA?.map((item, index) => {
-                                    return <Tab label={item?.name} onClick={indexVal < complexcity?.length - 1 ? () => setIndexVal(index) : null} />
+                                    return <Tab key={index} label={item?.name} onClick={indexVal < complexcity?.length - 1 ? () => setIndexVal(index) : null} />
                                 })
                             }
                         </Tabs>
@@ -249,7 +249,7 @@ const Index = () => {
                     onChangeIndex={handleChangeIndex}>
                     {
                         FQA?.map((item, index) => {
-                            return <TabPanel value={indexVal} index={index} dir={theme.direction}>
+                            return <TabPanel key={index} value={indexVal} index={index} dir={theme.direction}>
 
                                 <Stack flexDirection={"row"} m={1} fontSize={10} alignItems={"center"} gap={.2}>
                                     <Typography color={"primary"} fontSize={12}>  {indexVal + 1}</Typography> / {FQA?.length}
