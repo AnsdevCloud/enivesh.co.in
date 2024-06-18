@@ -154,7 +154,7 @@ function App() {
           <Route path="blogs" element={<Suspense><Bindex /></Suspense>}>
             <Route index element={<Suspense><Landing /></Suspense>} />
             <Route path="create" element={<Suspense><Editor /></Suspense>} />
-            <Route path=":id" element={<Suspense><Show /></Suspense>} />
+            <Route path=":bid" element={<Suspense><Show /></Suspense>} />
 
           </Route>
           <Route path="*" element={<Suspense fallback={<LinearProgress />}><NoDataPage /></Suspense>} />

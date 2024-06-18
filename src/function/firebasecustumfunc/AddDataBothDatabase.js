@@ -12,12 +12,20 @@ const AddBlogBothDatabase = (contents) => {
     } else {
         if (contents.title && contents?.content) {
             db.collection("blogs").add({
-                name: contents?.title,
-                content: contents?.content
+                title: contents?.title,
+                content: contents?.content,
+                views: 0,
+                likes: [],
+                comments: [],
+                ...contents,
+                // createdAt: fb.firestore.
+                // servertimestamp: fb.firestore.FieldValue.serverTimestamp()
             })
                 .then((docRef) => {
-                    console.log("Document written with ID: ", docRef.id);
+                    // console.log("Document written with ID: ", docRef.id);
+                    const docRefd = db.collection("blogs").doc(docRef.id)
                     if (docRef.id) {
+
 
                         writeUserData(docRef.id, contents)
                     }
@@ -38,6 +46,10 @@ const AddBlogBothDatabase = (contents) => {
 function writeUserData(userId, contents) {
     fb.database().ref('blogs/' + userId).set({
         title: contents.title,
+        bid: userId,
+        coverImageUrl: contents?.coverImageUrl ? contents?.coverImageUrl : null
+        // timestamp: fb.firestore.Timestamp.fromDate(new Date()),
+        // servertimestamp: fb.firestore.FieldValue.serverTimestamp()
 
     });
 }

@@ -1,3 +1,22 @@
 .wh-define {
     min-height: 100%;
 }
+
+/* Style for the Editor.js container */
+.custom-editor {
+    border: 1px solid #ff8c00;
+    /* Green border */
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.ejs-header {
+    margin: 10px 5px;
+    font-weight: 500;
+}
+
+.ejs-paragraph {
+    margin: 10px 5px;
+}

@@ -1,6 +1,7 @@
 import fb from '../../Firebase/FireConfig';
 const db = fb.firestore();
 const database = fb.database();
+
 const DeleteBlogBothDatabase = (bid) => {
     DeleteBlogFirestoreDatabase(bid);
 }
@@ -25,9 +26,13 @@ const DeleteBlogRealtimeDatabase = (bid) => {
 
     dataRef.remove().then(function () {
         console.info("Data deleted successfully!");
+
     }).catch(function (error) {
 
         console.error("Error deleting data:", error);
+
+
+
 
     });
 }
