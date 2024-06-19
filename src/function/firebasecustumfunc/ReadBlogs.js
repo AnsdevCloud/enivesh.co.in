@@ -20,7 +20,7 @@ const ReadBlogRealtimeDatabase = async () => {
 
 
     });
-    console.log(data);
+
     return data;
 
 }

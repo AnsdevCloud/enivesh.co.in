@@ -146,23 +146,55 @@ const HeroSectionHealth = () => {
                 </div>
 
                 <MainTagline>
-                    <h1> COMPLEXITIES TURNS</h1>
-                    <Typography textAlign={"center"} color={"secondary"} fontSize={"2vmax"} fontWeight={900} component={"p"} >
-                        INTO SIMPLICITY
+                    <h1 > <Typography fontSize={"3vmax"} color="secondary" component={"span"} fontWeight={900}>Zero </Typography> hassle health policies </h1>
+                    <Typography textAlign={"center"} textTransform={"uppercase"} color={"secondary"} fontSize={"2vmax"} fontWeight={900} component={"p"} >
+                        starting <Typography fontSize={"2vmax"} color="primary" component={"span"} fontWeight={900}>@₹18</Typography>/day
                     </Typography>
                     <Typography textAlign={"center"} m={1} variant="caption" component={"p"} color="initial">Choosing the right health insurance plan requires careful evaluation beyond premium cost.
                     </Typography>
                 </MainTagline>
+                <WorkHighliter>
+                    <Grid container >
+                        <Grid xs={6} md={3}>
+                            <Stack alignItems={"center"} width={"100%"} height={"100%"}>
 
+                                <AnimateWoekH src={"images/healthins/mi30.png"} mainText={"30 Minute"} name={"Cashless Claim Processing"} />
+                            </Stack>
+
+                        </Grid>
+                        <Grid xs={6} md={3}>
+                            <Stack alignItems={"center"} width={"100%"} height={"100%"}>
+                                <AnimateWoekH src={"images/healthins/5percent.webp"} mainText={"Get Exclusive"} name={" Online Discount"} />
+                                {/* <Typography variant="caption" mt={-1.5}>+ Up to 30% Renewal Discount </Typography> */}
+
+                            </Stack>
+                        </Grid>
+                        <Grid xs={6} md={3}>
+                            <Stack alignItems={"center"} width={"100%"} height={"100%"}>
+
+                                <AnimateWoekH src={"images/healthins/claimseteld.jpg"} mainText={"99%"} name={"Claim Settled"} />
+                            </Stack>
+
+                        </Grid>
+                        <Grid xs={6} md={3}>
+                            <Stack alignItems={"center"} width={"100%"} height={"100%"}>
+                                <AnimateWoekH src={"images/healthins/hospitalicon.jpg"} mainText={"11,000+"} name={"Network Hospitals the word cashless"} />
+
+
+                            </Stack>
+
+                        </Grid>
+                    </Grid>
+                </WorkHighliter>
                 <div className="navigate_box">
                     {!active && <Stack flexDirection={"row"} gap={2} justifyContent={"space-evenly"} flexWrap={"wrap"} alignItems={"center"}>
                         {
                             ads && ads.map((item, index) => {
-                                return <Stack minWidth={105} alignItems={"center"} gap={1} justifyContent={"center"} height={80} key={index} flexDirection={"column"} bgcolor={"#fff"} p={1.2} borderRadius={2} boxShadow={"0px 0px 9px -7px #1a1a1a"}>
-                                    <Box sx={{ width: "100%", height: "80%" }}>
+                                return <Stack minWidth={105} alignItems={"center"} gap={1} justifyContent={"center"} height={120} width={120} key={index} flexDirection={"column"} bgcolor={"#fff"} p={1.2} borderRadius={2} boxShadow={"0px 0px 9px -7px #1a1a1a"}>
+                                    <Box sx={{ width: "50%", height: "80%" }}>
                                         <img style={{ width: "100%", height: "100%" }} src={item?.imgUrl} />
                                     </Box>
-                                    <Typography textAlign={"center"} variant="caption" fontSize={10} fontWeight={600} component={"span"} >
+                                    <Typography textAlign={"center"} variant="caption" fontWeight={600} component={"p"} >
                                         {item?.name}
                                     </Typography>
                                 </Stack>
@@ -182,22 +214,19 @@ const HeroSectionHealth = () => {
                         </div>
                     }
                 </div>
-                <WorkHighliter>
-                    <AnimateWoekH src={"images/healthins/mi30.png"} mainText={"30 Minute"} name={"Cashless Claim Processing"} />
-                    <AnimateWoekH src={"images/healthins/hospitalicon.jpg"} mainText={"11,000+"} name={"Network Hospitals"} />
-                    <AnimateWoekH src={"images/healthins/claimseteld.jpg"} mainText={"99%"} name={"Claim Settled"} />
 
-                </WorkHighliter>
             </div>
             <div className="right_side">
-                <Box>
-                    <Card elevation={0}>
+                <Box position={"relative"}>
+                    <Card elevation={0} >
                         <CardMedia
                             sx={{ height: 500 }}
                             image="images/healthins/maincard.svg"
                             title="green iguana"
                         />
-
+                        <Box position={"absolute"} bottom={-8} width={175} borderRadius={10} left={-165} height={200} overflow={"hidden"}>
+                            <img src="images/healthins/baich.png" />
+                        </Box>
                         <CardContent >
                             <Grid container spacing={1} bgcolor={"rgba(255, 163, 15, 0.10)"} border={"1px solid rgba(255, 163, 15, 0.50)"} p={1} borderRadius={1}>
                                 <Grid item xs={12} sm={6} >
@@ -243,7 +272,7 @@ align-items: center;
         position: relative;
         /* margin: 10px; */
         h1{
-               
+              
                 font-weight: 600;
             span{
                 font-weight: 600;
@@ -260,6 +289,7 @@ align-items: center;
         @media (max-width:768px) {
       margin-top: 20px;
             h1{
+                 
                 font-size: 16px;
             }
            .tagline{
@@ -384,17 +414,20 @@ align-items: center;
 
 const MainTagline = styled.div`
     position: relative;
-        font-size: 2vmax;
+        font-size: 1.8vmax;
         margin: 20px 0;
         h1{
+            text-transform: uppercase;
             font-weight: 700;
             color: #ff5c00;
             display: flex;
+            font-size: 3.2vmax;
             align-items: center;
             justify-content: center;
             gap: 5px;
             .termplan{
                 font-size: 40px;
+                
                 display: block;
                 color: #444;
                 font-weight: 600;
@@ -411,7 +444,7 @@ const MainTagline = styled.div`
 
         @media (max-width:768px) {
             h1{
-                font-size: 3vmax;
+                font-size: 2.7vmax;
                 .termplan{
                     font-size: 20px;
                         .priority{
@@ -427,17 +460,12 @@ const MainTagline = styled.div`
   
 `;
 const WorkHighliter = styled.div`
-width: 100%;
+width: 90%;
 background-color: transparent;
-padding: 10px;
-display: flex;
-align-items: center;
-justify-content: space-evenly;
-flex-direction: column;
-gap: 15px;
+
 @media (min-width: 768px) {
-flex-direction: row;
-height: 200px;
+/* flex-direction: row;
+height: 200px; */
     
 }
   

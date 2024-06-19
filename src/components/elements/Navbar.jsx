@@ -47,6 +47,7 @@ const Navbar = () => {
                         return <NavLink key={index} onMouseEnter={(e) => handleActive(item)}  >{item.title}  <IoMdArrowDropdownCircle /></NavLink>
                     })
                 }
+                <NavLink to={'/blogs'} >Learning Center</NavLink>
             </div>
             <Link className="profile" to={"/profile"}>
                 <div >

@@ -8,7 +8,7 @@ import { setQuikInsForm, setWhatsAppMail } from '../../reduxapp/features/userdat
 import axios from 'axios';
 import { v4 } from 'uuid';
 
-const FormBtn = ({ BtnName, ColorHead, DefaultHead, InputName1, InputName2, InputName3, InputType1, InputType2, InputType3, Label1, Label2, Label3 }) => {
+const FormBtn = ({ BtnName, fullWidth, ColorHead, DefaultHead, InputName1, InputName2, InputName3, InputType1, InputType2, InputType3, Label1, Label2, Label3 }) => {
     const [isToggleBtn, setIsToggleBtn] = useState(false);
     const [isPhnValid, setIsPhnValid] = useState(false);
     const [isPinValid, setIsPinValid] = useState(false);
@@ -157,7 +157,7 @@ const FormBtn = ({ BtnName, ColorHead, DefaultHead, InputName1, InputName2, Inpu
 
             </Grid> :
                 <Stack justifyContent={"center"} flexDirection={"row"} alignItems={"center"}>
-                    <Button Button variant='contained' onClick={() => setIsToggleBtn(true)}>{BtnName ? BtnName : "Add Btn Name"}</Button>
+                    <Button variant='contained' fullWidth={fullWidth ? true : false} onClick={() => setIsToggleBtn(true)}>{BtnName ? BtnName : "Add Btn Name"}</Button>
                 </Stack>
             }
         </Wrapper>

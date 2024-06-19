@@ -10,6 +10,9 @@ import { BsEyeFill } from 'react-icons/bs'
 
 
 const Landing = () => {
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
     const [blogsArray, setBlogsArray] = useState(null);
     const [update, setUpdate] = useState(false)
     const navigate = useNavigate();
@@ -48,7 +51,7 @@ const Landing = () => {
                                     {/* <IconButton size='small' onClick={() => DeleteBlogBothDatabase(item?.bid)}>
                                         <Delete />
                                     </IconButton> */}
-                                    <Typography variant='caption' alignItems={"center"} display={"flex"} flexDirection={"row"} gap={1} ><BsEyeFill /> 67k</Typography>
+                                    <Typography variant='caption' alignItems={"center"} display={"flex"} flexDirection={"row"} gap={1} ><BsEyeFill />{item?.views}</Typography>
 
 
                                 </CardActions>

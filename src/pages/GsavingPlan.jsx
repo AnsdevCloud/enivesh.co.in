@@ -18,6 +18,8 @@ const GsavingPlan = () => {
     return (
         <Wrapper>
             <GHeroSection />
+            <FormBtn BtnName={"Get a Call Back"} InputName1={"phone"} Label1={"Phone"} InputType1={"number"} InputName2={"pincode"} Label2={"Pincode"} InputType2={"number"} InputName3={"email"} Label3={"Email"} InputType3={"email"} />
+
             <Irdai />
             <OurParter data={partners} />
             <CardDetails />

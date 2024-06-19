@@ -8,14 +8,14 @@ const AnimateWoekH = ({ mainText, name, Icon, src }) => {
     return (
         <Wrapper>
             {Icon ? src ? "" : Icon : ""}
-            {src ? Icon ? <Box width={100} height={100} >
+            {src ? Icon ? <Box width={90} height={90} >
                 <img style={{ width: "100%" }} src={src} alt="" />
-            </Box> : <Box width={90} height={90} >
+            </Box> : <Box width={80} height={80} >
                 <img style={{ width: "100%" }} src={src} alt="" />
             </Box> : ""}
             <Box>
                 <Typography textAlign={"center"} fontWeight={600} variant='h6'>{mainText}</Typography>
-                <Typography textAlign={"center"} variant='body2' color={"#1a1616"}>{name}</Typography>
+                <Typography textAlign={"center"} variant='body2' component={"p"} color={"#1a1616"}>{name}</Typography>
             </Box>
         </Wrapper>
     )

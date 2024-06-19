@@ -1,4 +1,5 @@
 import fb from "../../Firebase/FireConfig";
+import ViewUpdateBoth from "./ViewUpdateBoth";
 
 
 const db = fb.firestore();
@@ -11,6 +12,7 @@ const GetSingleBlogFiretore = async (bid) => {
                 id: doc.id,
                 ...doc.data()
             }
+            ViewUpdateBoth(bid, data.views);
             return data
         } else {
             return null;
@@ -18,7 +20,6 @@ const GetSingleBlogFiretore = async (bid) => {
     }).catch((error) => {
         console.log("Error getting document:", error);
     });
-
 
     return await blog
 }

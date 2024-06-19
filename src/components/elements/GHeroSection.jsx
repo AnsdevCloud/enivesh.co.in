@@ -3,6 +3,7 @@ import { FaArrowCircleLeft, FaArrowRight } from "react-icons/fa";
 import { useState } from "react";
 
 import TermInsurance from "../../jsondata/terminusraunce_herosection.json"
+import FormBtn from "../items/FormBtn";
 const GHeroSection = () => {
 
     const [active, setActive] = useState(false);
@@ -28,7 +29,6 @@ const GHeroSection = () => {
 
                     <h1>Dual <span>Benefits</span></h1>
 
-
                     <Box>
                         <ItemBox>
                             Fixed Benefits
@@ -40,12 +40,16 @@ const GHeroSection = () => {
                     </Box>
                 </MainTagline>
 
-                <div className="navigate_box">
-                    {/* <img src="/images/gsaving/markimage.png" alt="" /> */}
+                <div className="navigate_box" >
+                    <img src="/images/gsaving/markimage.png" alt="" />
+
                 </div>
+
+
             </div>
             <div className="right_side">
                 <img src="/images/gsaving/gpreturn.svg" alt="picture" />
+
             </div>
         </Wrapper>
     )
@@ -65,40 +69,7 @@ overflow: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* .page_title{
-        font-size: 12px;
-        position: absolute;
-        left: 22%;
-        top: 40px;
-        h1{
-                text-align: center;
-                font-weight: 600;
-            span{
-                font-weight: 600;
-                color: #ff5c00;
-            }
-            
-        }
-    .tagline{
-        text-align: center;
-        font-size: 12px;
-        color: #444;
-        font-weight: 500;
-        }
-        @media (max-width:768px) {
-              left: 33%;
-              top: 20px;
-            h1{
-                font-size: 16px;
-            }
-           .tagline{
-        text-align: center;
-        font-size: 8px;
-        
-        }
-            
-        }
-    } */
+
     .lookimag{
         display: none;
         position: relative;
@@ -159,19 +130,13 @@ overflow: hidden;
     .navigate_box{
         position: relative;
         width: 650px;
-        height: 300px;
-        overflow-y: auto;
-        margin: 0 auto;
-        background-image: url("/images/gsaving/markimage.png");
-         background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        gap: 20px;
+        height: 290px;
+        img{
+            width: 100%;
+          
+
+        }
+        overflow: hidden;
         @media (max-width:1025px) {
         width: 90%;
         height: 250px;    
