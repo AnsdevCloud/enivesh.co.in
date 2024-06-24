@@ -455,10 +455,10 @@ const HTMLToPDF = () => {
             <PDFViewer style={{ width: '100%', height: '90vh' }}>
                 <Document  >
                     <Page size={"A4"} style={styles.page}>
-                        <Image style={styles.logo} src="images/eniveshicon/Enivesh_Insurance_LOGO.png" />
+                        <Image style={styles.logo} src="images/pdfimages/logo.png" />
 
                         <View style={styles.section}>
-                            <Image style={styles.image} src="/images/homepage/herosection.png" />
+                            <Image style={styles.image} src="images/pdfimages/mainimg.png" />
                             <Text style={styles.headingBold}>ENIVESH INSURANCE </Text>
                             <Text style={styles.subheading}>Mediclaim Policy </Text>
                             <Text style={styles.subQuote}>Non-Binding Quote</Text>

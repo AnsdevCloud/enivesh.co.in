@@ -9,7 +9,10 @@ import { BsEyeFill } from 'react-icons/bs'
 
 
 
+
 const Landing = () => {
+    const user = JSON.parse(localStorage.getItem("loginUser"));
+
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [])
@@ -36,21 +39,21 @@ const Landing = () => {
     return (
         <Container>
             {!update && <LinearProgress />}
-            <Grid container spacing={1} p={1}>
+            <Grid container spacing={1} p={1} pt={5}>
                 {
                     blogsArray?.map((item) => (
                         <Grid key={item?.id} item xs={12} sm={6} md={4}>
-                            <Card>
-                                <CardActionArea onClick={() => navigate(item?.bid)}>
+                            <Card elevation={0}>
+                                <CardActionArea onClick={() => navigate(`${item?.bid}?${item?.title}`)}>
                                     <CardMedia height={200} component={"img"} image={item?.coverImageUrl} />
                                     <CardContent>
                                         <Typography>{item?.title}</Typography>
                                     </CardContent>
                                 </CardActionArea>
                                 <CardActions>
-                                    {/* <IconButton size='small' onClick={() => DeleteBlogBothDatabase(item?.bid)}>
+                                    {user?.role === "Admin" || (user?.role === "Author" && user?.id === item?.author?.id) ? <IconButton size='small' onClick={() => DeleteBlogBothDatabase(item?.bid)}>
                                         <Delete />
-                                    </IconButton> */}
+                                    </IconButton> : ""}
                                     <Typography variant='caption' alignItems={"center"} display={"flex"} flexDirection={"row"} gap={1} ><BsEyeFill />{item?.views}</Typography>
 
 

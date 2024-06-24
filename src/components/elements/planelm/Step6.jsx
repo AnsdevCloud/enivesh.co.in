@@ -8,6 +8,7 @@ import axios from 'axios';
 import Thanks from './Thanks';
 import { setQuikInsForm } from '../../../reduxapp/features/userdata/userSlice';
 const Step6 = ({ onBack, onNext }) => {
+    const user = JSON.parse(localStorage.getItem('loginUser'));
 
     const [isThanks, setIsThanks] = useState(false);
 
@@ -95,9 +96,6 @@ const Step6 = ({ onBack, onNext }) => {
                 .request(options)
                 .then(function (response) {
                     setIsThanks(true)
-                    setTimeout(() => {
-                        navigate("/health")
-                    }, 5000);
                     dispatch(setQuikInsForm(""))
 
 
@@ -111,38 +109,45 @@ const Step6 = ({ onBack, onNext }) => {
     }
     return (
         <Container maxWidth={"sm"}>
-            {isThanks ? <Thanks /> : <Grid container >
-                <Grid item xs={12} >
+            {isThanks ? <Thanks /> :
+                <Grid container >
+                    <Grid item xs={12} >
 
-                    <Stack alignItems={"center"}>
-                        <Paper sx={{ p: 1, width: 250 }}>
+                        <Stack alignItems={"center"}>
+                            <Paper sx={{ p: 1, width: 250 }}>
 
-                            <FormControl fullWidth>
-                                <RadioGroup
-                                    defaultValue="female"
-                                    name="radio-buttons-group"
-                                    row
+                                <FormControl fullWidth>
+                                    <RadioGroup
+                                        defaultValue="female"
+                                        name="radio-buttons-group"
+                                        row
 
-                                >
+                                    >
 
-                                    <FormControlLabel sx={{ pl: 3 }} value="yes" control={<Radio size='small' sx={{ mr: 1 }} />} label="Yes" />
-                                    <FormControlLabel sx={{ pl: 4 }} value="no" control={<Radio size='small' sx={{ mr: 1 }} />} label="No" />
+                                        <FormControlLabel sx={{ pl: 3 }} value="yes" control={<Radio size='small' sx={{ mr: 1 }} />} label="Yes" />
+                                        <FormControlLabel sx={{ pl: 4 }} value="no" control={<Radio size='small' sx={{ mr: 1 }} />} label="No" />
 
 
-                                </RadioGroup>
-                            </FormControl>
-                        </Paper>
-                    </Stack>
+                                    </RadioGroup>
+                                </FormControl>
+                            </Paper>
+                        </Stack>
 
+                    </Grid>
+
+                    <Grid item xs={12} >
+                        <Stack flexDirection={"row"} justifyContent={"center"} p={2} gap={2} >
+                            <Button onClick={onBack} variant='contained' color='secondary' fullWidth >Back</Button>
+                            {user?.role === "Admin" || user?.role === "Employee" ?
+
+                                <Button fullWidth variant='outlined' color='success' onClick={() => handleNext()}>Generate PDF</Button>
+                                : <Button onClick={handleSubmitMail} variant='contained' color='primary' fullWidth >Submit </Button>
+
+                            }
+                        </Stack>
+                    </Grid>
                 </Grid>
-
-                <Grid item xs={12} >
-                    <Stack flexDirection={"row"} justifyContent={"center"} p={2} gap={2} >
-                        <Button onClick={onBack} variant='contained' color='secondary' fullWidth >Back</Button>
-                        <Button onClick={handleSubmitMail} variant='contained' color='primary' fullWidth >Submit </Button>
-                    </Stack>
-                </Grid>
-            </Grid>}
+            }
         </Container>
     )
 }

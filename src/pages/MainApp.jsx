@@ -1,6 +1,6 @@
 import React from 'react'
 import Navbar from '../components/elements/Navbar'
-import { Outlet } from 'react-router-dom'
+import { Link, Outlet, useNavigate } from 'react-router-dom'
 import FooterNav from '../components/elements/FooterNav'
 import Footer from '../components/elements/Footer'
 import styled from 'styled-components'
@@ -8,6 +8,8 @@ import { Box, Button, Grid, IconButton, Paper, Stack, TextField, Tooltip, Typogr
 import { Call, CallSharp, Rocket, WhatsApp } from '@mui/icons-material'
 
 const MainApp = () => {
+    const navigate = useNavigate();
+
     return (
         <>
             <Navbar />
@@ -39,25 +41,16 @@ const MainApp = () => {
                 <SideCenterRightBox >
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
-                            <IconButton color='success'>
-                                <WhatsApp fontSize='large' color='#25D366' />
-                            </IconButton>
+                            <Tooltip title="Chat ">
+
+                                <Link to={"https://wa.me/919833888817"} target='_blank'>
+                                    <IconButton color='success'>
+                                        <WhatsApp fontSize='large' />
+                                    </IconButton>
+                                </Link>
+                            </Tooltip>
                         </Grid>
-                        {/* <Grid item xs={12}>
-                            <IconButton color='success'>
-                                <CallSharp fontSize='large' />
-                            </IconButton>
-                        </Grid>
-                        <Grid item xs={12}>
 
-                            <IconButton color='primary'>
-                                <Rocket fontSize='large' />
-
-                            </IconButton>
-                            <Typography variant='caption' component={"span"} position={"absolute"} color={"primary"} bottom={5} left={"5px"}>Chat bot</Typography>
-
-
-                        </Grid> */}
                     </Grid>
                 </SideCenterRightBox>
                 <Outlet />
@@ -80,14 +73,19 @@ min-height: 100vh;
 const SideLeftBox = styled(Box)`
 position: fixed;
 height: 30px;
-width: 20%;
+width: 100%;
 background-color: #ff5c00;
 color: #fff;
 border-radius: 0 0px 20px 20px;
 top: 60px;
-left: 40%;
+left: 0%;
 z-index: 999;
 padding: 2px 10px;
+@media (min-width: 1024px) {
+width: 20%;
+left: 40%;
+    
+}
   
 `;
 const SideRightBox = styled(Paper)`
@@ -109,7 +107,11 @@ height: 60px;
 width: 60px;
 padding: 5px;
 right: 10px;
-bottom: 20px;
+bottom: 70px;
 z-index: 999;
+@media (min-width: 1024px) {
+bottom: 20px;
+    
+}
   
 `;

@@ -7,12 +7,19 @@ const Step4 = ({ onBack, onNext }) => {
 
     const globelForm = useSelector((state) => state.user.insuranceForm);
     const quikForm = useSelector((state) => state.user.quikInsuranceForm);
-
+    const [isValid, setIsValid] = useState(true);
+    const phoneRegex = /^\d{X}(?:[-\s]\d{3})+$/;
     const dispatch = useDispatch();
     const [FormData, setFormData] = useState(globelForm)
     const [selfName, setSelfName] = useState(globelForm[0]?.selfname ? globelForm[0]?.selfname : "");
     const [selfPhone, setSelfPhone] = useState(globelForm[0]?.phone ? globelForm[0]?.phone : "");
     const [selfEmail, setSelfEmail] = useState(globelForm[0]?.email ? globelForm[0]?.email : "");
+
+    const handlePhone = (e) => {
+        let value = e.target.value;
+        setIsValid(phoneRegex.test(value));
+        setSelfPhone(value);
+    }
 
     const handleSelf = () => {
         const updateForm = [...globelForm];
@@ -36,6 +43,7 @@ const Step4 = ({ onBack, onNext }) => {
 
     }
 
+
     useEffect(() => {
         setSelfPhone(quikForm?.phone)
         setSelfEmail(quikForm?.email)
@@ -54,7 +62,7 @@ const Step4 = ({ onBack, onNext }) => {
                     <TextField type='text' size="small" value={selfName} onChange={(e) => setSelfName(e.target.value)} label={"Your full name"} fullWidth />
                 </Grid>
                 <Grid item xs={12}>
-                    <TextField type='number' size="small" value={selfPhone} onChange={(e) => setSelfPhone(e.target.value)} label={"Number"} fullWidth />
+                    <TextField type='number' size="small" value={selfPhone} onChange={(e) => handlePhone(e)} label={"Number"} fullWidth />
 
                 </Grid>
                 <Grid item xs={12}>

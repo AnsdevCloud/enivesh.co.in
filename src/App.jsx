@@ -45,6 +45,7 @@ const OptionViewPlans = lazy(() => import("./components/elements/planelm/OptionV
 const HeathPage = lazy(() => import('./components/elements/healthins/HealthIndex'));
 const HealthMain = lazy(() => import("./components/elements/healthins/HealthMain"));
 import policda from './jsondata/policy/privacypolicy.json'
+import Preview from "./components/blogs/Preview";
 const Bindex = lazy(() => import("./components/blogs/Bindex"));
 const Landing = lazy(() => import("./components/blogs/Landing"));
 const Editor = lazy(() => import("./components/blogs/Editor"));
@@ -81,6 +82,8 @@ function App() {
     console.log("click");
     return
   }
+
+
   return (
     <>
 
@@ -155,6 +158,7 @@ function App() {
             <Route index element={<Suspense><Landing /></Suspense>} />
             <Route path="create" element={<Suspense><Editor /></Suspense>} />
             <Route path=":bid" element={<Suspense><Show /></Suspense>} />
+            <Route path="preview" element={<Suspense><Preview /></Suspense>} />
 
           </Route>
           <Route path="*" element={<Suspense fallback={<LinearProgress />}><NoDataPage /></Suspense>} />

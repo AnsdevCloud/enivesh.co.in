@@ -8,13 +8,14 @@ import Paragraph from '@editorjs/paragraph';
 import LinkTool from '@editorjs/link';
 import fb from '../../Firebase/FireConfig';
 const storage = fb.storage();
-const MyTextEditor = ({ className, data, onChange }) => {
+const MyTextEditor = ({ className, data, onChange, update }) => {
 
     const editorInstance = useRef(null);
     // Function to upload image to Firebase Storage
     const uploadImageToFirebase = async (file) => {
         const storageRef = storage.ref();
-        const imageRef = storageRef.child(`images/${file.name}`);
+        const filename = `${file.name}`;
+        const imageRef = storageRef.child(`/images/blogs/${filename}`);
         try {
             const snapshot = await imageRef.put(file);
             const downloadUrl = await snapshot.ref.getDownloadURL();
@@ -28,6 +29,7 @@ const MyTextEditor = ({ className, data, onChange }) => {
     useEffect(() => {
         if (editorInstance.current === null) {
             editorInstance.current = new EditorJS({
+
                 placeholder: "Write your contents here .....",
                 holder: 'editorjs',
                 tools: {
@@ -102,7 +104,7 @@ const MyTextEditor = ({ className, data, onChange }) => {
                 editorInstance.current = null;
             }
         };
-    }, []);
+    }, [update]);
 
 
     return <div id="editorjs" className={className}></div>;

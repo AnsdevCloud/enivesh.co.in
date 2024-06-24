@@ -10,7 +10,7 @@ const UploadBlogCoverFireStorage = async (imageFile) => {
 
     // Create a child reference with a unique filename (recommended)
     const filename = `${Date.now()}-${imageFile.name}`;
-    const imageRef = storageRef.child('images/cover' + filename);
+    const imageRef = storageRef.child('images/blogs/covers/' + filename);
 
     try {
         // Upload the image to the storage bucket
@@ -18,7 +18,7 @@ const UploadBlogCoverFireStorage = async (imageFile) => {
 
         // Get the download URL for the uploaded image
         const downloadURL = await imageRef.getDownloadURL();
-        console.log('Image uploaded successfully! URL:', downloadURL);
+
         url = downloadURL
 
 

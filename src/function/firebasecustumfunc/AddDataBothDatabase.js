@@ -1,10 +1,12 @@
 
+
 import fb from '../../Firebase/FireConfig';
 const db = fb.firestore();
 
 
 
 const AddBlogBothDatabase = (contents) => {
+    const user = JSON.parse(localStorage.getItem("loginUser"));
 
     if (contents === undefined) {
         console.info("Send Document as a props ");
@@ -12,19 +14,20 @@ const AddBlogBothDatabase = (contents) => {
     } else {
         if (contents.title && contents?.content) {
             db.collection("blogs").add({
+                author: user,
                 title: contents?.title,
                 content: contents?.content,
                 views: 0,
                 likes: [],
                 comments: [],
+                timestamp: new Date().getTime(),
                 ...contents,
-                // createdAt: fb.firestore.
-                // servertimestamp: fb.firestore.FieldValue.serverTimestamp()
+
             })
                 .then((docRef) => {
 
                     if (docRef.id) {
-                        writeUserData(docRef.id, contents)
+                        writeUserData(docRef.id, contents, user)
                     }
                 })
                 .catch((error) => {
@@ -37,19 +40,25 @@ const AddBlogBothDatabase = (contents) => {
     }
 
 
-
+    return 1;
 
 }
-function writeUserData(userId, contents) {
+function writeUserData(userId, contents, user) {
     fb.database().ref('blogs/' + userId).set({
+        author: user,
         title: contents.title,
         bid: userId,
         views: 0,
+        category: contents?.category,
+        timestamp: new Date().getTime(),
         coverImageUrl: contents?.coverImageUrl ? contents?.coverImageUrl : null
-        // timestamp: fb.firestore.Timestamp.fromDate(new Date()),
-        // servertimestamp: fb.firestore.FieldValue.serverTimestamp()
+
 
     });
+    alert("Blog Posted ❤️ , Navigating..... ");
+
+
+
 }
 
 export default AddBlogBothDatabase

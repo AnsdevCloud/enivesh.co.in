@@ -82,5 +82,28 @@
                 "name": "Liability Insurance"
             }
         ]
+    },
+    {
+        "id": 5,
+        "text": "Learnig Center",
+        "title": "Blogs",
+        "list": [
+            {
+                "path": "/blogs",
+                "name": "Life Insurance"
+            },
+            {
+                "path": "/blogs",
+                "name": "Health Insurance"
+            },
+            {
+                "path": "/blogs",
+                "name": "MSME Insurance"
+            },
+            {
+                "path": "/blogs",
+                "name": "Group Insurance"
+            }
+        ]
     }
 ]

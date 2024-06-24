@@ -78,17 +78,17 @@ display: ${props => props.$active === false ? "block" : "none"};
 `;
 const Wrapper = styled.div`
 display: none;
-width: 90%;
+width: 100%;
 height: 60px;
-border-radius: 10px 10px 10px 10px;
+border-radius: 10px 10px 0px 0px;
 padding: 5px;
 background-color: #fff;
 box-shadow: 0px 0px 50px 1px #1a1a1a;
 margin: 0 auto;
 position: fixed;
-bottom: 20px;
+bottom: 0px;
 z-index: 9999;
-left: 5%;
+
 align-items: center;
 justify-content: space-evenly;
     a{
@@ -105,13 +105,13 @@ justify-content: space-evenly;
  
 `;
 const DropContent = styled.div`
-    transition: all .3s ease-in-out;
+    transition: all .4s ease-in-out;
     position: absolute;
     width: 100%;
     bottom: 55px;
     left: 0;
-    height:${props => props.$active === true ? "0px" : "250px"};
-    max-height: 250px;
+    height:${props => props.$active === true ? "0px" : "300px"};
+    max-height: 350px;
     background-color: #fbf6f0;
     border-radius: 10px 10px 0 0;
     z-index: 999;
@@ -136,12 +136,11 @@ const DropContent = styled.div`
         display: flex;
         align-items: center;
         justify-content: space-between;
-        
-        padding: 5px 5px;
+        padding: 10px 5px;
         border-radius: 5px 5px 0 0;
           p{
             text-align: start;
-            font-size: 14px;
+            font-size: 16px;
             font-weight: 600;
 
         }
@@ -162,7 +161,7 @@ const DropContent = styled.div`
         }
       }
       .mainref{
-        font-size: 12px;
+        font-size: 14px;
         text-align: left;
         padding: 5px 5px;
         text-decoration: underline;
@@ -185,7 +184,7 @@ const Links = styled.div`
         padding: 10px 0;
         border-bottom: 1px solid #99999971;
         color: #ff5c00;
-        font-size: 12px;
+        font-size: 14px;
         font-weight: 500;
         text-align: start;
 
