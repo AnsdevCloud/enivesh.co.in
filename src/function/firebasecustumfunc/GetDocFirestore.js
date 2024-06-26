@@ -12,7 +12,9 @@ const GetSingleBlogFiretore = async (bid) => {
                 id: doc.id,
                 ...doc.data()
             }
-            ViewUpdateBoth(bid, data.views);
+            setTimeout(() => {
+                ViewUpdateBoth(bid, data.views);
+            }, 10000);
             return data
         } else {
             return null;

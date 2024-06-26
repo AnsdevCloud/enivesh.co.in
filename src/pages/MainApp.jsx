@@ -9,14 +9,15 @@ import { Call, CallSharp, Rocket, WhatsApp } from '@mui/icons-material'
 
 const MainApp = () => {
     const navigate = useNavigate();
+    let userData = JSON.parse(localStorage.getItem("loginUser"));
 
     return (
         <>
             <Navbar />
             <Wrapper>
-                <SideLeftBox>
+                {!(userData?.role === "Author" || userData?.role === "Admin" || userData?.role === "Employee") && <SideLeftBox>
                     <Typography textAlign={"center"} variant='subtitle2' display={"flex"} alignItems={"center"} justifyContent={"center"} gap={1}><Call color='success' /> Be insured.! Call us at 9833888817</Typography>
-                </SideLeftBox>
+                </SideLeftBox>}
                 {/* <SideRightBox >
                     <Grid container spacing={1}>
                         <Grid item sm={12} >
@@ -38,7 +39,7 @@ const MainApp = () => {
 
                     </Grid>
                 </SideRightBox> */}
-                <SideCenterRightBox >
+                {!(userData?.role === "Author" || userData?.role === "Admin" || userData?.role === "Employee") && <SideCenterRightBox >
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
                             <Tooltip title="Chat ">
@@ -52,7 +53,7 @@ const MainApp = () => {
                         </Grid>
 
                     </Grid>
-                </SideCenterRightBox>
+                </SideCenterRightBox>}
                 <Outlet />
             </Wrapper >
             <FooterNav />

@@ -46,6 +46,7 @@ const HeathPage = lazy(() => import('./components/elements/healthins/HealthIndex
 const HealthMain = lazy(() => import("./components/elements/healthins/HealthMain"));
 import policda from './jsondata/policy/privacypolicy.json'
 import Preview from "./components/blogs/Preview";
+import PostContainer from "./components/postcreate/PostContainer";
 const Bindex = lazy(() => import("./components/blogs/Bindex"));
 const Landing = lazy(() => import("./components/blogs/Landing"));
 const Editor = lazy(() => import("./components/blogs/Editor"));
@@ -161,6 +162,7 @@ function App() {
             <Route path="preview" element={<Suspense><Preview /></Suspense>} />
 
           </Route>
+          <Route path="/ai_post_gen" element={<Suspense fallback={<LinearProgress />}><PostContainer /></Suspense>} />
           <Route path="*" element={<Suspense fallback={<LinearProgress />}><NoDataPage /></Suspense>} />
 
         </Route>

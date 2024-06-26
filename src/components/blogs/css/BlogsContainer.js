@@ -29,7 +29,12 @@ height: 100%;
   mark{
     padding: 0 5px;
     background-color: orange;
-    font-weight: 400;
+    transition: all .3s ease-in-out;
+    font-weight: 500;
+    &:hover{
+      background-color: #00f;
+      color: #fff;
+    }
   }
   .ejs-image{
     width: 100%;
@@ -38,20 +43,30 @@ height: 100%;
     
   }
   b{
-    font-weight: 600;
+    font-weight: 600 !important;
+  
   }
   a{
     font-style: normal;
     color: #ff5c00;
     position: relative;
+    transition: all .3s ease-in-out;
+
     &::after{
         content: 'Link';
-        width: 10px;
-        height: 10px;
+    transition: all .2s ease-in-out;
+
+        width: fit-content;
+        height: fit-content;
+        padding: 2px 5px;
+        background-color: #00f;
         font-size: 10px;
         color: #000;
         position: absolute;
-        left: -20px;
+        left: -30px;
+        font-weight: 600;
+        border-radius: 5px;
+        color: #fff;
         top: 2px;
         opacity: 0;
     }
@@ -62,6 +77,16 @@ height: 100%;
         opacity: 1;
      }
   }
+
+
 `;
 
-export { BlogsContainer };
+const BlogHeader = styled.div`
+  width: 100%;
+  height: 100px;
+  background-color: ${props => props.$bgColor ? props.$bgColor : "transperent "};
+  margin: 10px 0;
+  padding: 10px;
+  
+`;
+export { BlogsContainer, BlogHeader };
