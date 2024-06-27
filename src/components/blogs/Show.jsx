@@ -154,7 +154,7 @@ const Show = () => {
                                                 </IconButton>
                                             </Badge>
                                         </Tooltip>
-                                        <ShareButton onlyIcon url={`https://enivesh.co.in/blogs/${bid}`} title={content?.title} />
+                                        <ShareButton onlyIcon url={`https://enivesh.co.in/blogs/${bid}?${content?.title}`} title={"Enivesh Finance & Insurance Pvt. Ltd. "} />
 
                                         <Button disabled size='small' startIcon={<Visibility fontSize='10px' />} title={content?.views} >{content?.views}</Button>
                                     </Stack>

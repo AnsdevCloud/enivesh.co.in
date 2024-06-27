@@ -3,7 +3,7 @@ import { Avatar, Button, Card, CardContent, CardHeader, Divider, IconButton, Typ
 import React from 'react'
 
 const CommentCard = ({ comment, uid, onDelete }) => {
-
+    const user = JSON.parse(localStorage.getItem('loginUser'))
     const convertTimestampToDate = (timestamp) => {
         // Create a new Date object using the 13-digit timestamp (milliseconds)
         const date = new Date(timestamp);
@@ -33,7 +33,7 @@ const CommentCard = ({ comment, uid, onDelete }) => {
                 title="First"
                 subheader={convertTimestampToDate(comment?.timestamp)}
                 action={
-                    <IconButton onClick={() => onDelete(comment)} size='small' color='error' aria-label="delete">
+                    (user?.id === uid) && <IconButton onClick={() => onDelete(comment)} size='small' color='error' aria-label="delete">
                         <Delete fontSize='10px' />
                     </IconButton>
                 }

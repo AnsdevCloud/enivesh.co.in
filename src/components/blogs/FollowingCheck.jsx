@@ -4,6 +4,7 @@ import { doc, getDoc } from "firebase/firestore";
 
 import FollowButton from './FollowButton';
 import fb from '../../Firebase/FireConfig';
+import { CircularProgress } from '@mui/material';
 const db = fb.firestore();
 const FollowingCheck = ({ aid, currentUserId }) => {
 
@@ -22,7 +23,7 @@ const FollowingCheck = ({ aid, currentUserId }) => {
         fetchUser();
     }, [aid, currentUserId]);
 
-    if (!user) return <div>Loading...</div>;
+    if (!user) return <p>...</p>;
 
     return (<FollowButton currentUserId={currentUserId} targetUserId={aid} isFollowing={isFollowing} />);
 };

@@ -4,9 +4,11 @@ import Header from '@editorjs/header';
 import List from '@editorjs/list';
 import ImageTool from '@editorjs/image';
 import MarkerTool from '@editorjs/marker';
+import Embed from '@editorjs/embed';
 import Paragraph from '@editorjs/paragraph';
 import LinkTool from '@editorjs/link';
 import fb from '../../Firebase/FireConfig';
+
 const storage = fb.storage();
 const MyTextEditor = ({ className, data, onChange, update }) => {
 
@@ -77,10 +79,24 @@ const MyTextEditor = ({ className, data, onChange, update }) => {
                             },
                         },
                     },
+                    embed: {
+                        class: Embed,
+                        config: {
+
+                            services: {
+                                youtube: true,
+                                vimeo: true,
+                                coub: true,
+
+
+                            },
+                        },
+                    },
 
 
                 },
                 data: data,
+
                 onChange: async () => {
                     const content = await editorInstance.current.save();
                     onChange(content);

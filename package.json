@@ -12,6 +12,7 @@
   "dependencies": {
     "@cyntler/react-doc-viewer": "^1.14.1",
     "@editorjs/editorjs": "^2.29.1",
+    "@editorjs/embed": "^2.7.4",
     "@editorjs/header": "^2.8.1",
     "@editorjs/image": "^2.9.0",
     "@editorjs/link": "^2.6.2",

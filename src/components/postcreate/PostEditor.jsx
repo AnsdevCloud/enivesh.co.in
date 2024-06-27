@@ -101,7 +101,7 @@ const PostImageGen = ({ data, title, discription, image }) => {
             </Wrapper>
             <Stack flexDirection={"row"} justifyContent={"flex-start"} gap={6}>
                 <Button size='small' onClick={downloadPNG} startIcon={<Download />}>Download</Button>
-                <ShareButton url={"https://enivesh.co.in/blogs/EcB3cjHIcG6kAVwMzjlD?How%20to%20Do%20Tax%20Harvesting%20for%20Mutual%20Fund%20Returns"} title={"shareTitle"} />
+                <ShareButton url={`https://enivesh.co.in/blogs/${data?.id}?${data?.title}`} title={"Enivesh Finance & Insurance Pvt. Ltd. "} />
             </Stack>
         </Stack>
     );

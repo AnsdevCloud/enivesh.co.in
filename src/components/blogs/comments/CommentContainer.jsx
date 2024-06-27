@@ -33,7 +33,7 @@ const CommentContainer = ({ postId, currentUserId, ref, refId }) => {
     if (!post) return <div>Loading...</div>;
 
     return (
-        <Container id={refId} ref={ref} component={Paper} sx={{ p: 1, mt: 2 }}>
+        <Container id={refId} ref={ref} component={Paper} elevation={0} sx={{ p: 1, mt: 2 }}>
             <Typography mt={2} variant='h6' fontWeight={600}>Comments : </Typography>
             {post?.comments?.map((comment, index) => (
 
